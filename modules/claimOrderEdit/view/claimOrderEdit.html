@@ -1,0 +1,97 @@
+<div ng-controller="claimOrderEditController as vm" class="innerTop">
+    <ol class="breadcrumb"></ol>
+    <div class="pLR40">
+        <div class="rightDiv">
+            <div class="rightContTitle rightContTitle02">
+                <h2>发起申诉</h2>
+                <img src="static/images/pop-close.png" alt="" ng-click="vm.clearLocalStorage()" >
+            </div>
+            <div class="detailDiv">
+                <h2>申诉信息</h2>
+                <div class="addInsurance addClaim">
+                    <ul>
+                        <li class="clearfix">
+                            <div class="floatDiv">
+                                <label>商户标识<i>*</i>：</label>
+                                <span ng-bind="vm.applyData.source"></span>
+                            </div>
+                            <div class="floatDiv">
+                                <label>商户名称：</label>
+                                <span ng-bind="vm.applyData.companyName"></span>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="floatDiv">
+                                <label>渠道订单号<i>*</i>：</label>
+                                <span ng-bind="vm.applyData.channelOrderNo"></span>
+                            </div>
+                            <div class="floatDiv">
+                                <label>豆沙包订单号<i>*</i>：</label>
+                                <span ng-bind="vm.applyData.ticketNo"></span>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="floatDiv">
+                                <label>理赔产品<i>*</i>：</label>
+                                <span  ng-bind="vm.applyData.showName"></span>
+                            </div>
+                            <div class="floatDiv" ng-if="vm.applyData.combinationId">
+                                <label>组合版产品<i>*</i>：</label>
+                                <span ng-bind="vm.applyData.combinationId"></span>
+                            </div>
+                            <!--<div class="floatDiv" ng-if="vm.applyData.combinationId">
+                                <span>父ID：</span>
+                                <span  ng-bind="vm.applyData.parentProductId"></span>
+                            </div>-->
+                            <!--<div class="floatDiv">-->
+                                <!--<label>产品名称：</label>-->
+                                <!--<span  ng-bind="vm.applyData.productName"></span>-->
+                            <!--</div>-->
+                        </li>
+
+                        <li class="clearfix" ng-if="vm.img.length > 0">
+                            <div class="f_l mr20 mb20" ng-repeat="obj in vm.img">
+                                <p ng-bind="obj.docName + '*：'" class="lh40 f_l mr10 text_r"></p>
+                                <div class="f_l mr20">
+                                    <p class="w100P lh40" ng-repeat="o in obj.imgList">
+                                        <!--<img ng-src="{{o.value}}" ng-if="o.isImg" width="200" height="200" class="mr10"/>-->
+                                        <a ng-href="{{o.value}}" target="_blank" ng-bind="o.name" class="mr10"></a>
+                                        <a href="javascript:;" class="c_e61915" ng-click="vm.deleteUploadImg($index,obj.imgList)">删除</a>
+                                    </p>
+                                </div>
+                                <span class="uploadScreenshot">
+                                        <span class="scanFile btn btn-info">浏览</span>
+                                        <input class="form-control f_l w100" type="file"
+                                               ng-file-select="vm.readExcel($files,obj)">
+                                </span>
+                            </div>
+                        </li>
+                        <li class="clearfix" ng-if="vm.font.length > 0">
+                            <div class="floatDiv" ng-repeat="obj in vm.font">
+                                <label ng-bind="obj.docName + '*：'"></label>
+                                <input class="form-control f_l w150" type="text" ng-model="obj.value">
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="floatDiv">
+                                <label>理赔金额<i>*</i>：</label>
+                                <input class="form-control f_l w150" type="text" ng-model="vm.applyData.applyAmount">
+                                <span class="ml5">元</span>
+                            </div>
+                        </li>
+                        <li class="clearfix remaksLi">
+                            <div class="floatDiv">
+                                <label>备注<i>*</i>：</label>
+                                <textarea class="form-control f_l" type="text" ng-model="vm.applyData.remark"></textarea>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="clearfix text_c">
+                        <input class="btn btn-warning mt20 mb20 w200" type="button" value="提交" ng-click="vm.submit()">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

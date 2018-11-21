@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>blank</title>
+</head>
+<body ng-app="blank" ng-controller="blankController"></body>
+<script src="static/js/jquery/jquery-1.10.2.min.js"></script>
+<script src="static/js/angular/angular.min.js"></script>
+<script src="static/js/angular/angular-cookies.min.js"></script>
+<script src="core/configs/config.js"></script>
+<!--<script src="core/configs/testConfig.js"></script>-->
+<!--<script src="core/configs/developConfig.js"></script>-->
+<!--<script src="core/configs/localConfig.js"></script>-->
+<script src="core/services/service.js"></script>
+<script src="core/services/layer.js"></script>
+<script>
+    var app = angular.module('blank', ['app.services']);
+    app.config(['$httpProvider', function ($httpProvider) {
+        $httpProvider.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
+        $httpProvider.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
+        // x-www-form-urlencoded
+        $httpProvider.defaults.withCredentials = true;
+        // Override $http service's default transformRequest
+        $httpProvider.defaults.transformRequest = [function (data) {
+            /**
+             * The workhorse; converts an object to x-www-form-urlencoded serialization.
+             * @param {Object} obj
+             * @return {String}
+             */
+            var param = function (obj) {
+                var query = '';
+                var name, value, fullSubName, subName, subValue, innerObj, i;
+                for (name in obj) {
+                    value = obj[name];
+                    if (value instanceof Array) {
+                        for (i = 0; i < value.length; ++i) {
+                            subValue = value[i];
+                            fullSubName = name + '[' + i + ']';
+                            innerObj = {};
+                            innerObj[fullSubName] = subValue;
+                            query += param(innerObj) + '&';
+                        }
+                    } else if (value instanceof Object) {
+                        for (subName in value) {
+                            subValue = value[subName];
+                            fullSubName = name + '[' + subName + ']';
+                            innerObj = {};
+                            innerObj[fullSubName] = subValue;
+                            query += param(innerObj) + '&';
+                        }
+                    } else if (value !== undefined && value !== null) {
+                        query += encodeURIComponent(name) + '=' +
+                            encodeURIComponent(value) + '&';
+                    }
+                }
+                return query.length ? query.substr(0, query.length - 1) : query;
+            };
+            return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
+        }];
+    }]);
+    app.controller('blankController', ['$scope', '$api' ,'$defaultConfig',function ($scope, $api, $defaultConfig) {
+        var vm = this;
+        // (function () {
+        //     $.ajax({
+        //         url: 'http://dev.api.dousha8ao.com/user/loginPoint',
+        //         type: 'post',
+        //         data: JSON.stringify(data),
+        //         contentType: "application/json",
+        //         success: function(d) {
+        //             var href = 'http://localhost:63342/DSB_SaaS_front/index.html#/claimOrderAdd.html';
+        //             var str = d.msg.split("?")[1];
+        //             window.open(href + '?' + str);
+        //         }
+        //     })
+        // })();
+
+        vm.data = {
+            "username":"18875856323",
+            "password":"11111111",
+            "source":"CLBGEL",
+            "ticketNo":"DSB409620180925100951058",
+            "productId":927,
+            "subMerchant":"BMVDUY"
+        };
+
+
+        var str = window.location.href.split("?")[1];
+        var href = $defaultConfig.app_uri + '/index.html#/claimOrderAdd.html';
+        console.log('str===', str);
+        window.open(href + '?' + str);
+        // localStorage.setItem('menuList', JSON.stringify(menuList));
+
+
+    }]);
+</script>
+</html>

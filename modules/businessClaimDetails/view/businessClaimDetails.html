@@ -1,0 +1,510 @@
+<div ng-controller="businessClaimDetailsController as vm" class="innerTop" ng-init="vm.getClaimDataAsync()">
+    <div class="popMask" ng-if="vm.popShow">
+        <div class="popDiv">
+            <h3 class="">理赔审核</h3>
+            <img src="static/images/closeIco.png" ng-click="vm.popShow = false"/>
+            <div class="overfl mb20">
+                <p class="f_l lh40">审核状态：</p>
+                <div class="f_l">
+                    <label class="f_l mr10 lh40">
+                        <input type="radio"
+                               class="check-type-3"
+                               name="auditStatus"
+                               ng-model="vm.applyAudit.auditStatus"
+                               ng-value="1"
+                        /> <span>通过</span>
+                    </label>
+                    <label class="f_l mr10 lh40">
+
+                        <input type="radio"
+                               class="check-type-3"
+                               name="auditStatus"
+                               ng-model="vm.applyAudit.auditStatus"
+                               ng-value="0"
+                        />
+                        <span>驳回</span>
+                    </label>
+                </div>
+            </div>
+            <div class="overfl mb20">
+                <p class="f_l lh40">补贴金额：</p>
+                <input type="text" class="f_l form-control w80 mr20" ng-model="vm.applyAudit.indemnifySum"/>
+                <p class="f_l lh40">已打款金额：<span ng-bind="vm.sum"></span>元</p>
+            </div>
+            <!--<div class="overfl mb20">
+                <p class="f_l lh40">审核话术：</p>
+                <select class="form-control w120 f_l">
+                    <option value="">全部</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+            </div>-->
+            <div class="overfl mb20">
+                <p class="f_l lh40">理赔说明：</p>
+                <textarea class="w200 form-control f_l" ng-model="vm.applyAudit.applyRemark"></textarea>
+            </div>
+            <div style="text-align: center;padding:10px 0 ">
+                <input type="button" class="btn-warning btn mr10" value="提交" ng-click="vm.submit()"/>
+            </div>
+        </div>
+    </div>
+
+    <!--补充理赔字段弹窗-->
+    <div class="popMask" ng-if="vm.supplyFieldPop">
+        <div class="popDiv" style="width: 600px;padding-right: 20px">
+            <h3 class="">补充理赔字段</h3>
+            <img src="static/images/closeIco.png" ng-click="vm.supplyFieldPop = false"/>
+            <div class="overfl mb20" style="overflow: auto;max-height: 240px">
+                <div class="overfl mb20  mr10 f_l" ng-repeat="obj in vm.supplyFieldList">
+                    <p class="f_l lh40" ng-bind="obj.name + '：'"></p>
+                    <input type="text" class="f_l form-control w150 mr10" ng-model="obj.value"/>
+                </div>
+            </div>
+            <div style="text-align: center">
+                <input type="button" class="btn-warning btn mr10" value="提交" ng-click="vm.supplyInfoSubmit()"/>
+            </div>
+        </div>
+    </div>
+    <ol class="breadcrumb"></ol>
+    <div class="pLR40">
+        <div class="rightDiv">
+            <div class="rightContTitle">
+                <h2>订单详情</h2>
+                <i class="closeIco" ui-sref="businessClaim"></i>
+            </div>
+
+            <div class="overfl mb20">
+                <ul class="topNavUl">
+                    <li ng-class="{active : vm.infoLog == 0}" ng-click="vm.changeInfo(0)">基本信息</li>
+                    <li ng-class="{active : vm.infoLog == 1}" ng-click="vm.changeInfo(1)">理赔日志</li>
+                </ul>
+            </div>
+
+            <div class="claimTab" ng-if="vm.infoLog == 0">
+                <div class="rightLay overfl">
+                    <div class="inlay">
+                        <div class="overfl">
+                            <h4 class="titleNav">基本信息</h4>
+                            <div class="f_l">
+                                <div class="overfl ">
+                                    <p class="f_l lh40 w200 c_999 text_r">订单号：</p>
+                                    <p class="f_l lh40" ng-bind="vm.info.ticketNo"></p>
+                                </div>
+                                <div class="overfl ">
+                                    <p class="f_l lh40 w200 c_999 text_r">产品名称：</p>
+                                    <p class="f_l lh40" ng-bind="vm.info.productShowName"></p>
+                                </div>
+                                <div class="overfl ">
+                                    <p class="f_l lh40 w200 c_999 text_r">产品id：</p>
+                                    <p class="f_l lh40" ng-bind="vm.info.productShowId"></p>
+                                </div>
+                                <div class="overfl ">
+                                    <p class="f_l lh40 w200 c_999 text_r">定价系数：</p>
+                                    <p class="f_l lh40" ng-bind="vm.info.adjustPrice"></p>
+                                </div>
+                                <!--<div class="overfl ">-->
+                                <!--<p class="f_l lh40 w200 c_999 text_r">结算金额：</p>-->
+                                <!--<p class="f_l lh40" ng-bind="vm.info.discountAmount"></p>-->
+                                <!--</div>-->
+                                <div class="overfl ">
+                                    <p class="f_l lh40 w200 c_999 text_r">支付金额：</p>
+                                    <p class="f_l lh40" ng-bind="vm.info.discountAmount + '元'" ng-if="vm.info.backup2 == null"></p>
+                                    <p class="f_l lh40" ng-if="vm.info.backup2">见产品包</p>
+                                </div>
+                            </div>
+                            <div class="f_l">
+                                <div class="overfl ">
+                                    <p class="f_l lh40 w200 text_r c_999">包主姓名：</p>
+                                    <p class="f_l lh40" ng-bind="vm.info.name"></p>
+                                </div>
+                                <div class="overfl ">
+                                    <p class="f_l lh40 w200 text_r c_999">包主手机号：</p>
+                                    <p class="f_l lh40" ng-bind="vm.info.phoneNo"></p>
+                                </div>
+                                <!--<div class="overfl">-->
+                                    <!--<p class="f_l lh40 w200 text_r c_999">申请时间：</p>-->
+                                    <!--<p class="f_l lh40" ></p>-->
+                                <!--</div>-->
+                                <div class="overfl">
+                                    <p class="f_l lh40 w200 text_r c_999">产品购买份数：</p>
+                                    <p class="f_l lh40" ng-bind="vm.info.productNum"></p>
+                                </div>
+                                <div class="overfl">
+                                    <p class="f_l lh40 w200 text_r c_999">生效日期：</p>
+                                    <p class="f_l lh40" ng-bind="vm.info.effectiveDate | date:'yyyy-MM-dd HH:mm:ss'"></p>
+                                </div>
+                                <div class="overfl">
+                                    <p class="f_l lh40 w200 text_r c_999">截止日期：</p>
+                                    <p class="f_l lh40" ng-bind="vm.info.expiryDate | date:'yyyy-MM-dd HH:mm:ss'"></p>
+                                </div>
+                                <div class="overfl">
+                                    <p class="f_l lh40 w200 text_r c_999">订单日期：</p>
+                                    <p class="f_l lh40" ng-bind="vm.info.orderTime | date:'yyyy-MM-dd HH:mm:ss'"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="overfl">
+                            <h4 class="titleNav">理赔信息</h4>
+                            <div class="overfl">
+                                <div class="overfl ">
+                                    <p class="f_l lh40 w200 c_999 text_r">购买数量：</p>
+                                    <p class="f_l lh40" ng-bind="vm.info.productNum"></p>
+                                </div>
+                                <div class="overfl ">
+                                    <p class="f_l lh40 w200 c_999 text_r">最高赔付：</p>
+                                    <p class="f_l lh40" ng-bind="vm.info.productCompensationAmount"></p>
+                                </div>
+                                <div class="overfl ">
+                                    <p class="f_l lh40 w200 c_999 text_r">申请赔付金额：</p>
+                                    <p class="f_l lh40" ng-bind="vm.info.applyAmount"></p>
+                                </div>
+                                <div class="overfl ">
+                                    <p class="f_l lh40 w200 c_999 text_r">理赔金额：</p>
+                                    <p class="f_l lh40" ng-bind="vm.info.indemnifySum"></p>
+                                </div>
+                                <div class="overfl ">
+                                    <p class="f_l lh40 w200 c_999 text_r">申请理赔日期：</p>
+                                    <p class="f_l lh40" ng-bind="vm.info.applyTime | date:'yyyy-MM-dd HH:mm:ss'"></p>
+                                </div>
+                                <!--<div class="overfl ">-->
+                                    <!--<p class="f_l lh40 w200 c_999 text_r">总保费：</p>-->
+                                    <!--<p class="f_l lh40" ng-bind="vm.info.premium"></p>-->
+                                <!--</div>-->
+                                <div class="overfl ">
+                                    <p class="f_l lh40 w200 c_999 text_r">转运公司：</p>
+                                    <p class="f_l lh40" ng-bind="vm.info.companyName"></p>
+                                </div>
+                                <div class="overfl ">
+                                    <p class="f_l lh40 w200 c_999 text_r">物流快递单号：</p>
+                                    <p class="f_l lh40"><a href="javascript:;" ng-bind="vm.info.expressNo" id="expressNo"></a></p>
+                                </div>
+                                <div class="overfl ">
+                                    <p class="f_l lh40 w200 c_999 text_r">海淘购物网站：</p>
+                                    <p class="f_l lh40" ng-bind="vm.info.shoppingSite"></p>
+                                </div>
+                                <div class="overfl ">
+                                    <p class="f_l lh40 w200 c_999 text_r">海淘商品订单号：</p>
+                                    <p class="f_l lh40" ng-bind="vm.info.purchasOrderNo"></p>
+                                </div>
+                                <div class="overfl ">
+                                    <p class="f_l lh40 w200 c_999 text_r">商品列表 ：</p>
+                                    <p class="f_l lh40" ng-bind="vm.info.goodsCategory"></p>
+                                </div>
+                                <div class="overfl ">
+                                    <p class="f_l lh40 w200 c_999 text_r">海淘包裹号：</p>
+                                    <p class="f_l lh40" ng-bind="vm.info.expressNo"></p>
+                                </div>
+                                <div class="overfl ">
+                                    <p class="f_l lh40 w200 c_999 text_r">海淘商品价值：</p>
+                                    <p class="f_l lh40" ng-bind="vm.info.goodsValue"></p>
+                                </div>
+                                <div class="overfl ">
+                                    <p class="f_l lh40 w200 c_999 text_r">备注：</p>
+                                    <p class="f_l lh40" ng-bind="vm.info.specialExplain"></p>
+                                </div>
+                                <div class="overfl ">
+                                    <p class="f_l lh40 w200 c_999 text_r">理赔说明：</p>
+                                    <p class="f_l lh40" ng-bind="vm.info.applyRemark"></p>
+                                </div>
+                                <div class="overfl ">
+                                    <p class="f_l lh40 w200 c_999 text_r">状态：</p>
+                                    <p class="f_l lh40" ng-bind="vm.info.statusTxt"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="overfl">
+                            <h4 class="titleNav">包裹保障责任</h4>
+                            <div class="overfl">
+                                <div class="overfl ">
+                                    <p class="f_l lh40 w200 c_999 text_r" ng-bind="vm.info.applyProductName +  '：'"></p>
+                                    <p class="f_l lh40">剩余 <span ng-bind="vm.info.productPeriod"></span>天</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inlay">
+                        <div ng-if="vm.img.length > 0">
+                            <div ng-repeat="obj in vm.img">
+                                <h4 class="titleNav" ng-bind="obj.docName"></h4>
+                                <div class="overfl">
+                                    <span class="uploadScreenshot" style="margin-bottom: 20px">
+                                        <span class="scanFile btn btn-info">上传</span>
+                                        <input class="form-control f_l w100" type="file"
+                                               ng-file-select="vm.readExcel($files,obj)">
+                                    </span>
+                                    <div class="overfl " ng-repeat="current in obj.imgList" style="margin-bottom: 10px"
+                                         ng-if="current.isImg">
+                                        <a style="display: inline-block;" ng-href="{{current.value}}" target="_blank">
+                                            <img ng-src="{{current.value}}" width="200"/>
+                                        </a>
+                                        <a href="javascript:;" class="c_e61915"
+                                           ng-click="vm.deleteUploadImg($index,obj.imgList,current)"
+                                           ng-if="obj.imgList.length > 1">删除</a>
+                                    </div>
+                                    <div class="overfl " ng-repeat="current in obj.imgList" style="margin-bottom: 10px"
+                                         ng-if="!current.isImg">
+                                        <a style="display: inline-block;" ng-href="{{current.value}}" target="_blank">点击下载</a>
+                                        <a href="javascript:;" class="c_e61915"
+                                           ng-click="vm.deleteUploadImg($index,obj.imgList,current)"
+                                           ng-if="obj.imgList.length > 1">删除</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="vm.zip.length >0">
+                            <div ng-repeat="obj in vm.zip">
+                                <h4 class="titleNav" ng-bind="obj.docName"></h4>
+                                <div class="overfl " ng-repeat="current in obj.imgList" style="margin-bottom: 10px"
+                                     ng-if="!current.isImg">
+                                    <a style="display: inline-block;" ng-href="{{current.path}}" target="_blank">点击下载</a>
+                                </div>
+                                <input type="button" class="btn btn-warning" value="解压文件" ng-click="vm.unzipFile()" ng-if="vm.showPicList.length == 0"/>
+                            </div>
+                            <div class="overfl">
+                                <a ng-href="{{value}}" ng-repeat="(key,value) in vm.showPicList" class="f_l mr10 mb10" target="_blank">
+                                    <img ng-src="{{value}}" width="200"/>
+                                </a>
+                            </div>
+                        </div>
+                        <div ng-if="vm.font.length > 0">
+                            <div ng-repeat="obj in vm.font">
+                                <h4 class="titleNav" ng-bind="obj.docName"></h4>
+                                <div class="overfl">
+                                    <div class="overfl" ng-repeat="current in obj.imgList">
+                                        <p ng-bind="current.value"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="rightLay overfl">
+                        <h4 class="titleNav">订单画像 <a href="javascript:;" ng-bind="vm.isPortStatus"
+                                                     ng-click="vm.toggleShow()" style="font-size:14px"></a></h4>
+                        <div ng-if="vm.isPort">
+                            <div class="box boxWh-6">
+                                <div class="chainDiv">
+                                    <div class="removeDiv pos1" ng-mouseover="vm.pos1 = true"
+                                         ng-mouseout="vm.pos1 = false"></div>
+                                    <div class="popBlank topArrow pos1" ng-if="vm.pos1">
+                                        <p>厂家：小林制药</p>
+                                        <div class="overfl">
+                                            <p class="f_l mr10" style="width:40px">描述</p>
+                                            <p class="f_l mr10" style="width:40px">服务</p>
+                                            <p class="f_l mr10" style="width:40px">物流</p>
+                                        </div>
+                                        <div class="overfl">
+                                            <p class="f_l mr10" style="width:40px">4.8</p>
+                                            <p class="f_l mr10" style="width:40px">4.9</p>
+                                            <p class="f_l mr10" style="width:40px">4.8</p>
+                                        </div>
+                                    </div>
+                                    <div class="removeDiv pos2" ng-mouseover="vm.pos2 = true"
+                                         ng-mouseout="vm.pos2 = false"></div>
+                                    <div class="popBlank topArrow pos2" ng-if="vm.pos2">
+                                        <p>卖家/平台：亚马逊</p>
+                                        <p>平台综合评分：85分</p>
+                                        <p>平台风险分析：</p>
+                                        <p>货损率--0.03%</p>
+                                        <p>丢件率--0.01%</p>
+                                        <p>延时率--1%</p>
+                                        <p>通关率--8%</p>
+                                        <p>退运率--5%</p>
+                                    </div>
+                                    <div class="removeDiv pos3" ng-mouseover="vm.pos3 = true"
+                                         ng-mouseout="vm.pos3 = false"></div>
+                                    <div class="popBlank topArrow pos3" ng-if="vm.pos3">
+                                        <p>转运：转运四方</p>
+                                        <p>平台综合评分：85分</p>
+                                        <p>平台风险分析：</p>
+                                        <p>货损率--0.03%</p>
+                                        <p>丢件率--0.01%</p>
+                                        <p>延时率--1%</p>
+                                        <p>通关率--8%</p>
+                                        <p>退运率--5%</p>
+                                    </div>
+                                    <div class="removeDiv pos4" ng-mouseover="vm.pos4 = true"
+                                         ng-mouseout="vm.pos4 = false"></div>
+                                    <div class="popBlank topArrow pos4" ng-if="vm.pos4">
+                                        <p>海关：上海海关</p>
+                                        <p>平台综合评分：85分</p>
+                                        <p>总通关率--95%</p>
+                                        <p>最近一周通关率--98%</p>
+                                    </div>
+                                    <div class="removeDiv pos5" ng-mouseover="vm.pos5 = true"
+                                         ng-mouseout="vm.pos5 = false"></div>
+                                    <div class="popBlank bottomArrow pos5" ng-if="vm.pos5">
+                                        <p>刘先生</p>
+                                        <p>性别：男-98% 女-2%</p>
+                                        <p>语言分布：简体中文-97% 繁体中文-2% 英文-1%</p>
+                                        <p>地区：上海-98% 昆山-1.7% 太仓-0.3%</p>
+                                        <p>终端：iPhone-95% Android-5%</p>
+                                        <p>年龄：26~30-95% 30~35 4% 20~25-1%</p>
+                                        <p>学历：本科-96% 专科-3% 硕士-1%</p>
+                                    </div>
+                                    <div class="removeDiv pos6" ng-mouseover="vm.pos6 = true"
+                                         ng-mouseout="vm.pos6 = false"></div>
+                                    <div class="popBlank bottomArrow pos6" ng-if="vm.pos6">
+                                        <p>卖家/平台：亚马逊</p>
+                                        <p>平台综合评分：85分</p>
+                                        <p>平台风险分析：</p>
+                                        <p>货损率--0.03%</p>
+                                        <p>丢件率--0.01%</p>
+                                        <p>延时率--1%</p>
+                                        <p>通关率--8%</p>
+                                        <p>退运率--5%通关率--8%</p>
+                                        <p>退运率--5%</p>
+                                    </div>
+                                    <div class="removeDiv pos7" ng-mouseover="vm.pos7 = true"
+                                         ng-mouseout="vm.pos7 = false"></div>
+                                    <div class="popBlank bottomArrow pos7" ng-if="vm.pos7">
+                                        <p>保税仓：上海外高桥保税仓</p>
+                                        <p>平台综合评分：85分</p>
+                                        <p>总通关率--95%</p>
+                                        <p>最近一周通关率--98%</p>
+                                    </div>
+                                    <div class="removeDiv wl1" ng-mouseover="vm.wl1 = true"
+                                         ng-mouseout="vm.wl1 = false"></div>
+                                    <div class="popBlank topArrow wl1" ng-if="vm.wl1">
+                                        <p>2018-04-24 23:00:00</p>
+                                        <p>已递送,Tamaqua, US</p>
+                                        <p>2018-04-24 17:18:00</p>
+                                        <p>抵达扫描,Tamaqua, PA, United States</p>
+                                        <p>2018-04-2404:42:00</p>
+                                        <p>启程扫描,Louisville, KY, United States</p>
+                                    </div>
+                                    <div class="removeDiv wl2" ng-mouseover="vm.wl2 = true"
+                                         ng-mouseout="vm.wl2 = false"></div>
+                                    <div class="popBlank topArrow wl2" ng-if="vm.wl2">
+                                        <p>2018-04-24 23:00:00</p>
+                                        <p>已递送,Tamaqua, US</p>
+                                        <p>2018-04-24 17:18:00</p>
+                                        <p>抵达扫描,Tamaqua, PA, United States</p>
+                                        <p>2018-04-2404:42:00</p>
+                                        <p>启程扫描,Louisville, KY, United States</p>
+                                    </div>
+                                    <div class="removeDiv wl3" ng-mouseover="vm.wl3 = true"
+                                         ng-mouseout="vm.wl3 = false"></div>
+                                    <div class="popBlank topArrow wl3" ng-if="vm.wl3">
+                                        <p>2018-04-24 02:54:00 进口扫描,</p>
+                                        <p>2018-04-24 01:33:00 抵达扫描,</p>f
+                                        <p>2018-04-24 01:33:00 抵达扫描,</p>
+                                        <p>2018-04-23 19:31:00 启程扫描,Shenzhen, China</p>
+                                        <p>2018-04-23 15:56:00 启程扫描,Anchorage, AK,</p>
+                                        <p>United States</p>
+                                    </div>
+                                    <div class="removeDiv wl4" ng-mouseover="vm.wl4 = true"
+                                         ng-mouseout="vm.wl4 = false"></div>
+                                    <div class="popBlank topArrow wl4" ng-if="vm.wl4">
+                                        <p>2018-04-24 02:54:00 进口扫描,</p>
+                                        <p>2018-04-24 01:33:00 抵达扫描,</p>
+                                        <p>2018-04-23 19:31:00 启程扫描,Shenzhen, China</p>
+                                        <p>2018-04-23 15:56:00 启程扫描,Anchorage, AK, United</p>
+                                        <p>States</p>
+                                    </div>
+                                    <div class="removeDiv wl5" ng-mouseover="vm.wl5 = true"
+                                         ng-mouseout="vm.wl5 = false"></div>
+                                    <div class="popBlank bottomArrow wl5" ng-if="vm.wl5">
+                                        <p>2018-05-17 08:36:04您的包裹已出库</p>
+                                        <p>2018-05-17 17:51:13【郑州市】圆通速递 河南省郑州市新密市收件员 已揽件</p>
+                                        <p>2018-05-18 21:38:15【上海市】快件已从上海转运中心发出，准备发往 上海市杨浦区复旦</p>
+                                        <p>2018-05-19 07:50:52【上海市】上海市杨浦区复旦派件员：苏小平 13585571918正在为您派件</p>
+                                        <p>2018-05-19 14:20:09已签收</p>
+                                    </div>
+                                    <div class="removeDiv wl6" ng-mouseover="vm.wl6 = true"
+                                         ng-mouseout="vm.wl6 = false"></div>
+                                    <div class="popBlank bottomArrow wl6" ng-if="vm.wl6">
+                                        <p>2018-05-17 08:36:04您的包裹已出库</p>
+                                        <p>2018-05-17 17:51:13【郑州市】圆通速递 河南省郑州市新密市收件员 已揽件</p>
+                                        <p>2018-05-18 21:38:15【上海市】快件已从上海转运中心发出，准备发往 上海市杨浦区复旦</p>
+                                        <p>2018-05-19 07:50:52【上海市】上海市杨浦区复旦派件员：苏小平 13585571918正在为您派件</p>
+                                        <p>2018-05-19 14:20:09已签收</p>
+                                    </div>
+                                    <div class="removeDiv ic1" ng-mouseover="vm.ic1 = true"
+                                         ng-mouseout="vm.ic1 = false"></div>
+                                    <div class="popBlank topArrow ic1" ng-if="vm.ic1">
+                                        <p>信用保证险：保障贸易关系</p>
+                                        <p>赊销 1500,000 人民币</p>
+                                        <p>保险公司授信 1350,000</p>
+                                        <p>保险公司赔付比例 80%</p>
+                                    </div>
+                                    <div class="removeDiv ic2" ng-mouseover="vm.ic2 = true"
+                                         ng-mouseout="vm.ic2 = false"></div>
+                                    <div class="popBlank topArrow ic2" ng-if="vm.ic2">
+                                        <p>银关保：</p>
+                                        <p>垫付保证金：20,0000元</p>
+                                        <p>期限：60天</p>
+                                    </div>
+                                    <div class="removeDiv ic3" ng-mouseover="vm.ic3 = true"
+                                         ng-mouseout="vm.ic3 = false"></div>
+                                    <div class="popBlank topArrow ic3" ng-if="vm.ic3">
+                                        <p>出口退税信用贷款：</p>
+                                        <p>借款额：20,000元</p>
+                                        <p>期限：60天</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="rightLay overfl">
+                        <h4 class="titleNav" style="position: relative;">
+                            OCR解析结果
+                            <input type="button" class="btn btn-warning" value="开始解析" ng-click="vm.toAnalysis()"
+                                   style="position: absolute;left:180px;top:5px"/>
+                        </h4>
+                        <div class="overfl mt20" ng-if="vm.analysis">
+                            <div class="overfl ">
+                                <p class="f_l lh40 w200 c_999 text_r">商品订单号：</p>
+                                <p class="f_l lh40">3454343</p>
+                            </div>
+                            <div class="overfl ">
+                                <p class="f_l lh40 w200 c_999 text_r">商品订单总金额：</p>
+                                <p class="f_l lh40">123</p>
+                            </div>
+                            <div class="overfl ">
+                                <p class="f_l lh40 w200 c_999 text_r">商品订单追踪单号：</p>
+                                <p class="f_l lh40">34564342</p>
+                            </div>
+                        </div>
+                    </div>-->
+                    <div style="text-align: center" class="mt20">
+                        <input type="button" class="btn btn-warning w80 mr30" value="审核"
+                               ng-if="vm.info.status !=4 && vm.info.status !=3" ng-click="vm.getData()"/>
+                        <input type="button" class="btn btn-warning w150 mr30" value="变更到上一步审核"
+                               ng-if="vm.info.status !=2 && vm.info.status !=5" ng-click="vm.backStatus()"/>
+                        <input type="button" class="btn btn-info w150 mr30" value="补充理赔字段" ng-click="vm.supplyField()"/>
+                        <input type="button" class="btn btn-info w80 mr30" value="取消" ui-sref="businessClaim"/>
+                    </div>
+                </div>
+            </div>
+            <div class="claimTab" ng-if="vm.infoLog == 1">
+                <div class="noDataDiv" ng-if="!vm.list.length">
+                    <div class="noData">
+                        <div class="noDataBg"></div>
+                        <p>暂时没有数据～</p>
+                    </div>
+                </div>
+                <div class="tableList" ng-show="vm.list.length > 0">
+                    <table class="table tableInfo">
+                        <tr>
+                            <th>操作</th>
+                            <th>发生时间</th>
+                            <th>操作人</th>
+                            <th>结果</th>
+                            <th>补贴金额</th>
+                            <th>备注</th>
+                        </tr>
+                        <tr ng-repeat="o in vm.list">
+                            <td ng-bind="o.operationText + o.applyStatusText"></td>
+                            <td ng-bind="o.updateAt | date:'yyyy-MM-dd HH:mm:ss'"></td>
+                            <td ng-bind="o.username"></td>
+                            <td ng-bind="o.operateResultTxt"></td>
+                            <td ng-bind="o.indemnifySum + '元'"></td>
+                            <td ng-bind="o.remark"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

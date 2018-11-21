@@ -1,0 +1,151 @@
+.regOut {
+  width: 90%;
+  background: #fff;
+  border: 1px solid #dcecf9;
+  margin: 160px auto 0;
+  padding: 45px;
+}
+
+.regDiv {
+  width: 720px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+.regDiv .left-p {
+  width: 150px;
+  float: left;
+  text-align: right;
+  margin-right: 10px;
+  line-height: 40px;
+  color: #999;
+}
+.regDiv .right-text {
+  width: 280px;
+  float: left;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 10px;
+  border: 1px solid #d9d6d5;
+  border-radius: 5px;
+}
+.regDiv .right-text.error{
+    border:1px solid #e90e0e
+}
+.regDiv .right-text.small {
+  width: 160px;
+  margin-right: 15px;
+}
+.regDiv .change-a {
+  color: #5c95fe;
+  line-height: 40px;
+  margin-left: 20px;
+}
+.regDiv .right-div {
+  width: 520px;
+  float: left;
+}
+.regDiv .right-div label {
+  float: left;
+  margin-right: 20px;
+  line-height: 40px;
+  cursor: pointer;
+}
+.regDiv .get-code {
+  width: 107px;
+  height: 40px;
+  outline: none;
+  border: 0;
+  color: #fff;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 5px;
+  background: #3377ff; /* Old browsers */
+  background: -moz-linear-gradient(
+    left,
+    #3377ff 0%,
+    #2fa9ff 50%
+  ); /* FF3.6-15 */
+  background: -webkit-linear-gradient(
+    left,
+    #3377ff 0%,
+    #2fa9ff 50%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    to right,
+    #3377ff 0%,
+    #2fa9ff 50%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+.regDiv .get-code:disabled{
+    opacity: .67;
+}
+.regDiv .get-code.res{
+    width:130px;
+    height:40px;
+}
+.protocolBox {
+  padding-left: 158px;
+  color:#818181
+}
+.protocolBox em{
+    color:#5c95fe
+}
+.protocolBox label{
+    cursor: pointer;
+}
+.regError {
+  width: 310px;
+  height: 27px;
+  line-height: 24px;
+  margin: 10px auto 0;
+  background: #feefeb;
+  border: 1px solid #f74821;
+  color: #f74821;
+  font-size: 14px;
+  box-sizing: border-box;
+  padding-left: 10px;
+  display: none;
+}
+.regError.show {
+  display: block;
+}
+/* 响应移动端 */
+@media screen and (max-width: 414px) {
+  .regDiv {
+    width: 94%;
+    margin: 115px auto 0;
+    background: #fff;
+    padding: 10px;
+    box-sizing: border-box;
+    box-shadow: 0px 10px 14px rgba(136, 136, 136, 0.2);
+  }
+  .btn {
+    margin: 0 5px;
+  }
+  .regError {
+    width: 80%;
+    height: 27px;
+    line-height: 24px;
+    margin: 10px auto 0;
+    background: #feefeb;
+    border: 1px solid #f74821;
+    color: #f74821;
+    font-size: 14px;
+    box-sizing: border-box;
+    padding-left: 10px;
+    display: none;
+  }
+  .regError.show {
+    display: block;
+  }
+  .w150,
+  .w120 {
+    /* 该样式只用在当前页面上 */
+    width: 25% !important;
+  }
+  .w230 {
+    /* 该样式只用在当前页面上 */
+    width: 60% !important;
+  }
+}
+/* End 响应移动端 */

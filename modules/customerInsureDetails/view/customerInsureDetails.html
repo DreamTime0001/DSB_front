@@ -1,0 +1,136 @@
+<div ng-controller="customerInsureDetailsController as vm" class="innerTop" ng-init="vm.getPagedDataAsync()">
+    <ol class="breadcrumb"></ol>
+    <div class="pLR40">
+        <div class="rightDiv">
+            <div class="rightContTitle">
+                <h2>订单详情</h2>
+                <i class="closeIco" ui-sref="customerInsure"></i>
+            </div>
+            <div class="rightLay overfl">
+                <h4 class="titleNav">基本信息</h4>
+                <div class="f_l">
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">订单号：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.ticketNo"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">包主姓名：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.name"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">产品名称：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.productName"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">定价系数：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.adjustPrice"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">包主手机号：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.phoneNo"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">产品id：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.productId"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">订单时间：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.orderTime | date : 'yyyy-MM-dd HH:mm:ss'" >2017-05-15  15:06:24</p>
+                    </div>
+                    <div class="overfl">
+                        <p class="f_l lh40 w200 c_999 text_r">支付金额：</p>
+                        <p class="f_l lh40">
+                            <span  ng-bind="vm.list.productAmount + '元'" ng-if="vm.list.backup2 == null"></span>
+                            <span ng-if="vm.list.backup2">见产品包</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="f_l">
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">产品购买份数：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.productNum"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">物流单号 ：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.expressNo"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">物流发货日期 ：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.expressTime | date : 'yyyy-MM-dd HH:mm:ss'"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">购物网站订单号 ：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.purchasOrderNo"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">购买日期 ：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.shoppingTime | date : 'yyyy-MM-dd HH:mm:ss'"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">起运地 ：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.loadingPort"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">目的口岸 ：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.destinationPort"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">运输方式 ：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.expressChannel"></p>
+                    </div>
+                </div>
+                <div class="f_l">
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">商品价值明细：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.goodsValueDetail"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">商品价值 ：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.goodsValue"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">商品种类 ：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.goodsKind"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">商品列表 ：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.goodsCategory"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">生效日期 ：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.effectiveDate | date : 'yyyy-MM-dd HH:mm:ss'"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">截止日期 ：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.endTime | date : 'yyyy-MM-dd HH:mm:ss'"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">上传日期 ：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.orderTime | date : 'yyyy-MM-dd HH:mm:ss'"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="rightLay overfl">
+                <h4 class="titleNav">包裹保障责任</h4>
+                <div class="overfl" ng-if="vm.productType != 3">
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r" ng-bind="vm.list.productName + '：'"></p>
+                        <p class="f_l lh40">剩余 <span ng-bind="vm.list.productPeriod + '天'"></span></p>
+                    </div>
+                </div>
+                <div class="overfl" ng-if="vm.productType == 3">
+                    <div class="overfl ">
+                        <div ng-repeat="obj in vm.periodList" class="overfl">
+                            <p class="f_l lh40 w200 c_999 text_r" ng-bind="obj.productName + '：'"></p>
+                            <p class="f_l lh40">剩余 <span ng-bind="obj.dashDay + '天'"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center" class="mt20">
+                <input type="button" class="btn btn-warning w200" value="确认" ui-sref="customerInsure"/>
+            </div>
+        </div>
+    </div>
+</div>

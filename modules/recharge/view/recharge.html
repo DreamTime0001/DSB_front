@@ -1,0 +1,202 @@
+<div ng-controller="rechargeController as vm" class="innerTop">
+    <div class="popMask" ng-show="vm.popShow" ng-click="vm.clearTimeout()">
+        <div  class="wxPayBox">
+            <p class="mb10">打开手机微信端，扫码完成支付</p>
+            <div id="qrcode"></div>
+        </div>
+    </div>
+    <div class="popMask" ng-show="vm.addBankPop">
+        <div class="annexSubPop">
+            <h3 class="mb20" ng-bind="vm.popText"></h3>
+            <img ng-click="vm.addBankPop = false" src="static/images/pop-close.png" ng-click="vm.addBankPop = false">
+            <ul class="overfl mb20">
+                <li class="f_l mr20">
+                    <em class="f_l mr10 lh40 w150 text_r">持卡人：</em>
+                    <input type="text" class="form-control f_l w200" placeholder="请输入持卡人" ng-model="vm.account.withdrawAccountUserName">
+                </li>
+                <li class="f_l">
+                    <em class="f_l mr10 lh40 w150 text_r">银行卡预留手机号：</em>
+                    <input type="text" class="form-control f_l w200" placeholder="请输入银行卡预留手机号" ng-model="vm.account.depositBankReserveMobileNum">
+                </li>
+            </ul>
+            <ul class="overfl mb20">
+                <li class="f_l mr20">
+                    <em class="f_l mr10 lh40 w150 text_r">卡号：</em>
+                    <input type="text" class="form-control f_l w200" placeholder="请输入卡号" ng-model="vm.account.withdrawAccountNo">
+                </li>
+                <li class="f_l">
+                    <em class="f_l mr10 lh40 w150 text_r">开户银行：</em>
+                </li>
+                <li class="f_l">
+                    <select class="w200 form-control" ng-model="vm.account.depositBankNo" ng-options="o.accountCode as o.accountDesc for o in vm.bankList" ng-change="vm.getBankBranch()">
+                        <option value="">请选择</option>
+                    </select>
+                </li>
+            </ul>
+            <ul class="overfl">
+                <li class="f_l">
+                    <em class="f_l mr10 lh40 w150 text_r">开户银行所在地：</em>
+                </li>
+                <li class="f_l mr20">
+                    <select class="w180 form-control" ng-model="vm.account.depositBankProvinceNo" ng-options="o.accountCode as o.accountDesc for o in vm.provinceList" ng-change="vm.getCity()">
+                        <option value="">选择省</option>
+                    </select>
+                </li>
+                <li class="f_l mr20">
+                    <select class="w160 form-control" ng-model="vm.account.depositBankCityNo" ng-options="o.accountCode as o.accountDesc for o in vm.cityList" ng-change="vm.getBankBranch()">
+                        <option value="">选择地区</option>
+                    </select>
+                </li>
+                <li class="f_l">
+                    <select class="w200 form-control" ng-model="vm.account.depositBankBranchName" ng-options="o.branchName as o.branchName for o in vm.BankBranchNameList">
+                        <option value="">选择支行</option>
+                    </select>
+                </li>
+            </ul>
+            <div class="overfl text_c mt20">
+                <input class="btn btn-warning" type="submit" value="确认绑定" ng-click="vm.toBind()" ng-if="vm.isAdd == true">
+                <input class="btn btn-warning" type="submit" value="确认修改" ng-click="vm.toBind()" ng-if="vm.isAdd == false">
+            </div>
+        </div>
+    </div>
+    <div class="popMask" ng-if="vm.passwordPop">
+        <div class="addInsurancePop changePswBox">
+            <h3 class="mb20">请输入支付密码</h3>
+            <img src="static/images/pop-close.png" alt="" ng-click="vm.closePasswordPop()">
+            <ul>
+
+                <li>
+                    <label>密码<i>*</i>：</label>
+                    <input class="w150" type="password" ng-model="vm.account.paymentPassword">
+                </li>
+            </ul>
+            <p>
+                <input class="popSub" type="button" value="确认" ng-click="vm.toAddBlank()" ng-if="vm.isAdd == true">
+                <input class="popSub" type="button" value="确认" ng-click="vm.toEditBlank()" ng-if="vm.isAdd == false">
+            </p>
+        </div>
+    </div>
+    <div class="popMask" ng-if="vm.clearBankPop">
+        <div class="addInsurancePop changePswBox">
+            <h3 class="mb20">请输入支付密码</h3>
+            <img src="static/images/pop-close.png" alt="" ng-click="vm.clearBankPop = false">
+            <ul>
+                <li>
+                    <label>密码<i>*</i>：</label>
+                    <input class="w150" type="password" ng-model="vm.account.paymentPassword">
+                </li>
+            </ul>
+            <p>
+                <input class="popSub" type="button" value="确认" ng-click="vm.toClearBlank()">
+            </p>
+        </div>
+    </div>
+    <div class="popMask" ng-if="vm.toPutForwardPop">
+        <div class="addInsurancePop changePswBox">
+            <h3 class="mb20">请输入支付密码</h3>
+            <img src="static/images/pop-close.png" alt="" ng-click="vm.toPutForwardPop = false">
+            <ul>
+                <li>
+                    <label>密码<i>*</i>：</label>
+                    <input class="w150" type="password" ng-model="vm.account.paymentPassword">
+                </li>
+            </ul>
+            <p>
+                <input class="popSub" type="button" value="确认" ng-click="vm.toPutForward()">
+            </p>
+        </div>
+    </div>
+    <div class="popMask" ng-if="vm.resetPasswordPop">
+        <div class="addInsurancePop changePswBox">
+            <h3 class="mb20">设置支付密码</h3>
+            <img src="static/images/pop-close.png" alt="" ng-click="vm.resetPasswordPop = false">
+            <ul>
+                <li>
+                    <label>新密码<i>*</i>：</label>
+                    <input class="w150" type="password" ng-model="vm.resetPayPwd.newPaymentPassword">
+                </li>
+                <li>
+                    <label>确认密码<i>*</i>：</label>
+                    <input class="w150" type="password" ng-model="vm.resetPayPwd.agaPassword">
+                </li>
+                <li>
+                    <label>图形验证码<i>*</i>：</label>
+                    <input class="w100" type="text" ng-model="vm.photoCode">
+                    <img ng-src="{{vm.verifyCodeImg}}" alt="" class="photoCode" width="80">
+                    <a href="javascript:;" ng-click="vm.changVerifyCodeImg()" class="lh40">换一张</a>
+                </li>
+                <li class="overfl">
+                    <input class="w150 f_l mr10" type="text" ng-model="vm.resetPayPwd.veriCode" placeholder="输入验证码">
+                    <button class="btn btn-info f_l" ng-click="vm.getCode()" type="button" ng-disabled="vm.iconDis" ng-bind="vm.paracont"></button>
+                </li>
+            </ul>
+            <p>
+                <input class="popSub" type="button" value="确认" ng-click="vm.toSetPassword()">
+            </p>
+        </div>
+    </div>
+    <ol class="breadcrumb"></ol>
+    <div class="pLR40">
+        <div class="rightDiv">
+            <div class="rightContTitle">
+                <h2>账户信息</h2>
+            </div>
+            <div class="detailDiv">
+                <h2>账务余额</h2>
+                <div class="detailIn">
+                    <ul>
+                        <li>
+                            <span class="f_l">您的账户余额为：</span>
+                            <span class="f_l" ng-bind="vm.subAccountBalance + '元'"></span>
+                        </li>
+                    </ul>
+                </div>
+                <h2>充值</h2>
+                <div class="detailIn">
+                    <ul>
+                        <li>
+                            <span class="f_l">充值金额：</span>
+                            <span class="f_l"><input ng-blur="vm.checkMoney()" ng-init="vm.subAccountInfo.chargeAmount=500" ng-model="vm.subAccountInfo.chargeAmount" type="text" class="form-control f_l w130" placeholder="请输入充值金额"></span>
+                            <span class="f_l ml5">元</span>
+                        </li>
+                        <li class="moneyBox">
+                            <span  ng-repeat = "o in vm.chooseMoneyBox" ng-class="{'changeStyle':o.id == vm.chooseMoneyBox.id}"  ng-bind="o.amount" ng-click="vm.chooseMoney(o.id,o.amount)"></span>
+                        </li>
+                        <li>
+                            <input class="btn btn-warning mr10 f_l" type="submit" value="充值" ng-click="vm.recharge()">
+                        </li>
+                    </ul>
+                </div>
+                <h2>绑定提现银行卡</h2>
+                <div class="detailIn">
+                    <ul>
+                        <li>
+                            <span class="f_l mr20" ng-bind="vm.account.withdrawAccountNoShow" ng-if="vm.account.withdrawAccountNoShow"></span>
+                            <span class="f_l mr20" ng-bind="vm.account.depositBankBranchNameShow" ng-if="vm.account.depositBankBranchNameShow"></span>
+                            <span class="f_l mr20" id="addIco" ng-show="vm.isAdd == true"></span>
+                            <span class="f_l mr20" id="editIco" ng-show="vm.isAdd == false"></span>
+                            <span class="f_l mr20" id="clearIco" ng-show="vm.isAdd == false"></span>
+                        </li>
+                    </ul>
+                </div>
+                <h2>理赔款提现</h2>
+                <div class="detailIn">
+                    <ul>
+                        <li>
+                            <span class="f_l">您的可提现金额为：</span>
+                            <span class="f_l" ng-bind="vm.canTakeAccount + '元'"></span>
+                        </li>
+                        <li>
+                            <span class="f_l">提现金额<s class="doubtIcon" id="doubtIcon" ng-mouseover="vm.moneyTips()" ng-mouseout="vm.tipClose()"></s>：</span>
+                            <input ng-blur="vm.checkMoney()" ng-model="vm.withdraw.withdrawAmount" type="text" class="form-control f_l w130" placeholder="请输入提现金额">
+                            <span class="f_l ml5 mr20">元</span>
+                            <input class="btn btn-warning mr20 f_l" type="submit" value="提现" ng-click="vm.putForward()">
+                            <input class="btn btn-info f_l" type="submit" value="提现记录" ui-sref="rechargeWithList">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-show="false" ng-bind="vm.ticket"></div>
+</div>

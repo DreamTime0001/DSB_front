@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html ng-app="tariffDetails" lang="en" ng-controller="tariffDetailsController as vm">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>豆沙包关税宝在线试算器</title>
+    <link rel="stylesheet" href="static/css/public.css">
+    <link rel="stylesheet" href="static/css/guanshui.css"/>
+</head>
+<body>
+<div>
+    <header class="pc-header pc-block clearfix">
+        <a href="/" class="logo"><img src="static/images/logo.png" alt="豆沙包"></a>
+        <div class="inner-wrap clearfix">
+            <div class="content clearfix">
+                <ul class="nav">
+                    <li class="current"><a href="http://www.dowsure.com/">首页</a></li>
+                    <li>
+                        <a href="javascript:void(0)" class="ico">产品及合作</a>
+                        <div class="nav-div">
+                            <div class="inner-wrap">
+                                <div class="con">
+                                    <a href="http://www.dowsure.com/sellerService.html">
+                                        <img src="static/images/nav_img_01.png" alt="跨境卖家保障服务">
+                                        <span>跨境卖家保障服务</span>
+                                    </a>
+                                    <a href="http://www.dowsure.com/logisticsService.html">
+                                        <img src="static/images/nav_img_02.png" alt="跨境物流保障服务">
+                                        <span>跨境物流保障服务</span>
+                                    </a>
+                                    <a href="http://www.dowsure.com/certifiedgoodsService.html">
+                                        <img src="static/images/nav_img_03.png" alt="跨境正品保障服务">
+                                        <span>跨境正品保障服务</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="http://www.dowsure.com/blockChain.html" class="ico">区块链+</a></li>
+                    <li><a href="http://www.dowsure.com/story.html">商户故事</a></li>
+                    <li><a href="http://www.dowsure.com/faq.html">常见问题</a></li>
+                    <li><a href="http://www.dowsure.com/about.html">关于我们</a></li>
+                    <li><a href="http://www.dowsure.com/about.html###">Global Chain</a></li>
+                </ul>
+                <a href="https://saas.dousha8ao.com/" target="_blank" class="login-link">登录/注册</a>
+            </div>
+
+            <div class="language">
+                <a href="/">中文</a>
+                <span></span>
+                <a href="###">EN</a>
+            </div>
+        </div>
+    </header>
+    <!--页面写在这里，对！就是这里-->
+    <h3 class="content-title content-title02">关税宝在线试算器</h3>
+    <div class="f2">
+        <div class="content-all1 content-all2" style="height: auto;border: 0;">
+            <div class="money">
+                <div class="baofei"><em>预估保费：<strong ng-bind="vm.predictAmount "></strong>元</em></div>
+                <div class="ckys">感谢您使用在线试算器，试算结果基于您的基础资料得出，仅供参考。</div>
+            </div>
+            <div class="tips">产品的投保流程如下，请详读。豆沙包工作人员也将尽快与您取得联系，协助您进行后续的投保流程。</div>
+            <!--<img src="static/images/pic.png" width="1200" height="256"/>-->
+            <ul class="flowChart">
+                <li>
+                    <s class="i1"></s>
+                    <strong>1.投保申请</strong>
+                    <p>企业填写《投保单》并提交投保资料进行限额申请</p>
+                </li>
+                <li class="fr">
+                    <s class="i2"></s>
+                    <strong>2.保司审核</strong>
+                    <p>保险公司评估承保条件完成投保申请</p>
+                </li>
+                <li>
+                    <s class="i3"></s>
+                    <strong>3.出具保单</strong>
+                    <p>保险公司出具正式保单</p>
+                </li>
+                <li class="fr">
+                    <s class="i4"></s>
+                    <strong>4.缴纳保费</strong>
+                    <p>企业缴纳保费保单生效</p>
+                </li>
+                <li>
+                    <s class="i5"></s>
+                    <strong>5.海关备案</strong>
+                    <p>企业缴纳保费保单生效</p>
+                </li>
+                <li class="fr">
+                    <s class="i6"></s>
+                    <strong>6.通关办理</strong>
+                    <p>企业凭《关税保证保险》备案通知书至海关各隶属业务现
+                        场办理通关</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <footer class="ny-footer" style="margin-top: 200px;">
+        <div class="inner-wrap clearfix">
+            <div class="left">
+                <div class="fnav pc-block">
+                    <a href="http://www.dowsure.com/sellerService.html">产品详情</a>
+                    <a href="http://www.dowsure.com/about.html">关于我们</a>
+                    <a href="http://www.dowsure.com/story.html">商户故事</a>
+                    <a href="http://www.dowsure.com/faq.html">常见问题</a>
+                    <a href="http://www.dowsure.com/news.html">新闻中心</a>
+                </div>
+                <div class="copyright">
+                    <span>版权所有© &emsp;2018</span> 豆沙包科技（上海）有限公司&emsp;沪ICP备15015443号-1
+                </div>
+            </div>
+            <div class="link pc-block">
+                <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2962353314&amp;site=qq&amp;menu=yes" target="_blank"><img
+                        src="static/images/ico_qq.png"></a>
+                <a href="javascript:void(0)" class="weixin">
+                    <img src="static/images/ico_wx.png">
+                    <div>
+                        <img src="static/images/weixin.jpg">
+                    </div>
+                </a>
+                <a href="https://weibo.com/u/5892923185?refer_flag=1001030108_" target="_blank"><img
+                        src="static/images/ico_wb.png"></a>
+            </div>
+        </div>
+    </footer>
+</div>
+<script src="static/js/jquery/jquery-1.10.2.min.js"></script>
+<script src="static/js/angular/angular.min.js"></script>
+<script src="static/js/angular/angular-cookies.min.js"></script>
+<script src="static/js/angular/angular-file-upload.min.js"></script>
+<script src="static/js/md5.js"></script>
+<script src="static/js/common.js"></script>
+<script src="../core/configs/config.js"></script>
+<!--<script src="../core/configs/testConfig.js"></script>-->
+<!--<script src="../core/configs/localConfig.js"></script>-->
+<script src="core/services/layer/layer.js"></script>
+<script src="core/services/layer.js"></script>
+<script src="core/services/util.js"></script>
+<script src="modules/tariffDetails/controller/tariffDetailsController.js"></script><!--总模板-->
+</body>
+</html>

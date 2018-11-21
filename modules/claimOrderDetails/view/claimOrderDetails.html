@@ -1,0 +1,149 @@
+<div ng-controller="claimOrderDetailsController as vm" class="innerTop" ng-init="vm.getPagedDataAsync()">
+    <div class="pLR40">
+        <div class="rightDiv">
+            <div class="rightContTitle">
+                <h2>理赔详情</h2>
+                <i class="closeIco" ui-sref="claimOrder"></i>
+            </div>
+            <div class="rightLay overfl">
+                <div class="inlay">
+                    <h4 class="titleNav">基本信息</h4>
+                    <div class="f_l">
+                        <div class="overfl">
+                            <p class="f_l lh40 w200 c_999 text_r">订单号：</p>
+                            <p class="f_l lh40" ng-bind="vm.list.ticketNo"></p>
+                        </div>
+                        <div class="overfl">
+                            <p class="f_l lh40 w200 c_999 text_r">产品名称：</p>
+                            <p class="f_l lh40" ng-bind="vm.list.productShowName"></p>
+                        </div>
+                        <div class="overfl">
+                            <p class="f_l lh40 w200 c_999 text_r">产品id：</p>
+                            <p class="f_l lh40" ng-bind="vm.list.productShowId"></p>
+                        </div>
+                        <div class="overfl">
+                            <p class="f_l lh40 w200 c_999 text_r">定价系数：</p>
+                            <p class="f_l lh40" ng-bind="vm.list.adjustPrice"></p>
+                        </div>
+                        <div class="overfl">
+                            <p class="f_l lh40 w200 c_999 text_r">支付金额：</p>
+                            <p class="f_l lh40" ng-bind="vm.list.discountAmount + '元'" ng-if="vm.list.backup2 == null"></p>
+                            <p class="f_l lh40" ng-if="vm.list.backup2">见产品包</p>
+                        </div>
+                    </div>
+                    <div class="f_l">
+                        <div class="overfl">
+                            <p class="f_l lh40 w200 text_r c_999">包主姓名：</p>
+                            <p class="f_l lh40" ng-bind="vm.list.name"></p>
+                        </div>
+                        <div class="overfl">
+                            <p class="f_l lh40 w200 text_r c_999">包主手机号：</p>
+                            <p class="f_l lh40" ng-bind="vm.list.phoneNo"></p>
+                        </div>
+                        <!--<div class="overfl">-->
+                            <!--<p class="f_l lh40 w200 text_r c_999">申请时间：</p>-->
+                            <!--<p class="f_l lh40" ng-bind="vm.list.applyTime | date:'yyyy-MM-dd HH:mm:ss'"></p>-->
+                        <!--</div>-->
+                        <div class="overfl">
+                            <p class="f_l lh40 w200 text_r c_999">产品购买份数：</p>
+                            <p class="f_l lh40" ng-bind="vm.list.productNum"></p>
+                        </div>
+                        <div class="overfl">
+                            <p class="f_l lh40 w200 text_r c_999">生效日期：</p>
+                            <p class="f_l lh40" ng-bind="vm.list.effectiveDate | date:'yyyy-MM-dd HH:mm:ss'"></p>
+                        </div>
+                        <div class="overfl">
+                            <p class="f_l lh40 w200 text_r c_999">截止日期：</p>
+                            <p class="f_l lh40" ng-bind="vm.list.expiryDate | date:'yyyy-MM-dd HH:mm:ss'"></p>
+                        </div>
+                        <div class="overfl">
+                            <p class="f_l lh40 w200 text_r c_999">订单日期：</p>
+                            <p class="f_l lh40" ng-bind="vm.list.orderTime | date:'yyyy-MM-dd HH:mm:ss'"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="inlay">
+                    <h4 class="titleNav">包裹保障责任</h4>
+                    <div class="overfl">
+                        <div class="overfl">
+                            <p class="f_l lh40 w200 c_999 text_r" ng-bind="vm.list.productName +  '：'"></p>
+                            <p class="f_l lh40">剩余 <span ng-bind="vm.list.productPeriod"></span>天</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rightLay overfl">
+                <div class="inlay">
+                    <h4 class="titleNav">理赔信息</h4>
+                    <div class="overfl">
+                        <div class="overfl">
+                            <p class="f_l lh40 w200 c_999 text_r">购买数量：</p>
+                            <p class="f_l lh40" ng-bind="vm.list.productNum"></p>
+                        </div>
+                        <div class="overfl">
+                            <p class="f_l lh40 w200 c_999 text_r">最高赔付：</p>
+                            <p class="f_l lh40" ng-bind="vm.list.productCompensationAmount"></p>
+                        </div>
+                        <div class="overfl">
+                            <p class="f_l lh40 w200 c_999 text_r">申请赔付金额：</p>
+                            <p class="f_l lh40" ng-bind="vm.list.applyAmount"></p>
+                        </div>
+                        <div class="overfl">
+                            <p class="f_l lh40 w200 c_999 text_r">申请理赔日期：</p>
+                            <p class="f_l lh40" ng-bind="vm.list.applyTime | date:'yyyy-MM-dd HH:mm:ss'"></p>
+                        </div>
+                        <!--<div class="overfl ">-->
+                            <!--<p class="f_l lh40 w200 c_999 text_r">总保费：</p>-->
+                            <!--<p class="f_l lh40" ng-bind="vm.list.premium"></p>-->
+                        <!--</div>-->
+                        <div class="overfl">
+                            <p class="f_l lh40 w200 c_999 text_r">转运公司：</p>
+                            <p class="f_l lh40" ng-bind="vm.list.companyName"></p>
+                        </div>
+                        <div class="overfl">
+                            <p class="f_l lh40 w200 c_999 text_r">物流快递单号：</p>
+                            <p class="f_l lh40" ng-bind="vm.list.expressNo"></p>
+                        </div>
+                        <div class="overfl">
+                            <p class="f_l lh40 w200 c_999 text_r">海淘购物网站：</p>
+                            <p class="f_l lh40" ng-bind="vm.list.shoppingSite"></p>
+                        </div>
+                        <div class="overfl">
+                            <p class="f_l lh40 w200 c_999 text_r">海淘商品订单号：</p>
+                            <p class="f_l lh40" ng-bind="vm.list.purchasOrderNo"></p>
+                        </div>
+                        <div class="overfl">
+                            <p class="f_l lh40 w200 c_999 text_r">海淘包裹号：</p>
+                            <p class="f_l lh40" ng-bind="vm.list.expressNo"></p>
+                        </div>
+                        <div class="overfl">
+                            <p class="f_l lh40 w200 c_999 text_r">海淘商品价值：</p>
+                            <p class="f_l lh40" ng-bind="vm.list.goodsValue"></p>
+                        </div>
+                        <div class="overfl ">
+                            <p class="f_l lh40 w200 c_999 text_r">商品列表 ：</p>
+                            <p class="f_l lh40" ng-bind="vm.list.goodsCategory"></p>
+                        </div>
+                        <div class="overfl">
+                            <p class="f_l lh40 w200 c_999 text_r">备注：</p>
+                            <p class="f_l lh40" ng-bind="vm.list.specialExplain"></p>
+                        </div>
+                        <div class="overfl" ng-if="vm.list.isShowApplyRemark">
+                            <p class="f_l lh40 w200 c_999 text_r">理赔说明：</p>
+                            <p class="f_l lh40" ng-bind="vm.list.applyRemark"></p>
+                        </div>
+                        <div class="overfl">
+                            <p class="f_l lh40 w200 c_999 text_r">状态：</p>
+                            <p class="f_l lh40" ng-bind="vm.list.statusTxt"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div style="text-align: center" class="mt20">
+                <input type="button" class="btn btn-warning w200 mr30" value="确认" ui-sref="claimOrder"/>
+            </div>
+        </div>
+    </div>
+</div>

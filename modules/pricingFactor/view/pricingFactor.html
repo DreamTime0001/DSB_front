@@ -1,0 +1,128 @@
+<div ng-controller="pricingFactorController as vm" class="innerTop" ng-init="vm.getPagedDataAsync()">
+    <div class="popMask" ng-if="vm.AlgorithmShow">
+        <div class="popDiv">
+            <h3 class="mb15">算法调整</h3>
+            <img src="static/images/closeIco.png" ng-click="vm.AlgorithmShow = false"/>
+            <div class="overfl mb20">
+                <p class="f_l lh40 w100 text_r">基础系数比例：</p>
+                <div class="f_l mr20">
+                    <input type="text" class="f_l form-control w120" ng-model="vm.dictName"/>
+                </div>
+            </div>
+            <div class="text_c">
+                <input type="button" class="btn-warning btn mr10" value="应用" ng-click="vm.updateDictName()"/>
+                <input type="button" class="btn-info btn" value="取消" ng-click="vm.AlgorithmShow = false" />
+            </div>
+        </div>
+    </div>
+    <!--<div class="popMask" ng-if="vm.popFactor">-->
+        <!--<div class="popDiv">-->
+            <!--<h3 class="mb15">调价系数明细</h3>-->
+            <!--<img src="static/images/closeIco.png" ng-click="vm.popFactor = false"/>-->
+            <!--<div class="overfl" style="width:600px">-->
+                <!--<p class="f_l mt10"><span class="c_fe5757">货损包</span>调价系数：</p>-->
+                <!--<div class="f_r">-->
+                    <!--<input type="button" class="btn-warning btn mr10" value="计算"/>-->
+                    <!--<input type="button" class="btn-info btn" value="一键调价" ng-click="vm.base_1 = 1.05;vm.float_1 = 1.08"/>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="overfl mt10" style="border-bottom:1px solid #ddd;padding-bottom:15px">-->
+                <!--<p class="f_l lh40"><span>基础系数：</span></p>-->
+                <!--<input type="text" class="f_l w90 form-control mr10" ng-model="vm.base_1"/>-->
+                <!--<p class="f_l lh40"><span>浮动系数：</span></p>-->
+                <!--<input type="text" class="f_l w90 form-control mr5" ng-model="vm.float_1"/>-->
+                <!--<p class="f_r lh40">=0.9785</p>-->
+            <!--</div>-->
+            <!--<div class="overfl mt10" style="width:600px">-->
+                <!--<p class="f_l mt10"><span class="c_fe5757">延时包</span>调价系数：</p>-->
+                <!--<div class="f_r">-->
+                    <!--<input type="button" class="btn-warning btn mr10" value="计算"/>-->
+                    <!--<input type="button" class="btn-info btn" value="一键调价" ng-click="vm.base_2 = 1.05;vm.float_2 = 1.08"/>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="overfl mt10" style="border-bottom:1px solid #ddd;padding-bottom:15px">-->
+                <!--<p class="f_l lh40"><span>基础系数：</span></p>-->
+                <!--<input type="text" class="f_l w90 form-control mr10" ng-model="vm.base_2"/>-->
+                <!--<p class="f_l lh40"><span>浮动系数：</span></p>-->
+                <!--<input type="text" class="f_l w90 form-control mr5" ng-model="vm.float_2"/>-->
+                <!--<p class="f_r lh40">=0.9785</p>-->
+            <!--</div>-->
+            <!--<div class="overfl mt10" style="width:600px">-->
+                <!--<p class="f_l mt10"><span class="c_fe5757">通关宝</span>调价系数：</p>-->
+                <!--<div class="f_r">-->
+                    <!--<input type="button" class="btn-warning btn mr10" value="计算"/>-->
+                    <!--<input type="button" class="btn-info btn" value="一键调价"  ng-click="vm.base_3 = 1.05;vm.float_3 = 1.08"/>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="overfl mt10" style="border-bottom:1px solid #ddd;padding-bottom:15px">-->
+                <!--<p class="f_l lh40"><span>基础系数：</span></p>-->
+                <!--<input type="text" class="f_l w90 form-control mr10" ng-model="vm.base_3"/>-->
+                <!--<p class="f_l lh40"><span>浮动系数：</span></p>-->
+                <!--<input type="text" class="f_l w90 form-control mr5" ng-model="vm.float_3"/>-->
+                <!--<p class="f_r lh40">=0.9785</p>-->
+            <!--</div>-->
+            <!--<div class="overfl mt20 f_l" >-->
+                <!--<input type="button" class="btn-info btn mr10" value="全部调价" ng-click="vm.popFactor = false"/>-->
+                <!--<input type="button" class="btn-warning btn " value="取消" ng-click="vm.popFactor = false"/>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;<div class="overfl c_999 lh40 f_l mt20">&ndash;&gt;-->
+            <!--&lt;!&ndash;<p>注： F1-商户理赔率</p>&ndash;&gt;-->
+            <!--&lt;!&ndash;<p style="padding-left:36px">F2-单量等级</p>&ndash;&gt;-->
+            <!--&lt;!&ndash;<p style="padding-left:36px">F3-商户类型</p>&ndash;&gt;-->
+            <!--&lt;!&ndash;<p style="padding-left:36px">F4-上一次调价系数</p>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--</div>-->
+    <!--</div>-->
+    <ol class="breadcrumb"></ol>
+    <div class="pLR40">
+        <div class="rightDiv">
+            <div class="rightContTitle">
+                <h2 class="f_l">定价因子</h2>
+                <input type="button" class="btn-warning btn f_r" ng-click="vm.showAlgorithm()" value="算法调整"/>
+            </div>
+            <div class="overfl mb20">
+                <ul class="topNavUl">
+                    <li ng-class="{active : vm.currentType == 'base'}" ng-click="vm.changeType('base')">基础系数</li>
+                    <li ng-class="{active : vm.currentType == 'dynamic'}" ng-click="vm.changeType('dynamic')">浮动系数</li>
+                </ul>
+            </div>
+            <div class="noDataDiv" ng-if="!vm.list.length">
+                <div class="noData">
+                    <div class="noDataBg"></div>
+                    <p>暂时没有数据～</p>
+                </div>
+            </div>
+            <div class="tableList" ng-show="vm.list.length > 0">
+                <table class="table tableInfo" >
+                    <tr>
+                        <th>序号</th>
+                        <th>因子id</th>
+                        <th>项目</th>
+                        <th>内容</th>
+                        <th>调整系数</th>
+                        <th>添加时间</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr ng-repeat="o in vm.list">
+                        <td ng-bind="$index + 1"></td>
+                        <td ng-bind="o.projectCode"></td>
+                        <td ng-bind="o.projectName"></td>
+                        <td ng-bind="o.content"></td>
+                        <td>
+                            <p ng-bind="o.factor" class="f_l mr10 w50"></p>
+                            <div class="f_l" ng-if="o.checked">
+                                <input type="text" ng-model="o.factor" class="form-control w80 f_l  mr10" style="margin-top:7px">
+                                <a href="javascript:;"  class="f_l c_e61915" ng-click="vm.updeFactorPrecent(o)">确定</a>
+                            </div>
+                        </td>
+                        <td ng-bind="o.updateAt | date:'yyyy-MM-dd HH:mm:ss'"></td>
+                        <td><a href="javascript:;" ng-click="o.checked = true">编辑</a></td>
+                    </tr>
+                </table>
+                <div class="page" paging page-object="vm.query" click-function="vm.getPagedDataAsync"></div>
+            </div>
+            <h2 class="titleNav mt20" style="position:relative">定价因子动态分布 <a href="javascript:;" ng-bind="vm.isPortStatus" ng-click="vm.toggleShow()" style="font-size:14px"></a></h2>
+            <div class="pricingDiv" id="pricing" ng-show="vm.isPort"></div>
+        </div>
+    </div>
+</div>

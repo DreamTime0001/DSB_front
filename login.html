@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app="login" lang="en" ng-controller="loginController as vm">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, mafximum-scale=1, user-scalable=no">
+    <title>豆沙包保险SaaS服务平台</title>
+    <link rel="stylesheet" href="static/css/style.css?v1">
+    <link rel="stylesheet" href="static/css/login.css?v5">
+</head>
+<body class="login_bg">
+<div class="login-top">
+    <div class="logoDiv"></div>
+    <p class="f_l c_fff topText">豆沙包保险SaaS服务平台</p>
+</div>
+<div class="marquee">
+    <div>
+        <p>新客福利，注册即送最高10万元保障额，旺季风险0元投保。</p>
+    </div>
+</div>
+<div class="login-bgpic">
+    <div class="login_div">
+        <div class="login">
+            <h2>欢迎登录</h2>
+            <!--<div class="login-cw" ng-if="vm.errorMsgIsShow"><img src="static/images/cw.png"><span ng-bind="vm.errorMsg"></span></div>-->
+            <div>
+                <form>
+                    <ul class="loginiup">
+                        <li><input placeholder="请输入用户名" class="form-control" type="text" ng-model="vm.query.telephone"
+                                   required valid="account" id="telephone" ng-keypress="vm.loginKeyPress($event)"><i
+                                class="icoUser"></i></li>
+                        <li style="margin-bottom:10px;"><input placeholder="请输入密码" class="form-control" type="password" ng-model="vm.query.password"
+                                   required id="password" ng-keypress="vm.loginKeyPress($event)"> <i class="icoPw"></i>
+                        </li>
+                    </ul>
+                    <a class="text_r" style="display:block;" href="javascript:;" ng-click="vm.toReset();">忘记密码？</a>
+                    <div class="text_c">
+                        <button class="loginBtn blue w150 f_l ml30" ng-click="vm.toRegister()" type="button">注 册
+                        </button>
+                        <button class="loginBtn red w150 f_l ml20" ng-click="vm.login()" type="button">登 录</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="login-foot">版权所有©2018 豆沙包科技（上海）有限公司 沪ICP备15015443号-1</div>
+<script src="static/js/jquery/jquery-1.10.2.min.js"></script>
+<script src="static/js/angular/angular.min.js"></script>
+<script src="static/js/angular/angular-cookies.min.js"></script>
+<script src="static/js/md5.js"></script>
+<script src="core/configs/config.js"></script>
+<!-- <script src="core/configs/testConfig.js"></script> -->
+<!--<script src="core/configs/developConfig.js"></script>-->
+<!-- <script src="core/configs/localConfig.js"></script> -->
+<script src="core/services/service.js"></script>
+<script src="core/services/layer/layer.js"></script>
+<script src="core/services/layer.js"></script>
+<script src="core/services/util.js"></script>
+
+<script src="modules/login/controller/loginController.js?v1"></script>
+
+</body>
+</html>

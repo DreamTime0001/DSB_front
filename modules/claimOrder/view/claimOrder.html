@@ -1,0 +1,265 @@
+<div ng-controller="claimOrderController as vm" class="innerTop" ng-init="vm.getPagedDataAsync()">
+    <!--附件上传-->
+    <div class="popMask" ng-show="vm.popAnnex">
+        <div class="annexSubPop">
+            <h3>附件提交</h3>
+            <img ng-click="vm.closePop()" src="static/images/pop-close.png" alt="">
+            <div class="popTxt">
+                <span>请根据提供模板填写后上传</span>
+                <a ng-href="{{vm.exlModel}}">（理赔信息模板下载）</a>
+            </div>
+            <ul class="clearfix">
+                <li class="w150 text_r lh40">理赔申请模板：</li>
+                <li class="mr20"><input type="text" ng-model="vm.fileName"></li>
+                <li>
+                    <span>浏览</span>
+                    <input type="file" ng-file-select="vm.readExcel($files)">
+                </li>
+            </ul>
+            <ul class="clearfix mt20">
+                <li class="w150 text_r lh40">单证压缩包：</li>
+                <li class="mr20"><input type="text" ng-model="vm.zipName"></li>
+                <li>
+                    <span>浏览</span>
+                    <input type="file" ng-file-select="vm.readZip($files)">
+                </li>
+            </ul>
+            <div class="annexSubButton">
+                <input class="btn btn-warning" type="submit" value="附件上传" ng-if="vm.canUpload && vm.canZip"
+                       ng-click="vm.uploadAll()">
+                <input class="btn btn-warning" type="submit" value="附件上传" disabled ng-if="!vm.canUpload || !vm.canZip">
+            </div>
+        </div>
+    </div>
+    <ol class="breadcrumb"></ol>
+    <div class="pLR40">
+        <div class="rightDiv">
+            <div class="rightContTitle">
+                <h2>理赔订单</h2>
+            </div>
+            <div class="queryDiv">
+                <div class="queryDivIn">
+                    <form class="form-horizontal">
+                        <div>
+                            <div class="f_l mr15 mb15">
+                                <p class="f_l lh40">订单号：</p>
+                                <input type="text" class="form-control f_l w150" placeholder="请输入订单号"
+                                       ng-model="vm.query.ticketNo">
+                            </div>
+                            <div class="f_l mr15 mb15">
+                                <p class="f_l lh40">申请时间：</p>
+                                <input type="text" class="form-control w160 mr5 f_l" placeholder="请输入开始时间"
+                                       ng-model="vm.query.startTime" readonly id="startDate">
+                                <p class="f_l mr5 lh40">-</p>
+                                <input type="text" class="form-control w160 f_l" placeholder="请输入结束时间"
+                                       ng-model="vm.query.endTime" readonly id="endDate">
+                            </div>
+                            <div class="f_l mr15 mb15">
+                                <p class="f_l lh40">状态：</p>
+                                <select class="form-control w80" ng-model="vm.query.status"
+                                        ng-options="o.status as o.name for o in vm.statusList">
+                                    <option value="">请选择</option>
+                                </select>
+                            </div>
+                            <div class="f_l mb15">
+                                <input class="btn btn-warning mr10" type="submit" value="搜索" ng-click="vm.search()">
+                                <input class="btn btn-info mr10" type="submit" value="重置" ng-click="vm.clear()">
+                                <input ng-click="vm.claimAdd()" class="btn btn-info mr10" type="submit" value="新增理赔">
+                                <input class="btn btn-info mr10" type="submit" value="批量理赔"
+                                       ng-click="vm.popAnnex = true">
+                                <input class="btn btn-info mr10" type="submit" value="导出Excel"
+                                       ng-click=" vm.downloadExcel()" ng-if="vm.list.length > 0">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="PCStyle">
+                <div class="noDataDiv" ng-if="!vm.list.length">
+                    <div class="noData">
+                        <div class="noDataBg"></div>
+                        <p>暂时没有数据～</p>
+                    </div>
+                </div>
+                <p class="text_r mb10" ng-show="vm.list.length > 0">
+                    <em ng-bind="'总单量：' + vm.total" class="mr20"></em>
+                    <em ng-bind="'总理赔金额：' + vm.money"></em>
+                </p>
+                <div class="tableList" ng-show="vm.list.length > 0">
+                    <table class="table tableInfo">
+                        <tr>
+                            <th>序号</th>
+                            <th>订单号</th>
+                            <th>产品名称</th>
+                            <th>申请赔付金额</th>
+                            <th>理赔金额</th>
+                            <th>申请时间</th>
+                            <th>处理时间</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                        <tr ng-repeat="obj in vm.list">
+                            <td ng-bind="$index + 1"></td>
+                            <td ng-bind="obj.ticketNo"></td>
+                            <td ng-bind="obj.applyProductName"></td>
+                            <td ng-bind="obj.applyAmount"></td>
+                            <td ng-bind="obj.indemnifySum"></td>
+                            <td ng-bind="obj.applyTime | date:'yyyy-MM-dd HH:mm:ss'"></td>
+                            <td ng-bind="obj.updateAt  | date:'yyyy-MM-dd HH:mm:ss'"></td>
+                            <td ng-bind="obj.statusText"></td>
+                            <td>
+                                <a href="javascript:;" ng-click="vm.getClaimInfo(obj)" ng-if="obj.isClaim">发起申诉</a> <em
+                                    ng-if="obj.isClaim">|</em>
+                                <a href="javascript:;"
+                                   ui-sref="claimOrderDetails({id:obj.id,applyProductId:obj.applyProductId,ticketNo:obj.ticketNo})">查看</a>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="page" paging page-object="vm.query" click-function="vm.getPagedDataAsync"></div>
+                </div>
+            </div>
+            <div class="phoneStyle">
+                <div class="noDataDiv" ng-if="!vm.list.length">
+                    <div class="noData">
+                        <div class="noDataBg"></div>
+                        <p>暂时没有数据～</p>
+                    </div>
+                </div>
+                <div class="tableList" ng-show="vm.list.length > 0">
+                    <table class="table tableInfo">
+                        <tr>
+                            <th>订单号</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                        <tr ng-repeat="obj in vm.list">
+                            <td ng-bind="obj.ticketNo"></td>
+                            <td ng-bind="obj.statusText"></td>
+                            <td>
+                                <a href="javascript:;" ng-click="vm.getClaimInfo(obj)" ng-if="obj.isClaim">发起申诉</a> <em
+                                    ng-if="obj.isClaim">|</em>
+                                <a href="javascript:;"
+                                   ui-sref="claimOrderDetails({id:obj.id,applyProductId:obj.applyProductId,ticketNo:obj.ticketNo})">查看</a>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="page" paging page-object="vm.query" click-function="vm.getPagedDataAsync"></div>
+                </div>
+            </div>
+            <div class="tableList" ng-show="false">
+                <table class="table tableInfo" id="tableInfo">
+                    <tr>
+                        <th>序号</th>
+                        <th>订单号</th>
+                        <th>产品名称</th>
+                        <th>申请赔付金额</th>
+                        <th>理赔金额</th>
+                        <th>收件人信息</th>
+                        <th>申请时间</th>
+                        <th>处理时间</th>
+                        <th>状态</th>
+                    </tr>
+                    <tr ng-repeat="obj in vm.downLoadList">
+                        <td ng-bind="$index + 1"></td>
+                        <td ng-bind="obj.ticketNo"></td>
+                        <td ng-bind="obj.productShowName"></td>
+                        <td ng-bind="obj.applyAmount"></td>
+                        <td ng-bind="obj.indemnifySum"></td>
+                        <td ng-bind="obj.receiverInfo"></td>
+                        <td ng-bind="obj.applyTime | date:'yyyy-MM-dd HH:mm:ss'"></td>
+                        <td ng-bind="obj.updateAt  | date:'yyyy-MM-dd HH:mm:ss'"></td>
+                        <td ng-bind="obj.statusText"></td>
+                    </tr>
+                </table>
+                <div class="page" paging page-object="vm.query" click-function="vm.getPagedDataAsync"></div>
+            </div>
+        </div>
+    </div>
+
+    <!--弹出层-->
+    <!--<div class="popMask" ng-click="vm.popHide()" style="display: none;"></div>-->
+    <!--新增理赔-->
+    <!--<div class="addInsurancePop" style="display: none;">
+        <h3>新增理赔</h3>
+        <img ng-click="vm.popHide()" src="static/images/pop-close.png" alt="">
+        <ul class="clearfix">
+            <li class="clearfix">
+                <div>
+                    <label>豆沙包订单号<i>*</i>：</label>
+                    <input class="timeInp" type="text">
+                </div>
+                <div>
+                    <label>身份证号：</label>
+                    <input class="timeInp" type="text">
+                </div>
+            </li>
+
+            <li class="clearfix">
+                <div class="shotName">
+                    <label>商品订单截图<i>*</i>：</label>
+                </div>
+                <div class="screenShot">
+                    <span>浏览</span>
+                    <input type="file">
+                </div>
+
+                <div class="shotName shotName02">
+                    <label>国际物流快递单<i>*</i>：</label>
+                </div>
+                <div class="screenShot">
+                    <span>浏览</span>
+                    <input type="file">
+                </div>
+            </li>
+
+            <li class="clearfix">
+                <div class="shotName">
+                    <label>转运订单截图<i>*</i>：</label>
+                </div>
+                <div class="screenShot">
+                    <span>浏览</span>
+                    <input type="file">
+                </div>
+
+                <div class="shotName shotName03">
+                    <label>海关个人物品出口税款缴纳证<i>*</i>：</label>
+                </div>
+                <div class="screenShot">
+                    <span>浏览</span>
+                    <input type="file">
+                </div>
+            </li>
+
+
+            <li>
+                <label>理赔金额<i>*</i>：</label>
+                <input class="numInp" type="text">
+            </li>
+        </ul>
+        <p>
+            <input class="popSub" type="button" value="提交" ng-click="vm.popHide()">
+        </p>
+    </div>-->
+    <!--End 新增理赔-->
+
+    <!--&lt;!&ndash;支付方式&ndash;&gt;-->
+    <!--<div class="insuranceDetailsPop">-->
+    <!--<ul>-->
+    <!--<li>本次投保支持ePoints抵扣</li>-->
+    <!--<li>-->
+    <!--<span>ePoints余额:</span>-->
+    <!--<span>1452436</span>-->
+    <!--</li>-->
+    <!--<li>-->
+    <!--<span>法币余额：</span>-->
+    <!--<span>49912 元</span>-->
+    <!--</li>-->
+    <!--</ul>-->
+    <!--<div>-->
+    <!--<input ng-click="vm.popHide()" class="ePointsPay" type="button" value="ePoints抵扣">-->
+    <!--<input ng-click="vm.popHide()" class="legalPay" type="button" value="法币支付">-->
+    <!--</div>-->
+    <!--</div>-->
+
+    <!--End 支付方式-->
+</div>

@@ -1,0 +1,73 @@
+<div ng-controller="productManageController as vm" class="innerTop" ng-init="vm.getPagedDataAsync()">
+    <ol class="breadcrumb"></ol>
+    <div class="pLR40">
+        <div class="rightDiv">
+            <div class="rightContTitle">
+                <h2>产品管理</h2>
+            </div>
+            <div class="queryDiv">
+                <div class="queryDivIn">
+                    <form class="form-horizontal">
+                        <div>
+                            <div class="f_l mr15 mb15">
+                                <p class="f_l lh40">产品id：</p>
+                                <input type="text" class="form-control f_l w150" placeholder="请输入产品id" ng-model="vm.query.productId">
+                            </div>
+                            <div class="f_l mr15 mb15">
+                                <p class="f_l lh40">产品名称：</p>
+                                <input type="text" class="form-control f_l w150" placeholder="请输入产品名称" ng-model="vm.query.productName">
+                            </div>
+                            <div class="f_l mr15 mb15">
+                                <p class="f_l lh40">产品类型：</p>
+                                <select class="form-control w120" ng-options="o.id as o.name for o in vm.productTypeList" ng-model="vm.query.productType">
+                                    <option value="">全部</option>
+                                </select>
+                            </div>
+                            <div class="f_l mb15">
+                                <input class="btn btn-warning mr10" type="submit" value="搜索" ng-click="vm.search()">
+                                <input class="btn btn-info mr10" type="submit" value="新增产品" ui-sref="productManageAdd">
+                                <input class="btn btn-info mr10" type="submit" value="默认产品设置" ui-sref="productManageDefault">
+                                <input class="btn btn-info mr10" type="submit" value="商户产品管理" ui-sref="productManageCompany">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="noDataDiv" ng-if="!vm.list.length">
+                <div class="noData">
+                    <div class="noDataBg"></div>
+                    <p>暂时没有数据～</p>
+                </div>
+            </div>
+            <div class="tableList" ng-show="vm.list.length > 0">
+                <table class="table tableInfo">
+                    <tr>
+                        <th>序号</th>
+                        <th>产品id</th>
+                        <th>产品名称</th>
+                        <th>产品类型</th>
+                        <th>产品价格（元）</th>
+                        <th>最高补贴限额（元）</th>
+                        <th>添加时间</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr ng-repeat="o in vm.list">
+                        <td ng-bind="$index + 1"></td>
+                        <td ng-bind="o.id"></td>
+                        <td ng-bind="o.productName"></td>
+                        <td ng-bind="o.productTypeText"></td>
+                        <td ng-bind="o.productPrice"></td>
+                        <td ng-bind="o.productCompensationAmount"></td>
+                        <td ng-bind="o.createTime | date : 'yyyy-MM-dd'"></td>
+                        <td>
+                            <a href="javascript:;" ng-click="vm.editProduct(o.id)">编辑</a>
+                            <!--<em class="c_999">|</em>-->
+                            <!--<a href="javascript:void(0)" ng-click="vm.deleteProduct(o.id)">删除</a>-->
+                        </td>
+                    </tr>
+                </table>
+                <div class="page" paging page-object="vm.query" click-function="vm.getPagedDataAsync"></div>
+            </div>
+        </div>
+    </div>
+</div>

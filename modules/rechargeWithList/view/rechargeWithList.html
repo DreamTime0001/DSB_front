@@ -1,0 +1,36 @@
+<div ng-controller="rechargeWithListController as vm" class="innerTop">
+    <ol class="breadcrumb"></ol>
+    <div class="pLR40">
+        <div class="rightDiv">
+            <div class="rightContTitle rightContTitle02">
+                <h2>提现记录</h2>
+                <img src="static/images/pop-close.png" alt="" ui-sref="recharge">
+            </div>
+            <div class="noDataDiv" ng-if="!vm.list.length">
+                <div class="noData">
+                    <div class="noDataBg"></div>
+                    <p>暂时没有数据～</p>
+                </div>
+            </div>
+            <div class="tableList" ng-show="vm.list.length > 0">
+                <table class="table tableInfo" >
+                    <tr>
+                        <th>提现流水号</th>
+                        <th>提现金额</th>
+                        <th>发生时间</th>
+                        <th>明细</th>
+                        <th>状态</th>
+                    </tr>
+                    <tr ng-repeat="o in vm.list">
+                        <td ng-bind="o.billNo"></td>
+                        <td ng-bind="o.billAmount1"></td>
+                        <td ng-bind="o.createDate"></td>
+                        <td ng-bind="o.billTitle"></td>
+                        <td ng-bind="o.statusText"></td>
+                    </tr>
+                </table>
+                <div class="page" paging page-object="vm.query" click-function="vm.getPagedDataAsync"></div>
+            </div>
+        </div>
+    </div>
+</div>

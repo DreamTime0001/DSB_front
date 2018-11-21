@@ -1,0 +1,29 @@
+<div ng-controller="subDocCenterController as vm" class="innerTop">
+    <ol class="breadcrumb"></ol>
+    <div class="pLR40">
+        <div class="rightDiv">
+            <div class="overfl mb20">
+                <ul class="topNavUl">
+                    <li ng-class="{active : vm.subDoc == 0}" ng-click="vm.getDoc(0)">物流险</li>
+                    <li ng-class="{active : vm.subDoc == 1}" ng-click="vm.getDoc(1)">卖家险</li>
+                </ul>
+            </div>
+            <div class="detailDiv mb20" ng-repeat="obj in vm.list">
+                <h2 ng-bind="obj.document"></h2>
+                <div class="detailIn">
+                    <p ng-bind="'文档用途：'+ obj.mark"></p>
+                    <p ng-bind="'文档版本：'+obj.version"></p>
+                    <p ng-bind="'更新时间：'+ (obj.updateAt | date : 'yyyy-MM-dd')"></p>
+                    <p><a ng-href="{{obj.documentUrl}}" target="_blank">点击下载</a>
+                </div>
+            </div>
+            <div class="detailDiv mb20">
+                <h2>技术对接</h2>
+                <div class="detailIn">
+                    <p>技术对接相关问题，请联系该微信号，当天响应，1天内完成对接。</p>
+                    <p><img src="static/images/docImg.jpg" width="120" height="120"/></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

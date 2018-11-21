@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html ng-app="register" lang="en" ng-controller="registerController as vm" ng-init="vm.init()">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>商户注册</title>
+    <link rel="stylesheet" href="static/css/bootstrap.min_v3.3.4.css">
+    <link rel="stylesheet" href="static/css/style.css?v1">
+    <link rel="stylesheet" href="static/css/register.css?v1">
+</head>
+
+<body>
+    <!--弹窗-->
+    <div class="popMask" ng-if="vm.popShow" ng-click="vm.isAgree()"></div>
+    <div class="popLayout" ng-class="{'show':vm.popShow}">
+        <div class="protocolPop">
+            <h3 class="mb10">豆沙包科技产品合作协议</h3>
+            <ul>
+                <li><strong>感谢使用豆沙包跨境电商API开放平台/SaaS服务平台（以下简称“平台”），平台依据以下条件和条款为您提供所享有的服务,请仔细阅读并遵守。</strong></li>
+                <li>
+                    欢迎阅读豆沙包跨境电商API开放平台/SaaS服务平台“豆沙包科技产品合作协议”(下称“本协议”)。本协议系豆沙包科技（上海）有限公司（以下简称“我们”）与平台用户（以下简称“您”）就平台科技产品合作相关事项所订立。本协议系您与我们在保险、区块链、供应链金融、品牌推广等方面的深度合作协议，有助于您了解我们与您合作过程中您的权利和义务，请您仔细阅读，对于尤为重要的条款，我们已予以加粗，以提别提醒您加以注意。
+                </li>
+                <li>
+                    您注册时点选接受“豆沙包科技产品合作协议”或以任何方式进入平台并使用产品或服务即表示您已充分阅读、理解并同意接受本协议的所有条款和条件(以下合称“条款”)，并承诺同意与我们订立本协议，承诺按照本协议的约定及平台的程序设置享受权利、履行义务。
+                </li>
+                <li><strong>第一条 注册须知</strong></li>
+                <li>您确认，在您完成注册程序或使用平台时，您应当是具备完全民事行为能力的自然人、法人或其他组织。若您不具备前述主体资格，则您及您的监护人应承担因此而导致的一切后果。</li>
+                <li>您在使用平台、接受或购买我们的产品或服务时，您可能需要提供法律法规要求的必要身份信息及资料。</li>
+                <li><strong>第二条 声明与承诺</strong></li>
+                <li><strong>（一）您承诺已阅读、理解并同意接受本协议，本协议内容包括协议正文及平台所有已经发布或将来可能发布的各类规则、细则、协议等文本，以上内容均为本协议不可分割的一部分，与协议正文具有同等法律效力。</strong>
+                </li>
+                <li>
+                    <strong>（二）您完成注册程序或使用平台时向平台发出的指令将视为您本人所为，所以特别提醒您，请妥善保管平台账号及平台允许登陆平台的账号，不要将其提供给任何第三方或交于任何第三方使用。</strong>
+                </li>
+                <li><strong>（三）您同意您的信息可根据合作要求展示于平台，我们会根据法律法规、监管部门要求使用，不会为满足第三方的营销目的而披露您的信息。</strong></li>
+                <li><strong>（四）您承诺不为任何非法目的或以任何非法方式使用平台的产品或服务，并承诺遵守中国相关法律、法规及互联网之使用惯例。如我们发现或经第三方举报并经核实您存在前述行为或情形，我们可能会暂停或终止全部或部分平台产品或服务，并视需要报告监管部门，并可能移送司法机关。</strong>
+                </li>
+                <li><strong>（五）我们有权根据业务需要酌情修订本协议的相关条款,并以平台公告的形式进行更新,不再单独通知予您。经修订的“条款”一经在平台公布,即产生效力。如您不同意相关修订,请立即停止使用平台产品或服务,并于“条款”修改公布之日起7日内以书面的形式按平台公布的联系方式提出异议。如您继续使用平台产品或服务，,则将视为您已接受经修订的“条款”,当您与我们或平台发生争议时,应以最新的本协议相关“条款”为准。</strong>
+                </li>
+                <li><strong>第三条 合作内容</strong></li>
+                <li>（一）合作事项</li>
+                <li>
+                    1.我们根据您的需求通过平台向您推荐合作的第三方保险公司的保险产品（以下简称“保险产品”），或协调第三方保险公司根据您要求对保险产品进行定制；我们通过平台为您提供技术服务，以帮助您或您的用户实现购买产品或服务。
+                </li>
+                <li>2. 您在合法的销售渠道，包含但不限于网站、手机APP、行业应用软件以及相关网络商务平台，将平台的保险产品嵌入其商品购买流程中进行推荐，或在上述过程中搜集用户需求，通过平台代客户进行购买；</li>
+                <li>3.我们在平台上为您提供涉及有关保险产品的页面、PC端以及手机客户端内容、官方微博及微信公众号图文内容，我们向您提供相关的技术接口或系统平台，协助您进行产品购买；</li>
+                <li>4．我们通过平台为您提供基于Echain Cross-border Ecommerce
+                    Protocol跨境电商基础协议的区块链技术服务，帮助您在该技术底层协议上探索并实践区块链与跨境电商行业结合的新技术、新应用；
+                </li>
+                <li>5．我们与您共同合作研发“区块链+物流“服务，我们在此基础上提供“区块链+保险”服务，与您联合打造区块链+物流创新；</li>
+                <li>6.我们通过平台为您提供面向企业的融资顾问服务，帮助您实现应收账款的资金融通业务；</li>
+                <li>7.我们通过平台为您提供全方位品牌推广、信息咨询等服务；</li>
+                <li>8.我们通过平台为您提供全面客观的行业分析研究服务；</li>
+                <li>9.我们通过平台为您提供异国客户售后解决方案；</li>
+                <li>10.我们通过平台为您提供延长保修服务解决方案；</li>
+                <li>11.我们通过平台为您提供海外仓二次库存、二次销售解决方案；</li>
+                <li>12.我们通过平台为您提供供应链上下游优化服务，推荐更安全、更有保障的上下游企业如物流公司、清关公司等；</li>
+                <li>13.我们通过平台为你提供精准营销服务，强化获客能力，为您提供大数据精准营销服务；</li>
+                <li>14. 我们与您皆同意在适当时机洽谈并探讨建立更深入的合作关系。</li>
+                <li>（二）合作规则</li>
+                <li>我们与您的合作产品类型、价格与产品规则详见订单详情。</li>
+                <li>（三） 合作方式
+                </li>
+                <li style="padding:10px">
+                    <table width="100%" height="20" border="1" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td align="center" valign="middle" width="100">合作方式 </td>
+                            <td align="center" valign="middle" width="100">对接方式 </td>
+                            <td align="center" valign="middle">说明 </td>
+                            <td align="center" valign="middle">理赔 </td>
+                        </tr>
+                        <tr>
+                            <td align="center" valign="middle">API开放平台 </td>
+                            <td align="center" valign="middle">技术开发对接 <br />
+                                * 需技术开发 </td>
+                            <td align="center" valign="middle">我们通过技术对接在您的平台提供保险产品购买：您在购物流程中调用平台系统接口，您的用户在购买时通过接口进行数据传输，进行下单、支付。
+                                <br />
+                                购买、支付在您的平台完成； </td>
+                            <td align="center" valign="middle">A.用户直接申请理赔，用户可关注豆沙包微信公众号，在公众号“我的补贴”中按操作说明申请代赔付服务。 </td>
+                        </tr>
+                        <tr>
+                            <td align="center" valign="middle">SaaS商户平台 </td>
+                            <td align="center" valign="middle">系统平台操作 <br />
+                                * 无需技术开发 </td>
+                            <td align="center" valign="middle">您在豆沙包平台购买或代您的用户购买保险产品； <br />
+                                购买、支付在豆沙包平台完成。 </td>
+                            <td align="center" valign="middle">可选择： <br />
+                                A.用户直接申请理赔，用户可关注豆沙包微信公众号，在公众号“我的补贴”中按操作说明申请代赔付服务； <br />
+                                B.您代您的用户进行理赔，在系统中进行操作。 </td>
+                        </tr>
+                    </table>
+                </li>
+                <li>1. 您根据自身运营情况，可提前通过书面或电子邮件等方式告知我们调整合作对接方式。</li>
+                <li>2. 您可在以上合作方式中，选择任意一种或多种方式进行合作。</li>
+                <li>3. 若您需与我们开展以上合作方式以外的其他合作方式，需与我们另行协商确定，并签订相应协议。</li>
+                <li>（四） 结算方式</li>
+                <li> 您的用户在您的平台就保险产品进行下单的情况下，产品费用由您代为收款；您在豆沙包SaaS商户平台完成费用预充值，保险费用在平台系统中实时扣除，无需定期结算。</li>
+                <li>您的应付费用及费用预充值以汇款方式支付到以下账户：</li>
+                <li>户名：豆沙包科技（上海）有限公司</li>
+                <li>开户银行：民生银行</li>
+                <li>银行账号：694136979</li>
+                <li>（如您需我们向您提供相应增值税发票，请在款项中增加相应税点，我们在收到您的相应款项和开票申请后，将向您以邮寄或其他方式提供相应增值税发票。）</li>
+                <li>（五）结算时效</li>
+                <li>
+                    您需在平台规定的结算时间内，按时向我们支付服务或产品价款；否则平台上的结算单中所示的产品状态将置为无效，并无法进行后续变更、理赔、退款等操作，由此产生的您或您的用户损失由您自行承担，我们不承担任何责任。
+                </li>
+                <li>（六）服务约定</li>
+                <li>1. 服务约定</li>
+                <li>
+                    您在与我们的合作过程中，我们允许您调用保险产品的销售政策，调用过程中不得对客户产生误导性宣传，并应明确提示客户该保险产品的承保保险公司及服务提供方。在您客户提出理赔需求后，我们配合保险公司及时收取相关理赔资料，并及时跟进结果，以保险公司实际赔付结果为准，我们对保险公司最终认定赔付结果不承担连带及保证责任。
+                </li>
+                <li>2. 为保证合作效果，我们确保通过平台向您或您的用户提供以下服务：</li>
+                <li>1）咨询与投诉受理</li>
+                <li>网络受理：微信搜索“豆沙包”服务号并关注，在线时间9:30-21:00；</li>
+                <li>电话受理：客服热线021--68958050，服务时间9:30-21:00。</li>
+                <li>2）投诉处理时效</li>
+                <li>平台将在第一时间相应客户投诉，并自投诉事件受理之日起5个工作日内向客户做出明确答复。</li>
+                <li>3）理赔时效</li>
+                <li>用户所有理赔材料提交至保险公司，并经保险公司确认材料齐全后的10个工作日内。</li>
+                <li>4）快速理赔</li>
+                <li>只针对货损包，约定赔付额度范围内，赔付单证中无需提供物流开具的破损证明，平台在一个工作日内先行垫付理赔款。</li>
+                <li>月订单量<=2000：快速理赔限额为100元；</li> <li>月单量>2000单：快速理赔限额为200元。</li>
+                <li><strong>第四条 合作机制</strong></li>
+                <li>（一）您与我们同意建立定期交流、信息通报制度，对可能出现的任何风险情况，一方应及时向另一方提供双方合作项目的相关资料和信息，共同商议和采取对应措施，防范和化解风险。</li>
+                <li>（二）根据协议约定，您与我们对平台产品或服务的销售收入、手续费进行定期清算和结算管理，对于异常事件友好协商制定解决方案。</li>
+                <li>（三）您与我们应建立完善授权机制，共同签署相关文书，保障您与我们在充分授权的前提下开展业务。</li>
+                <li>（四）您与我们应建立突发情况应急机制，最大程度上减少突发情况对本次合作可能产生的影响。</li>
+                <li>（五）您与我们可各自指定对接联系人。通过对接联系人加强联系，互相传递资料及信息，联系人应采用邮件传递并予以签收，共同商议各项事宜。</li>
+                <li><strong>第五条 宣传条款</strong></li>
+                <li>
+                    （一）您须在您的平台将有关保险服务之说明放置在页面的显著位置，向用户展示保险合作证明，说明保险承保方为：合作保险公司（具体公司名称以补充协议为准），保险服务提供方为：豆沙包科技（上海）有限公司，我们向您提供必要的宣传材料包括但不限于Logo、文案、保险资质、保险合作证明等。
+                </li>
+                <li>（二）我们将在自有平台提供必要的展示位以配合您或您的平台的宣传工作，您应向我们提供必要的宣传材料包括但不限于Logo、文案等。</li>
+                <li>（三）您在宣传中如有任何涉及到我们及我们合作保险公司的内容，应首先征得我们的书面同意后，方可进行宣传。</li>
+                <li>（四）您不得以您或您合作保险公司之名义宣传与我们合作保险产品之外的其它保险产品或类保险服务。</li>
+                <li>（五）您承诺在合作过程中，涉及的任何形式的宣传无虚假宣传，如因您的虚假宣传行为致使我们或平台造成损失，我们有权立即停止与您的合作，并有权就相应损失向您追偿。</li>
+                <li><strong>第六条 保密责任</strong></li>
+                <li>
+                    （一）您同意于本协议存续期间，应就有关本协议一切内容，及其因履行本协议所取得或知悉有关他方及其内容或相关第三者之一切事务，包括但不限于他方所取得、使用或知悉的客户数据、交易内容、专门技术、业务、财税、税务、人事、采购、市场营销等资料（以下称“保密数据”)，无论是否以画面或其他方式记载，均应负保密的义务，除依法律法规或为执行本协议之义务外，不得作其他本协议用途外使用或提供给第三人，亦不得泄漏或对外公开。本协议合作终止后，您仍应依法负保密责任。
+                </li>
+                <li>（二）非经我们事前之书面同意，您承诺不得将保密数据泄漏或做为与本协议无关之使用，或将其档案或内容文件、移转、出借与第三人或任何机关，若有违反而致我们或第三人受有损害时，您应承担损害赔偿责任。</li>
+                <li><strong>第七条 变更协议</strong></li>
+                <li>
+                    我们有权根据业务需要酌情修订本协议的相关条款,并以平台公告的形式进行更新,不再单独通知予您。经修订的“条款”一经在平台公布,即产生效力。如您不同意相关修订,请立即停止使用平台产品或服务,并于“条款”修改公布之日起7日内以书面的形式按平台公布的联系方式提出异议。如您继续使用平台产品或服务，,则将视为您已接受经修订的“条款”,当您与我们或平台发生争议时,应以最新的本协议相关“条款”为准。
+                </li>
+                <li><strong>第八条 争议解决 </strong></li>
+                <li>因本协议或平台的产品或服务所引起或与其有关的任何争议应向豆沙包科技（上海）有限公司所在地有管辖权的人民法院提起诉讼。</li>
+                <li><strong>第九条 其他</strong></li>
+                <li>
+                    （一）本协议取代您和我们/平台(含平台合作方)先前就相同事项订立的任何书面或口头协议。倘若本协议任何条款被裁定为无效或不可强制执行,该项条款应被撤销,而其余条款应予遵守和执行。条款标题仅为方便参阅而设,并不以任何方式界定、限制、解释或描述该条款的范围或限度。我们未就您或其他人士的某项违约行为采取行动,并不表明我们撤回就任何继后或类似的违约事件采取行动的权利。
+                </li>
+                <li>（二）您与我们仅为独立订约人关系。本协议无意结成或创设任何代理、合伙、合营、雇佣与被雇佣或特性授权与被授权关系。</li>
+                <li>（三）您同意我们因经营业务需要有权将本协议项下的权利义务就部分或全部进行转让,而无须提前通知您并取得您的同意。</li>
+                <li>
+                    （四）我们在全国范围内新开设分支机构、关联公司、下属运营单位等新增豆沙包单位的，及时通知您及您单位以便及时为双方单位开展合作、提供服务。新增豆沙包单位中豆沙包分支机构、关联公司符合相应条件的，可依照豆沙包与您之间的相关协议所约定的程序，按此协议的同等条件同您开展业务；
+                </li>
+                <li><strong>第十条 隐私声明</strong></li>
+                <li>
+                    （一）您了解并同意，豆沙包开放平台将按照《豆沙包开放平台隐私声明》保护您的个人信息，豆沙包开放平台将在公司网站上公布并有权不时修订《豆沙包开发平台隐私声明》，《豆沙包开放平台隐私声明》构成本协议的有效组成部分。
+                </li>
+                <li>（二）个人信息使用</li>
+                <li>
+                    您在网络上注册成为平台的用户、购买平台的跨境电商服务全流程产品、登记接受平台的产品或其他服务时，代表您在知情和同意的情况下，自愿向平台提供您的个人用户信息，例如姓名、通讯地址、电邮地址、联系电话、身份证号码及偏好等（以下简称"个人信息"）。
+                </li>
+                <li>您知晓并同意当您通过电话要求提供服务时，通话可能会被录音，以确保服务质量及确保您个人信息的准确性。</li>
+                <li>
+                    您向平台提供的个人信息将用于为您提供更好的服务、业务相关的营销研究，以及以邮寄、短信或电子邮件的方式向您提供平台的产品、服务和活动信息。在必要情形下第三方可能接触并使用您的个人信息，包括得到授权的我们的员工、以及不时执行与我们的业务、营销活动和数据整理有关工作的其他公司或人员。所有此类人员及公司均需遵守相关保密协议，同时也需遵守国家关于个人信息保护有关法律法规，以确保您的个人信息随时得到保护。
+                </li>
+                <li>
+                    除上述用途外，我们及平台不会将您的个人信息用于任何未经您同意的用途。除了我们的业务合作伙伴、我们的法律顾问、外部审计机构或按照法律规定、监管规定或法庭裁决之外，我们不会将所接受的任何个人信息泄露、篡改、毁损、出售或者提供给任何第三方。
+                </li>
+                <li>我们遵守现行的关于个人信息、数据及隐私保护的法律法规，采取充分的技术手段和制度管理，保护您提供给平台的个人信息、数据和隐私不受到非法的泄露或披露给未获授权的第三方。</li>
+                <li>
+                    您可以提交书面请求以查阅您的个人信息，或要求对错误的信息进行更正、修改或删除。如果您的个人信息有任何变动，请通知平台以便平台保持信息更新并提供更好的服务。此外，您可以通过书面方式要求我们从数据库中取消您所登记的任何保险服务并停止使用您的个人信息。
+                </li>
+                <li>任何与您个人信息有关的请求或投诉，以及要求取消您所选取的平台的任何产品或服务，请发送电子邮件至:kefu@dousha8ao.com 或者致函以下地址：
+                    上海市浦东新区东方路971号钱江大厦25G，邮编：200120。
+                </li>
+                <li>我们的"隐私声明"体现了我们将按照国家关于个人信息保护有关法律法规保护和管理您个人信息的承诺，我们会根据不时修订的相关法规要求更新本"隐私声明"。</li>
+            </ul>
+        </div>
+        <div class="overfl text_c mt10">
+            <p class="mb10 mt10">请完整阅读本协议</p>
+            <input class="btn" type="button" value="同意" ng-if="vm.icoDisabled">
+            <input class="btn btn-warning" type="button" value="同意" ng-if="!vm.icoDisabled" ng-click="vm.getEndTime()">
+        </div>
+    </div>
+    <div id="top" class="clearfix blueBg">
+        <div class="applogo newTestBg"><img src="static/images/logo.png" /></div>
+        <div class="userLeft">
+            <h2 class="c_000">豆沙包保险SaaS服务平台</h2>
+        </div>
+    </div>
+    <div class="regOut">
+        <div class="regDiv">
+            <div class="overfl mb20">
+                <div class="overfl">
+                    <p class="left-p">手机号：</p>
+                    <input type="text" class="right-text" ng-class="{'error':vm.errors.username}" placeholder="请输入手机号"
+                        ng-model="vm.register.username" ng-blur="vm.isUsernameRegister()" ng-focus="vm.errors.username = false"
+                        id="username">
+                </div>
+            </div>
+            <div class="overfl mb20">
+                <div class="overfl">
+                    <p class="left-p">密码：</p>
+                    <input type="password" class="right-text" ng-class="{'error':vm.errors.password}" placeholder="请输入密码"
+                        ng-model="vm.register.password" ng-blur="vm.isPassword()" ng-focus="vm.errors.password = false">
+                </div>
+                <!-- <div class="regError" ng-class="{'show':vm.errors.passwordText}" ng-if="vm.errors.passwordText" ng-bind="vm.errors.passwordText"></div> -->
+            </div>
+            <div class="overfl mb20">
+                <div class="overfl">
+                    <p class="left-p">确认密码：</p>
+                    <input type="password" class="right-text" ng-class="{'error':vm.errors.confirmPassword}"
+                        placeholder="请输入确认密码" ng-model="vm.register.confirmPassword" ng-blur="vm.isconfirmPassword()"
+                        ng-focus="vm.errors.confirmPassword = false" id="confirmPassword">
+                </div>
+                <!-- <div class="regError" ng-class="{'show':vm.errors.cfmPasswordText}" ng-if="vm.errors.cfmPasswordText"
+                    ng-bind="vm.errors.cfmPasswordText"></div> -->
+            </div>
+            <div class="overfl mb20">
+                <div class="overfl">
+                    <p class="left-p">企业名称：</p>
+                    <input type="text" class="right-text" ng-class="{'error':vm.errors.companyName}" placeholder="请输入企业名称"
+                        ng-model="vm.register.companyName" ng-blur="vm.iscompanyName()" ng-focus="vm.errors.companyName = false"
+                        id="companyName">
+                </div>
+            </div>
+            <div class="overfl mb20">
+                <div class="overfl">
+                    <p class="left-p">产品类型：</p>
+                    <div class="right-div">
+                        <label ng-repeat="o in vm.product">
+                            <span class="piaochecked mt10" ng-class="{'on_check':o.checked}">
+                                <input type="checkbox" class="radioclass" ng-model="o.checked" />
+                            </span>
+                            <span ng-bind="o.name" class="lh40 c_999"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="overfl mb20">
+                <div class="overfl">
+                    <p class="left-p">企业类型：</p>
+                    <div class="right-div">
+                        <label ng-repeat="o in vm.company">
+                            <span class="piaochecked mt10" ng-class="{'on_check':o.checked}">
+                                <input type="checkbox" class="radioclass" ng-model="o.checked" />
+                            </span>
+                            <span ng-bind="o.name" class="c_999"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="overfl mb20">
+                <div class="overfl">
+                    <p class="left-p" style="white-space:nowrap">图片验证码：</p>
+                    <input type="text" class="right-text small" ng-class="{'error':vm.errors.photoCode}" placeholder="请输入图片验证码"
+                        ng-model="vm.register.photoCode" ng-focus="vm.errors.photoCode = false" ng-blur="vm.isPhotoCode()"
+                        id="photoCode">
+                    <img ng-src="{{vm.verifyCodeImg}}" />
+                    <span ng-click="vm.changVerifyCodeImg()" style="cursor: pointer" class="change-a">换一张</span>
+                </div>
+            </div>
+            <div class="overfl mb20">
+                <div class="overfl">
+                    <p class="left-p">验证码：</p>
+                    <input type="text" class="right-text small" ng-class="{'error':vm.errors.verifyCode}" placeholder="请输入验证码"
+                        ng-model="vm.register.verifyCode" ng-focus="vm.errors.verifyCode = false" ng-blur="vm.isVerifyCode()"
+                        id="verifyCode">
+                    <button class="get-code" ng-click="vm.getCode()" type="button" ng-disabled="vm.iconDis" ng-bind="vm.paracont"></button>
+                </div>
+            </div>
+            <div class="overfl">
+                <div class="protocolBox">
+                    <label>
+                        <span class="piaochecked" ng-class="{'on_check':vm.checkBox}">
+                            <input type="checkbox" class="radioclass" ng-click="vm.getStartTime()" ng-model="vm.checkBox">
+                        </span>
+                        <span>我已阅读并同意<em>《豆沙包商户平台合作协议》</em></span>
+                    </label>
+                </div>
+            </div>
+            <!-- <div class="overfl c_999 text_c">
+                <p>客服邮箱：<a href="mailto:kefu@dousha8ao.com">kefu@dousha8ao.com</a></p>
+            </div> -->
+            <div class="protocolBox mt30">
+                <button class="get-code res" ng-click="vm.regiter()">注册</button>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="overfl c_999 text_c">
+        <p>客服邮箱：<a href="mailto:kefu@dousha8ao.com">kefu@dousha8ao.com</a></p>
+    </div> -->
+    <!-- <div class="overfl text_c mt30">
+        <button class="btn btn-info" ng-click="vm.regiter()" ng-if="vm.errors.username && vm.errors.password && vm.errors.cfmPassword">注册</button>
+        <button class="btn btn-info" disabled="disabled" ng-if="!vm.errors.username || !vm.errors.password || !vm.errors.cfmPassword">注册</button>
+    </div> -->
+</div>
+<script src="static/js/jquery/jquery-1.10.2.min.js"></script>
+<script src="static/js/angular/angular.min.js"></script>
+<script src="static/js/angular/angular-cookies.min.js"></script>
+<!--<script src="core/configs/testConfig.js"></script>-->
+<!--<script src="core/configs/developConfig.js"></script>-->
+<script src="core/configs/config.js"></script>
+<!--<script src="core/configs/localConfig.js"></script>-->
+<script src="core/services/service.js"></script>
+<script src="core/services/layer/layer.js"></script>
+<script src="core/services/layer.js"></script>
+<script src="core/services/util.js"></script>
+
+    <script src="static/js/jquery/jquery-1.10.2.min.js"></script>
+    <script src="static/js/angular/angular.min.js"></script>
+    <script src="static/js/angular/angular-cookies.min.js"></script>
+     <!--<script src="core/configs/testConfig.js"></script>-->
+    <!--<script src="core/configs/developConfig.js"></script>-->
+    <script src="core/configs/config.js"></script>
+    <!-- <script src="core/configs/localConfig.js"></script> -->
+    <script src="core/services/service.js"></script>
+    <script src="core/services/layer/layer.js"></script>
+    <script src="core/services/layer.js"></script>
+    <script src="core/services/util.js"></script>
+
+    <script src="modules/register/controller/registerController.js"></script>
+</body>
+
+</html>

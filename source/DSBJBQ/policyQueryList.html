@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html ng-app="policyQueryList" lang="zh" ng-controller="policyQueryListController as vm">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, mafximum-scale=1, user-scalable=no">
+    <title>保单查询</title>
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body style="background: #eff2f7;">
+<div class="titleHead titleHead01 text_c" onclick="history.go(-1)">
+    <span>保单查询</span>
+    <img class="arrowL" src="static/images/arrow-left.png" alt="">
+</div>
+<div class="insureContainer">
+    <!--内容-->
+    <div class="policyListSection">
+        <div class="policyListBox" ng-repeat="o in vm.list">
+            <div class="detailsBox">
+                <div class="displayBox numStatus">
+                    <p class="boxFlex1 text_l" ng-bind="o.ticketNo">DSB1238128381238213</p>
+                    <p class="boxFlex1 text_r" ng-bind="o.statusText" ng-if="o.status == 0"></p>
+                    <p class="boxFlex1 text_r statusBg" ng-if="o.status == 1" style="color: #ff7a77;">
+                        <span class="statusText" ng-bind="o.statusText"></span>
+                    </p>
+                    <p class="boxFlex1 text_r statusBg02" ng-if="o.status == 2" style="color: #a6a6a6;">
+                        <span class="statusText" ng-bind="o.statusText"></span>
+                    </p>
+                    <p class="boxFlex1 text_r statusBg02" ng-if="o.status == 3" style="color: #a6a6a6;">
+                        <span class="statusText" ng-bind="o.statusText"></span>
+                    </p>
+                </div>
+                <ul class="policyListUl">
+                    <li class="displayBox">
+                        <p class="boxFlex1 text_l">被保人手机号：</p>
+                        <p class="boxFlex1 text_r" ng-bind="o.phone">13816776216</p>
+                    </li>
+                    <li class="displayBox">
+                        <p class="boxFlex1 text_l">被保人身份证号：</p>
+                        <p class="boxFlex1 text_r" ng-bind="o.idCard">310110199411231231</p>
+                    </li>
+                    <li class="displayBox">
+                        <p class="boxFlex1 text_l">订单编号：</p>
+                        <p class="boxFlex1 text_r" ng-bind="o.examNo">327312636123</p>
+                    </li>
+                    <li class="displayBox">
+                        <p class="boxFlex1 text_l">保险费用：</p>
+                        <p class="boxFlex1 text_r">
+                            <span ng-bind="o.insuranceExpense">168</span>元
+                        </p>
+                    </li>
+                </ul>
+                <div>
+                    <p class=" boxFlex1 text_r toPayBtn" ng-if="o.status == 0">
+                        <a href="javascript:;" ng-click="vm.toPay(o)">去支付</a>
+                    </p>
+                    <p class=" boxFlex1 text_r toPayBtn" ng-if="o.status == 1">
+                    </p>
+                    <p class=" boxFlex1 text_r toPayBtn" ng-if="o.status == 2">
+                        <a href="javascript:;" ng-click="vm.InvoiceDownLoad(o)">发票下载</a>
+                        <a ng-href="{{o.downloadUrl}}">保单下载</a>
+                    </p>
+                    <p class=" boxFlex1 text_r toPayBtn" ng-if="o.status == 3">
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="static/js/jquery/jquery-1.10.2.min.js"></script>
+<script src="static/js/rem.js"></script>
+<script src="static/js/common.js"></script>
+<script src="static/js/angular/angular.min.js"></script>
+<script src="static/js/angular/angular-cookies.min.js"></script>
+<script src="../../core/configs/config.js"></script>
+<!--<script src="../../core/configs/testConfig.js"></script>-->
+<!--<script src="../../core/configs/localConfig.js"></script>-->
+<script src="core/services/layer/layer.js"></script>
+<script src="modules/policyQueryList/controller/policyQueryList.js"></script>
+</body>
+</html>

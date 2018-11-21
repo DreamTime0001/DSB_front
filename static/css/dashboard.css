@@ -1,0 +1,1256 @@
+body {
+    font: normal 14px 'microsoft yahei', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background: #faf8f7;
+    color: #555;
+}
+select {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background: url("../images/selectArrow.png") no-repeat scroll right transparent;
+
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+html {
+    height: 100%
+}
+
+h1, h2, h3, ul, li, p, dl, dt, dd {
+    margin: 0;
+    padding: 0;
+    font-family: 'microsoft yahei'
+}
+
+li {
+    list-style: none
+}
+
+i, em {
+    font-style: normal;
+}
+
+.clear {
+    clear: both;
+}
+
+a, a:hover {
+    color: #5c95fe;
+    text-decoration: none
+}
+
+.overfl {
+    overflow: hidden
+}
+
+label {
+    display: inline-block;
+    max-width: 100%;
+    font-weight: normal;
+    margin: 0
+}
+
+.m15 {
+    margin: 15px
+}
+
+.mt5 {
+    margin-top: 5px
+}
+
+.mt10 {
+    margin-top: 10px
+}
+
+.mt15 {
+    margin-top: 15px
+}
+
+.mt20 {
+    margin-top: 20px
+}
+
+.mt30 {
+    margin-top: 30px
+}
+
+.ml5 {
+    margin-left: 5px
+}
+
+.mr5 {
+    margin-right: 5px
+}
+
+.mr10 {
+    margin-right: 10px
+}
+
+.mr15 {
+    margin-right: 15px
+}
+
+.mr20 {
+    margin-right: 20px
+}
+
+.mr30 {
+    margin-right: 30px
+}
+
+.mb10 {
+    margin-bottom: 10px
+}
+
+.mb15 {
+    margin-bottom: 15px
+}
+
+.mb20 {
+    margin-bottom: 20px
+}
+
+.mb0 {
+    margin-bottom: 0
+}
+
+.mt0 {
+    margin-top: 0 !important;
+}
+
+.pLR15 {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.pLR30 {
+    padding-left: 30px;
+    padding-right: 30px
+}
+
+.pLR40 {
+    padding-left: 40px;
+    padding-right: 40px
+}
+
+a:visited {
+    text-decoration: none
+}
+
+.w80 {
+    width: 80px !important;
+}
+
+.w90 {
+    width: 90px !important;
+}
+
+.w100 {
+    width: 100px !important;
+}
+
+.w120 {
+    width: 120px !important;
+}
+
+.w130 {
+    width: 130px !important;
+}
+
+.w150 {
+    width: 150px !important;
+}
+
+.w160 {
+    width: 160px !important;
+}
+
+.w170 {
+    width: 170px !important;
+}
+
+.w180 {
+    width: 180px !important;
+}
+
+.w200 {
+    width: 200px !important;
+}
+
+.w230 {
+    width: 230px !important;
+}
+
+.w240 {
+    width: 240px !important;
+}
+
+.w260 {
+    width: 260px !important;
+}
+
+.w300 {
+    width: 300px !important;
+}
+
+.w400 {
+    width: 400px !important;
+}
+
+.w100P {
+    width: 100% !important;
+}
+
+.h80 {
+    height: 80px !important;
+}
+
+.h100 {
+    height: 100px !important;
+}
+
+.h110 {
+    height: 110px !important;
+}
+
+.h120 {
+    height: 120px !important;
+}
+
+.lh30 {
+    line-height: 30px;
+!important;
+}
+
+.lh34 {
+    line-height: 34px;
+!important;
+}
+
+.lh40 {
+    line-height: 40px;
+!important;
+}
+
+.c_fff {
+    color: #fff;
+}
+
+.c_333 {
+    color: #333 !important;
+}
+
+.c_ccc {
+    color: #ccc !important;
+}
+
+.c_358ce4 {
+    color: #358ce4 !important;
+}
+
+.c_e61915 {
+    color: #e61915 !important;
+}
+
+.c_fe5757 {
+    color: #fe5757 !important;
+}
+
+.c_ff0000 {
+    color: #ff0000 !important;
+}
+
+.c_999 {
+    color: #999 !important;
+}
+
+.bg_fff {
+    background: #fff !important
+}
+
+.f_l {
+    float: left
+}
+
+.f_r {
+    float: right
+}
+
+.text_r {
+    text-align: right
+}
+
+.checkboxIco {
+    width: 18px;
+    height: 18px;
+    display: block;
+    float: left;
+    background: url("../images/checkboxIco-default.jpg") no-repeat;
+    vertical-align: top;
+    margin: 11px 5px 0 0;
+    cursor: pointer;
+}
+
+.checkboxIcoChecked {
+    width: 18px;
+    height: 18px;
+    display: block;
+    float: left;
+    vertical-align: top;
+    margin: 11px 5px 0 0;
+    background: url("../images/checkboxIco-checked.jpg") no-repeat;
+    cursor: pointer;
+}
+/*top*/
+#top {
+    position: fixed;
+    height: 114px;
+    background: #2d3567;
+    color: #fff;
+    width: 100%;
+    z-index: 900;
+    top: 0;
+}
+
+.applogo {
+    float: left;
+    width: 280px;
+    height: 114px;
+    color: #fff;
+    text-align: center;
+    background: #f8734c
+    /*background: -webkit-linear-gradient(left, #f9744c,#f7704a,#f46a46,#f06542);*/
+}
+
+.sidebar-open-button {
+    width: 52px;
+    height: 60px;
+    font-size: 22px;
+    display: block;
+    text-align: center;
+    float: left;
+    color: rgba(0, 0, 0, 0.6);
+    border-right: 1px solid rgba(0, 0, 0, 0.14);
+    z-index: 1;
+}
+
+.sidebar-open-button:hover, .sidebar-open-button:active {
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.fa-bars {
+    margin: 0;
+    padding: 23px 15px 0;
+}
+
+.fa-bars li {
+    width: 22px;
+    height: 4px;
+    background: #23527c;
+    margin-bottom: 3px;
+}
+
+#userInfor {
+    margin-right: -15px;
+}
+
+#userInfor > li > a {
+    padding: 16px 10px 15px;
+}
+
+#userInfor li a span {
+    margin-right: 5px
+}
+
+#userInfor li > a:hover {
+    background: rgba(256, 256, 256, 0.5);
+}
+
+#userInfor li.open > a, #userInfor li.open > a:hover, #userInfor li.open > a:focus {
+    background: #358ce4;
+    color: #fff
+}
+
+#userInfor li a i {
+    display: inline-block;
+    vertical-align: top;
+    height: 15px;
+    line-height: 15px;
+    width: 15px;
+    margin-top: 2px
+}
+
+#userInfor li a b.caret {
+    vertical-align: 2px
+}
+
+.userHead {
+    width: 31px;
+    height: 28px;
+}
+
+.dropdown-menu {
+    min-width: 90px;
+    left: -50px;
+    top: 30px;
+    text-align: center;
+    border: 1px solid #e3e8f4;
+    color: #4485ff;
+}
+
+.topRight {
+    margin-left: 280px;
+    background: #ffffff;
+    height: 114px;
+    border-bottom: 1px solid #dedee1;
+    box-sizing: border-box
+}
+
+.topRight h2 {
+    font-size: 18px;
+    color: #333744;
+    line-height: 62px;
+    padding-left: 40px
+}
+
+.userLeft {
+    position: absolute;
+    left: 320px;
+    top: 45px;
+}
+
+.userLeft li {
+    color: #292929;
+    float: left;
+    width: 120px
+}
+
+.userLeft i {
+    width: 19px;
+    height: 22px;
+    display: inline-block
+}
+
+.userLeft li p {
+    line-height: 26px
+}
+
+.userAddInfo a, .textIco {
+    height: 32px;
+    display: block;
+    float: left;
+    padding: 0 20px;
+    border: 1px solid #5c95fe;
+    background: #fff;
+    text-align: center;
+    line-height: 32px;
+    border-radius: 30px;
+    margin-left: 15px
+}
+
+.userAddInfo {
+    position: absolute;
+    right: 40px;
+    top: 45px;
+    color: #333744;
+}
+
+.userAddInfo li {
+    float: left;
+    margin-right: 40px;
+    line-height: 28px;
+    cursor: pointer
+}
+
+.userAddInfo li.icon:before {
+    content: '';
+    width: 19px;
+    height: 19px;
+    display: inline-block;
+    vertical-align: top;
+    background: url("../images/icon.png") no-repeat
+}
+
+.userAddInfo li.icon.user:before {
+    background-position: 0 0;
+    margin: 0 5px 0 0
+}
+
+.userAddInfo li.icon.layout:before {
+    background-position: -19px 0;
+    margin: 0 5px 0 0
+}
+
+.layOut {
+    width: 100%;
+    margin: 154px auto 0;
+    padding: 0 2%;
+    box-sizing: border-box;
+}
+
+.dashTitle {
+    height: 40px;
+    position: relative;
+    font-size: 20px;
+}
+
+.dashTitle:before {
+    content: '';
+    width: 4px;
+    height: 19px;
+    background: #fe6f5a;
+    display: inline-block;
+    vertical-align: top;
+    margin: 3px 14px 0 0;
+}
+
+.w70 {
+    width: 70%;
+    padding-right: 1%;
+    box-sizing: border-box
+}
+
+.w30 {
+    width: 30%
+}
+
+.w48 {
+    width: 48%
+}
+
+.topLeftDiv {
+    width: 1280px;
+    float: left;
+}
+
+.topRightDiv {
+    width: 558px;
+    float: left;
+}
+
+.middleLeftDiv {
+    width: 650px;
+    float: left;
+}
+
+.middleRightDiv {
+    width: 1210px;
+    float: left;
+}
+
+.box {
+    border: 1px solid #ffd7d0;
+    background: #fff;
+    box-shadow: 5px 5px 5px #eeeff3;
+    position: relative;
+    height: 260px;
+}
+
+.boxWh-1 {
+    width: 50%;
+    padding-right: 20px
+}
+
+.boxWh-2 {
+    width: 25%;
+    padding-right: 20px
+}
+
+.boxWh-3 {
+    height: 540px;
+}
+
+.boxWh-4 {
+    width: 100%;
+    height: 540px;
+}
+
+.boxWh-5 {
+    width: 100%;
+    height: 540px;
+}
+
+.boxWh-6 {
+    width: 100%;
+    height: 700px;
+}
+
+.chainDiv {
+    width: 1437px;
+    height: 598px;
+    margin: 47px auto 0;
+    background: url("../images/chainBg.jpg") no-repeat;
+    position: relative;
+}
+
+.chainDiv .removeDiv {
+    position: absolute;
+    cursor: pointer
+}
+
+.chainDiv .popBlank {
+    width: 220px;
+    position: absolute;
+    background: rgba(0, 0, 0, .78);
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 3px;
+}
+
+.chainDiv .popBlank p {
+    line-height: 30px;
+    font-size: 16px;
+    color: #fff
+}
+
+.chainDiv .popBlank.topArrow:before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 50px;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid rgba(0, 0, 0, .78);
+}
+
+.chainDiv .popBlank.bottomArrow:before {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50px;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid rgba(0, 0, 0, .78);
+}
+
+/*生产商*/
+.chainDiv .removeDiv.pos1 {
+    width: 202px;
+    height: 112px;
+    left: 32px;
+    top: 95px;
+}
+
+.chainDiv .popBlank.pos1 {
+    left: 76px;
+    top: 220px;
+}
+
+/*卖家/货代/平台/代购/境外电商*/
+.chainDiv .removeDiv.pos2 {
+    width: 308px;
+    height: 112px;
+    left: 315px;
+    top: 95px;
+}
+
+.chainDiv .popBlank.pos2 {
+    left: 413px;
+    top: 220px;
+}
+
+/*转运/海外仓*/
+.chainDiv .removeDiv.pos3 {
+    width: 168px;
+    height: 112px;
+    left: 722px;
+    top: 95px;
+}
+
+.chainDiv .popBlank.pos3 {
+    left: 750px;
+    top: 220px;
+}
+
+/*海关*/
+.chainDiv .removeDiv.pos4 {
+    width: 120px;
+    height: 112px;
+    left: 1091px;
+    top: 95px;
+}
+
+.chainDiv .popBlank.pos4 {
+    left: 1096px;
+    top: 220px;
+}
+
+/*签收*/
+.chainDiv .removeDiv.pos5 {
+    width: 126px;
+    height: 112px;
+    left: 244px;
+    bottom: 67px;
+}
+
+.chainDiv .popBlank.pos5 {
+    left: 251px;
+    bottom: 195px;
+}
+
+/*跨境电商/返利网站/导购/直播/微商*/
+.chainDiv .removeDiv.pos6 {
+    width: 308px;
+    height: 112px;
+    left: 517px;
+    bottom: 67px;
+}
+
+.chainDiv .popBlank.pos6 {
+    left: 614px;
+    bottom: 190px;
+}
+
+/*保税仓*/
+.chainDiv .removeDiv.pos7 {
+    width: 126px;
+    height: 112px;
+    left: 973px;
+    bottom: 67px;
+}
+
+.chainDiv .popBlank.pos7 {
+    left: 978px;
+    bottom: 190px;
+}
+
+/*物流1*/
+.chainDiv .removeDiv.wl1 {
+    width: 32px;
+    height: 16px;
+    left: 284px;
+    top: 207px;
+}
+
+.chainDiv .popBlank.wl1 {
+    left: 244px;
+    top: 230px;
+}
+
+/*物流2*/
+.chainDiv .removeDiv.wl2 {
+    width: 32px;
+    height: 16px;
+    left: 622px;
+    top: 207px;
+}
+
+.chainDiv .popBlank.wl2 {
+    left: 580px;
+    top: 230px;
+}
+
+/*物流3*/
+.chainDiv .removeDiv.wl3 {
+    width: 32px;
+    height: 16px;
+    left: 964px;
+    top: 207px;
+}
+
+.chainDiv .popBlank.wl3 {
+    left: 925px;
+    top: 230px;
+}
+
+/*物流4*/
+.chainDiv .removeDiv.wl4 {
+    width: 32px;
+    height: 16px;
+    left: 1277px;
+    top: 303px;
+}
+
+.chainDiv .popBlank.wl4 {
+    left: 1240px;
+    top: 324px;
+}
+
+/*物流5*/
+.chainDiv .removeDiv.wl5 {
+    width: 32px;
+    height: 16px;
+    left: 837px;
+    top: 395px;
+}
+
+.chainDiv .popBlank.wl5 {
+    left: 795px;
+    bottom: 224px;
+}
+
+/*物流6*/
+.chainDiv .removeDiv.wl6 {
+    width: 32px;
+    height: 16px;
+    left: 470px;
+    top: 395px;
+}
+
+.chainDiv .popBlank.wl6 {
+    left: 430px;
+    bottom: 224px;
+}
+
+/*支付*/
+.chainDiv .removeDiv.ic1 {
+    width: 70px;
+    height: 32px;
+    left: 266px;
+    top: 300px;
+}
+
+.chainDiv .popBlank.ic1 {
+    left: 240px;
+    top: 340px;
+}
+
+/*缴税*/
+.chainDiv .removeDiv.ic2 {
+    width: 70px;
+    height: 32px;
+    left: 609px;
+    top: 0px;
+}
+
+.chainDiv .popBlank.ic2 {
+    left: 590px;
+    top: 40px;
+}
+
+/*缴税*/
+.chainDiv .removeDiv.ic3 {
+    width: 70px;
+    height: 32px;
+    right: 0;
+    top: 358px;
+}
+
+.chainDiv .popBlank.ic3 {
+    right: -130px;
+    top: 396px;
+}
+
+.boxIn {
+    height: auto;
+    width: auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -ms-transform: translate(-50%, -50%); /* IE 9 */
+    -moz-transform: translate(-50%, -50%); /* Firefox */
+    -webkit-transform: translate(-50%, -50%); /* Safari 和 Chrome */
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.boxIn strong {
+    font-size: 36px
+}
+
+.boxUl {
+    position: absolute;
+    left: 50%;
+    margin-left: -36px;
+    bottom: 20px;
+    z-index: 10
+}
+
+.boxUl li {
+    float: left;
+    margin-right: 30px;
+    color: #999;
+    cursor: pointer;
+    font-size: 20px
+}
+
+.boxUl li.hover {
+    color: #292929
+}
+
+/*保障航路图*/
+.mapDiv {
+    width: 1264px;
+    height: 628px;
+    margin: 47px auto 0;
+    background: url("../images/mapBag.png") no-repeat;
+    position: relative;
+}
+
+.mapDiv .positionDiv {
+    position: absolute;
+    cursor: pointer;
+}
+
+.mapDiv .size09, .mapDiv .size20 {
+    position: absolute;
+    z-index: 99;
+}
+
+.mapDiv .size09 {
+    width: 9px;
+    height: 9px;
+    /*background: rgba(0,255,0,.5);*/
+}
+
+.mapDiv .size20 {
+    width: 20px;
+    height: 20px;
+    /*background: rgba(255,0,0,.3);*/
+}
+
+.mapDiv .popBlank {
+    width: 80px;
+    position: absolute;
+    background: rgba(0, 0, 0, .78);
+    padding: 2px 5px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 16px;
+    color: #fff
+}
+
+.toRight {
+    right: -46px;
+    bottom: -22px;
+}
+
+.toRightBox01 {
+    top: 97px;
+    left: 140px;
+}
+
+.toRightBox02 {
+    top: 147px;
+    left: 249px;
+}
+
+.toRightBox03 {
+    bottom: 210px;
+    left: 350px;
+}
+
+.toRightBox04 {
+    top: 171px;
+    left: 543px;
+}
+
+.toRightBox05 {
+    top: 122px;
+    left: 565px;
+}
+
+.toRightBox06 {
+    top: 142px;
+    left: 576px;
+}
+
+.toRightBox07 {
+    top: 119px;
+    left: 589px;
+}
+
+.toRightBox08 {
+    top: 103px;
+    left: 604px;
+}
+
+.toRightBox09 {
+    top: 83px;
+    left: 604px;
+}
+
+.toRightBox10 {
+    top: 127px;
+    left: 610px;
+}
+
+.toRightBox11 {
+    top: 87px;
+    left: 617px;
+}
+
+.toRightBox12 {
+    top: 66px;
+    left: 616px;
+}
+
+.toRightBox13 {
+    top: 119px;
+    left: 630px;
+}
+
+.toRightBox14 {
+    top: 175px;
+    left: 649px;
+}
+
+.toRightBox15 {
+    top: 67px;
+    left: 659px;
+}
+
+.toRightBox16 {
+    top: 176px;
+    left: 685px;
+}
+
+.toRightBox17 {
+    top: 108px;
+    left: 711px;
+}
+
+.toRightBox18 {
+    top: 167px;
+    right: 264px;
+}
+
+.toRightBox19 {
+    bottom: 272px;
+    right: 235px;
+}
+
+.toRightBox20 {
+    bottom: 141px;
+    right: 144px;
+}
+
+.toRightBox21 {
+    bottom: 57px;
+    right: 66px;
+}
+.phoneStyle, .navBarIconLi {
+    display: none;
+}
+/*End 保障航路图*/
+/*响应手机端*/
+@media screen and (max-width: 414px) {
+    .blueBg {
+        background: #25d4fb !important;
+    }
+
+    .addInsurance .floatDiv {
+        width: 100%;
+        padding: 10px 0;
+        height: auto
+    }
+
+    .addClaim textarea {
+        width: 50%
+    }
+
+    .addClaim label {
+        width: 105px
+    }
+
+    .detailIn ul li {
+        height: auto
+    }
+
+    .detailIn ul {
+        height: auto
+    }
+
+    .PCStyle {
+        display: none;
+    }
+
+    .btn {
+        margin: 10px 5px;
+    }
+
+    .phoneStyle {
+        display: block;
+    }
+
+    .page select.form-control {
+        visibility: hidden;
+    }
+
+    /*index.html*/
+    .userAddInfo {
+        top: 22px;
+    }
+
+    .userAddInfo li {
+        margin-right: 3px;
+    }
+
+    .userAddInfo li.navBarIconLi {
+        float: right;
+        margin-right: 10px;
+        display: block;
+    }
+
+    .userLeft, .ePointBg, .userAddInfo a.BusinessManagement {
+        display: none;
+    }
+
+    .aside {
+        left: -230px;
+        top: 70px;
+    }
+
+    .wrap {
+        left: 0;
+    }
+
+    #top {
+        height: 70px;
+    }
+
+    .applogo {
+        height: 70px;
+    }
+
+    .applogo img {
+        margin: 17px auto 0
+    }
+
+    .topRight {
+        margin-left: 230px;
+        height: 70px;
+    }
+
+    /*newDashBord.html*/
+    .newDashboardBox {
+        margin-top: 200px;
+    }
+
+    .newDashboardBox li {
+        background: #fff;
+        float: left;
+        width: 46%;
+        margin: 2%;
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    .newDashboardBox li img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .newDashboardBox li p {
+        margin-top: 10px;
+    }
+
+    .newDashboardBox li span {
+        padding: 6px 17px;
+        color: #1a1a1a;
+        border: 0;
+        font-size: 16px;
+    }
+}
+.layui-layer-tips .layui-layer-content{word-break: break-all}
+@media screen and (max-width: 1366px) {
+    .chainDiv {
+        width: 1133px;
+        height: 598px;
+        background: url("../images/chainBg@1366.jpg") no-repeat;
+        margin: 47px auto 0
+    }
+    .chainDiv .removeDiv.pos1{
+        left:75px
+    }
+    .chainDiv .removeDiv.pos2{
+        left:308px;
+        top:91px
+    }
+    .chainDiv .removeDiv.pos3{
+        left:654px;
+    }
+    .chainDiv .removeDiv.pos4{
+        left:855px
+    }
+    .chainDiv .removeDiv.pos5{
+        left:288px
+    }
+    .chainDiv .removeDiv.pos6{
+        left:457px
+    }
+    .chainDiv .removeDiv.pos7{
+        left:809px
+    }
+    .chainDiv .removeDiv.wl1{
+        left:303px
+    }
+    .chainDiv .removeDiv.wl2{
+        left:584px
+    }
+    .chainDiv .removeDiv.wl3{
+        left:854px
+    }
+    .chainDiv .removeDiv.wl4{
+        left:977px;
+        top:306px
+    }
+    .chainDiv .removeDiv.wl5{
+        left:725px
+    }
+    .chainDiv .removeDiv.wl6{
+        left:466px
+    }
+    .chainDiv .popBlank.pos1{
+        left:120px
+    }
+    .chainDiv .popBlank.pos2{
+        left:407px
+    }
+    .chainDiv .popBlank.pos3{
+        left:682px
+    }
+    .chainDiv .popBlank.pos4{
+        left:861px
+    }
+    .chainDiv .popBlank.pos5{
+        left:295px
+    }
+    .chainDiv .popBlank.pos6{
+        left:554px
+    }
+    .chainDiv .popBlank.pos7{
+        left:815px
+    }
+    .chainDiv .popBlank.wl1{
+        left:262px
+    }
+    .chainDiv .popBlank.wl2{
+        left:546px
+    }
+    .chainDiv .popBlank.wl3{
+        left:815px
+    }
+    .chainDiv .popBlank.wl4{
+        left:940px;
+        top:328px
+    }
+    .chainDiv .popBlank.wl5{
+        left:683px;
+        bottom:211px
+    }
+    .chainDiv .popBlank.wl6{
+        left:426px;
+        bottom:211px
+    }
+    .chainDiv .popBlank.ic1{
+        left:263px
+    }
+    .chainDiv .popBlank.ic2{
+        left:553px
+    }
+    .chainDiv .popBlank.ic3{
+        right:-108px
+    }
+
+}

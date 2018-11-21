@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="policyQuery" lang="en" ng-controller="policyQueryController as vm">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, mafximum-scale=1, user-scalable=no">
+    <title>保单查询</title>
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+<div class="titleHead text_c" onclick="history.go(-1)">
+    <span>保单查询</span>
+    <img class="arrowL" src="static/images/arrow-left.png" alt="">
+</div>
+<div class="insureContainer">
+    <!--内容-->
+    <div class="insureSection policySection">
+        <ul class="insureUlBox policyUlBox">
+            <li class="displayBox">
+                <p class="boxFlex1">被保险人手机号：</p>
+                <div class="boxFlex1 text_r">
+                    <input ng-model="vm.promotionList.phone" type="text" placeholder="请输入被保险人手机号">
+                </div>
+            </li>
+            <li class="displayBox">
+                <p class="boxFlex1">被保人身份证号：</p>
+                <div class="boxFlex1 text_r">
+                    <input ng-model="vm.promotionList.idCard" type="text" placeholder="请输入被保人身份证号">
+                </div>
+            </li>
+            <li style="border-bottom: 1px solid #dee7e5;" class="displayBox">
+                <p class="boxFlex1">投保订单编号：</p>
+                <div class="boxFlex1 text_r">
+                    <input ng-model="vm.promotionList.examNo" type="text" placeholder="请输入投保时填写的订单编号">
+                </div>
+            </li>
+        </ul>
+        <div class="policySearch" ng-click="vm.search()">
+            <span>查询</span>
+        </div>
+        <!--<div class="policyPage">
+            <a href="insure.html">投保页面</a>
+        </div>-->
+    </div>
+</div>
+<script src="static/js/jquery/jquery-1.10.2.min.js"></script>
+<script src="static/js/rem.js"></script>
+<script src="static/js/common.js"></script>
+<script src="static/js/angular/angular.min.js"></script>
+<script src="static/js/angular/angular-cookies.min.js"></script>
+<script src="../../core/configs/config.js"></script>
+<!--<script src="../../core/configs/testConfig.js"></script>-->
+<!--<script src="../../core/configs/localConfig.js"></script>-->
+<script src="core/services/layer/layer.js"></script>
+<script src="modules/policyQuery/controller/policyQuery.js"></script>
+</body>
+</html>

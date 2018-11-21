@@ -1,0 +1,36 @@
+body{font-family:-apple-system,"PingFang SC","Helvetica Neue","Microsoft Yahei",STHeiti,Tahoma,Simsun,sans-serif;
+font-size: 1.5em;color: #262b38;background: #fff;}
+.mes-title{font-size: 1.6em;
+    font-family:"PingFang SC" ;
+     background-image: linear-gradient(90deg, #950bbe, #fa0391, #fe479d);
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;}
+.bgcolor{background: #f3f3f3;border: 0px;outline:none;color: #9c9fa6;}	 
+.weizhi{position: relative;display: inline-block;}
+.file-input{width: 150px;height: 100px;opacity: 0;}
+.gaibian{position: absolute;width: 150px;height: 100px;background: #f3f3f3;padding-left: 60%;line-height: 180px; white-space: nowrap;color: #9c9fa6;}
+.gaibian i{position: absolute; background: url(../images/uploadPh.png) no-repeat;width: 49px;height: 49px;top: 30px;left: 35%;}
+.tips{font-size: 0.9em;}
+.sub{width: 100%;height: 40px;color: #fff;line-height: 40px;border-radius:5px;border:0 none; 
+background: -webkit-linear-gradient(90deg, #950bbe, #fa0391, #fe479d); background: linear-gradient(90deg, #950bbe, #fa0391, #fe479d);}
+.sub:active{
+    padding-top: 3px;
+}
+
+/* 流程页 */
+.content-title{width: 100%; height: 190px;line-height: 100px;text-align: center;color: #fff;font-size: 1.6em; font-family:"PingFang SC" ; padding-top: 9px;
+font-weight: 500;background:url(../images/bg.png) no-repeat;margin-left: auto;margin-right: auto;background-size: 100% 100%;}
+.f2{position: relative;z-index: 5;display:block; }
+.content-all1{position: absolute;top: -80px;left:0 ;right: 0; width: 90%;margin-left: auto;margin-right: auto;
+background: #fff;border: 1px #e9f0f2 solid;box-shadow: -5px 5px 50px -2px #e9f0f2;}
+.money{width: 90%;height: 147px;padding-top: 30px;border-radius: 5px;}
+.baofei{height: 106px;line-height: 106px; text-align: center;font-family:"PingFang SC" ;}
+.baofei em{display: block;height: 106px; color: #000;font-size: 1.2em;font-weight: bold; }
+.baofei em strong{color: #fe0f72;font-size: 1.6em;}
+.ckys{color: #868991;font-size: 0.9em;height: 20px;line-height: 20px;text-align: center;margin-left:6%;}
+.lc{height: 100px;line-height: 141px;margin-left:  6%;font-family:"PingFang SC" ;
+     background-image: linear-gradient(90deg, #950bbe, #fa0391, #fe479d);
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;}
+.tips{width: 86%;padding : 10px 2%; text-align: center; background: #f2f6f9;color: #262b38;
+font-size: 1em;word-break:break-all;}

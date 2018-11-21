@@ -1,0 +1,56 @@
+<div ng-controller="largeRechargeDetailsController as vm" class="innerTop">
+    <ol class="breadcrumb"></ol>
+    <div class="pLR40">
+        <div class="rightDiv">
+            <div class="rightContTitle">
+                <h2>大额充值详情</h2>
+                <i class="closeIco" ng-click="vm.closeCookies()"></i>
+            </div>
+            <div class="rightLay overfl">
+                <h4 class="titleNav">基本信息</h4>
+                <div class="f_l">
+                    <div class="overfl mb15">
+                        <p class="f_l lh40 w200 c_999 text_r">账单编号：</p>
+                        <p class="f_l lh40" ng-bind="vm.baseInfo.billNo"></p>
+                    </div>
+                    <div class="overfl mb15">
+                        <p class="f_l lh40 w200 c_999 text_r">充值金额：</p>
+                        <p class="f_l lh40"><span ng-bind="vm.baseInfo.billAmount1"></span><span>元</span></p>
+                    </div>
+                    <div class="overfl mb15">
+                        <p class="f_l lh40 w200 c_999 text_r">支付方式：</p>
+                        <p class="f_l lh40" ng-bind="vm.baseInfo.payment"></p>
+                    </div>
+                    <div class="overfl mb15">
+                        <p class="f_l lh40 w200 c_999 text_r">汇款识别码：</p>
+                        <p class="f_l lh40">
+                            <span ng-bind="vm.baseInfo.remitIdentityCode"></span>
+                            <textarea class="largeInput" ng-model="vm.baseInfo.remitIdentityCode"></textarea>
+                            <input type="button" class="codeCopy btn btn-info" value="复制" ng-click="vm.copyCode()">
+                        </p>
+                    </div>
+                </div>
+                <div class="rightLay overfl">
+                    <h4 class="titleNav">请将充值金额支付到以下账户</h4>
+                    <div class="overfl">
+                        <div class="overfl mb15">
+                            <p class="f_l lh40 w200 c_999 text_r">账户名称：</p>
+                            <p class="f_l lh40" ng-bind="vm.baseInfo.accountName"></p>
+                        </div>
+                        <div class="overfl mb15">
+                            <p class="f_l lh40 w200 c_999 text_r">银行账号：</p>
+                            <p class="f_l lh40" ng-bind="vm.baseInfo.ds8BankAccountId"></p>
+                        </div>
+                        <div class="overfl mb15">
+                            <p class="f_l lh40 w200 c_999 text_r">开户行：</p>
+                            <p class="f_l lh40" ng-bind="vm.baseInfo.ds8BankAccountName"></p>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center" class="mt20">
+                    <input type="button" class="btn btn-warning w200" value="确认" ui-sref="largeRecharge"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

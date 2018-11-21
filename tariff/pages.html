@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html ng-app="pages" lang="en" ng-controller="pagesController as vm">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>豆沙包关税宝在线试算器</title>
+    <link rel="stylesheet" href="static/css/public.css">
+	<link rel="stylesheet" href="static/css/guanshui.css" />
+</head>
+<body>
+<div>
+    <header class="pc-header pc-block clearfix">
+        <a href="/" class="logo"><img src="static/images/logo.png" alt="豆沙包"></a>
+        <div class="inner-wrap clearfix">
+            <div class="content clearfix">
+                <ul class="nav">
+                    <li class="current"><a href="http://www.dowsure.com/">首页</a></li>
+                    <li>
+                        <a href="javascript:void(0)" class="ico">产品及合作</a>
+                        <div class="nav-div">
+                            <div class="inner-wrap">
+                                <div class="con">
+                                    <a href="http://www.dowsure.com/sellerService.html">
+                                        <img src="static/images/nav_img_01.png" alt="跨境卖家保障服务">
+                                        <span>跨境卖家保障服务</span>
+                                    </a>
+                                    <a href="http://www.dowsure.com/logisticsService.html">
+                                        <img src="static/images/nav_img_02.png" alt="跨境物流保障服务">
+                                        <span>跨境物流保障服务</span>
+                                    </a>
+                                    <a href="http://www.dowsure.com/certifiedgoodsService.html">
+                                        <img src="static/images/nav_img_03.png" alt="跨境正品保障服务">
+                                        <span>跨境正品保障服务</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="http://www.dowsure.com/blockChain.html" class="ico">区块链+</a></li>
+                    <li><a href="http://www.dowsure.com/story.html">商户故事</a></li>
+                    <li><a href="http://www.dowsure.com/faq.html">常见问题</a></li>
+                    <li><a href="http://www.dowsure.com/about.html">关于我们</a></li>
+                    <li><a href="http://www.dowsure.com/about.html###">Global Chain</a></li>
+                </ul>
+                <a href="https://saas.dousha8ao.com/" target="_blank" class="login-link">登录/注册</a>
+            </div>
+
+            <div class="language">
+                <a href="/">中文</a>
+                <span></span>
+                <a href="#">EN</a>
+            </div>
+        </div>
+    </header>
+    <!--页面写在这里，对！就是这里-->
+    <h3 class="content-title">关税宝在线试算器</h3>
+    <div class="fl" style="height: 480px;">
+        <div class="content-all">
+            <form>
+                <div class="content-mes">企业信息</div>
+                <div class="mes-left">
+                    <label class="pleft">企业名称:</label>
+                    <input ng-model="vm.submitCon.businessName" type="text" class="form-input"  placeholder="请输入您的企业名称"/>
+                    <label  class="pleft">联系手机:</label>
+                    <input ng-model="vm.submitCon.businessPhone" type="text" class="form-input" placeholder="请填写联系人手机"/>
+                    <label  class="pleft">首选关区:</label>
+                    <input ng-model="vm.submitCon.firstArea" type="text" class="form-input" placeholder="请填写企业首选关区"/>
+                    <label  class="pleft">营业执照复印件（选填）:</label>
+                    <span class="weizhi">
+                        <span class="gaibian"><i></i>上传</span>
+                        <input type="file" class="form-input file-input" ng-file-select="vm.uploadImg($files,0)"/>
+				    </span>
+                    <div class="imgBox imgBox01">
+                        <img ng-src="{{vm.submitCon.licenceUrl}}" alt="">
+                    </div>
+                </div>
+                <div class="mes-right">
+                    <label  class="pleft">联系人:</label>
+                    <input ng-model="vm.submitCon.businessContact" type="text" class="form-input" placeholder="请填写企业联系人"/>
+                    <label  class="pleft">联系邮箱:</label>
+                    <input ng-model="vm.submitCon.businessEmail" type="text" class="form-input"  placeholder="请填写联系邮箱"/>
+                    <label  class="pleft">法人身份证（选填）:</label>
+                    <span class="weizhi">
+					<span class="gaibian"><i></i>上传</span>
+					<input type="file" class="form-input file-input"  ng-file-select="vm.uploadImg($files,1)"/>
+				</span>
+                    <div class="imgBox imgBox02">
+                        <img  ng-src="{{vm.submitCon.idcardUrl}}" alt="">
+                    </div>
+                </div>
+                <div class="clearFix"></div>
+                <div class="content-mes toTop">保费试算</div>
+                <div class="mes-left">
+                    <label  class="pleft">需缴纳税金（元）：</label>
+                    <input  ng-model="vm.submitCon.taxAmount" type="text" class="form-input" id="needmoney" placeholder="请输入未缴纳税金的大致金额"/>
+                    <!--<label  class="pleft">预计保险费用：</label>
+                    <span style="margin-left: 20px;" ng-bind="vm.submitCon.predictAmount"></span>元-->
+
+                </div>
+                <div class="mes-right">
+                    <label for="day" class="pleft">拟申请保单期限（月）：</label>
+                    <input  ng-model="vm.submitCon.delayDay" type="text" class="form-input" id="day" placeholder="请输入拟申请月数"/>
+                </div>
+                <div class="clearFix"></div>
+                <!--<p class="cue">提交申请后将会有工作人员与您联系进行后续投保流程</p>-->
+                <button  style="margin-top: 30px;" type="submit" class="sub" ng-click="vm.submit()">立即试算</button>
+        </div>
+    </div>
+    <footer class="ny-footer">
+        <div class="inner-wrap clearfix">
+            <div class="left">
+                <div class="fnav pc-block">
+                    <a href="http://www.dowsure.com/sellerService.html">产品详情</a>
+                    <a href="http://www.dowsure.com/about.html">关于我们</a>
+                    <a href="http://www.dowsure.com/story.html">商户故事</a>
+                    <a href="http://www.dowsure.com/faq.html">常见问题</a>
+                    <a href="http://www.dowsure.com/news.html">新闻中心</a>
+                </div>
+                <div class="copyright">
+                    <span>版权所有© &emsp;2018</span> 豆沙包科技（上海）有限公司&emsp;沪ICP备15015443号-1
+                </div>
+            </div>
+            <div class="link pc-block">
+                <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2962353314&amp;site=qq&amp;menu=yes" target="_blank"><img src="static/images/ico_qq.png"></a>
+                <a href="javascript:void(0)" class="weixin">
+                    <img src="static/images/ico_wx.png">
+                    <div>
+                        <img src="static/images/weixin.jpg">
+                    </div>
+                </a>
+                <a href="https://weibo.com/u/5892923185?refer_flag=1001030108_" target="_blank"><img src="static/images/ico_wb.png"></a>
+            </div>
+        </div>
+    </footer>
+</div>
+<script src="static/js/jquery/jquery-1.10.2.min.js"></script>
+<script src="static/js/angular/angular.min.js"></script>
+<script src="static/js/angular/angular-cookies.min.js"></script>
+<script src="static/js/angular/angular-file-upload.min.js"></script>
+<script src="static/js/md5.js"></script>
+<script src="static/js/common.js"></script>
+<script src="../core/configs/config.js"></script>
+<!--<script src="../core/configs/testConfig.js"></script>-->
+<!--<script src="../core/configs/localConfig.js"></script>-->
+<script src="core/services/layer/layer.js"></script>
+<script src="core/services/layer.js"></script>
+<script src="core/services/util.js"></script>
+<script src="modules/pages/controller/pagesController.js"></script>
+</body>
+</html>

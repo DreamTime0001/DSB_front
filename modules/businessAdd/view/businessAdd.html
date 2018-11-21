@@ -1,0 +1,236 @@
+<div ng-controller="businessAddController as vm" class="innerTop">
+
+    <!--新增产品框-->
+    <div class="popMask" ng-if="vm.addIdPop">
+        <div class="addInsurancePop changePswBox">
+            <p class="text_c mb20 f_b">新增产品</p>
+            <img src="static/images/pop-close.png" alt="" ng-click="vm.addIdPop = false">
+            <ul>
+                <li>
+                    <label>产品id*：</label>
+                    <input class="timeInp" type="text"
+                           ng-model="vm.addProductObj.productId">
+                </li>
+            </ul>
+            <p>
+                <input class="popSub" type="button" value="提交" ng-click="vm.addNewProSubmit()">
+            </p>
+        </div>
+    </div>
+    <!--调价-->
+    <div class="popMask" ng-if="vm.popShow">
+        <div class="popDiv">
+            <h3 class="mb15">调价系数明细</h3>
+            <img src="static/images/closeIco.png" ng-click="vm.popShow = false"/>
+            <div class="overfl" style="width:600px">
+                <p class="f_l mt10"><span class="c_fe5757">货损包</span>调价系数：</p>
+                <div class="f_r">
+                    <input type="button" class="btn-warning btn mr10" value="计算"/>
+                    <input type="button" class="btn-info btn" value="一键调价"
+                           ng-click="vm.base_1 = 1.05;vm.float_1 = 1.08"/>
+                </div>
+            </div>
+            <div class="overfl mt10" style="border-bottom:1px solid #ddd;padding-bottom:15px">
+                <p class="f_l lh40"><span>基础系数：</span></p>
+                <input type="text" class="f_l w90 form-control mr10" ng-model="vm.base_1"/>
+                <p class="f_l lh40"><span>浮动系数：</span></p>
+                <input type="text" class="f_l w90 form-control mr5" ng-model="vm.float_1"/>
+                <p class="f_r lh40">=0.9785</p>
+            </div>
+            <div class="overfl mt10" style="width:600px">
+                <p class="f_l mt10"><span class="c_fe5757">延时包</span>调价系数：</p>
+                <div class="f_r">
+                    <input type="button" class="btn-warning btn mr10" value="计算"/>
+                    <input type="button" class="btn-info btn" value="一键调价"
+                           ng-click="vm.base_2 = 1.05;vm.float_2 = 1.08"/>
+                </div>
+            </div>
+            <div class="overfl mt10" style="border-bottom:1px solid #ddd;padding-bottom:15px">
+                <p class="f_l lh40"><span>基础系数：</span></p>
+                <input type="text" class="f_l w90 form-control mr10" ng-model="vm.base_2"/>
+                <p class="f_l lh40"><span>浮动系数：</span></p>
+                <input type="text" class="f_l w90 form-control mr5" ng-model="vm.float_2"/>
+                <p class="f_r lh40">=0.9785</p>
+            </div>
+            <div class="overfl mt10" style="width:600px">
+                <p class="f_l mt10"><span class="c_fe5757">通关宝</span>调价系数：</p>
+                <div class="f_r">
+                    <input type="button" class="btn-warning btn mr10" value="计算"/>
+                    <input type="button" class="btn-info btn" value="一键调价"
+                           ng-click="vm.base_3 = 1.05;vm.float_3 = 1.08"/>
+                </div>
+            </div>
+            <div class="overfl mt10" style="border-bottom:1px solid #ddd;padding-bottom:15px">
+                <p class="f_l lh40"><span>基础系数：</span></p>
+                <input type="text" class="f_l w90 form-control mr10" ng-model="vm.base_3"/>
+                <p class="f_l lh40"><span>浮动系数：</span></p>
+                <input type="text" class="f_l w90 form-control mr5" ng-model="vm.float_3"/>
+                <p class="f_r lh40">=0.9785</p>
+            </div>
+            <div class="overfl mt20 f_l">
+                <input type="button" class="btn-info btn mr10" value="全部调价" ng-click="vm.popShow = false"/>
+                <input type="button" class="btn-warning btn " value="取消" ng-click="vm.popShow = false"/>
+            </div>
+        </div>
+    </div>
+    <ol class="breadcrumb"></ol>
+    <div class="pLR40">
+        <div class="rightDiv">
+            <div class="rightContTitle">
+                <h2>新增商户</h2>
+                <i class="closeIco" onclick="history.back()"></i>
+            </div>
+            <div class="rightLay overfl">
+                <div class="inlay">
+                    <h4 class="titleNav">商户信息</h4>
+                    <div class="overfl mb15">
+                        <p class="f_l lh40 w200 text_r c_999">商户名称*：</p>
+                        <input type="text" class="form-control f_l w200"
+                               ng-model="vm.completeCompany.company.companyName" id="companyName">
+                    </div>
+                    <div class="overfl mb15">
+                        <p class="f_l lh40 w200 text_r c_999">商户识别码*：</p>
+                        <input type="text" class="form-control f_l w200" ng-model="vm.completeCompany.company.source"
+                               ng-blur="vm.isSource()" id="source">
+                    </div>
+                    <div class="overfl mb15">
+                        <p class="f_l lh40 w200 text_r c_999">登录手机号*：</p>
+                        <p class="f_l lh40  text_r" ng-bind="vm.completeCompany.isAddUser.username" ng-if="vm.isAdd"></p>
+                        <input type="text" class="form-control f_l w200"
+                               ng-model="vm.completeCompany.isAddUser.username" ng-blur="vm.isTelephone()"
+                               id="username" ng-if="!vm.isAdd">
+                    </div>
+                    <div class="overfl mb15" ng-if="!vm.isAdd">
+                        <p class="f_l lh40 w200 text_r c_999">登录密码*：</p>
+                        <input type="password" class="form-control f_l w200"
+                               ng-model="vm.completeCompany.isAddUser.password" id="password">
+                    </div>
+                    <div class="overfl mb15">
+                        <p class="f_l lh40 w200 text_r c_999">联系人*：</p>
+                        <input type="text" class="form-control f_l w200"
+                               ng-model="vm.completeCompany.company.contactName" id="contactName">
+                    </div>
+                    <div class="overfl mb15">
+                        <p class="f_l lh40 w200 text_r c_999">联系电话*：</p>
+                        <input type="text" class="form-control f_l w200"
+                               ng-model="vm.completeCompany.company.contactPhone" id="contactPhone">
+                    </div>
+                    <div class="overfl mb15">
+                        <p class="f_l lh40 w200 text_r c_999">联系邮箱*：</p>
+                        <input type="text" class="form-control f_l w200" ng-model="vm.completeCompany.company.email"
+                               id="email">
+                    </div>
+                    <div class="overfl mb15">
+                        <p class="f_l lh40 w200 text_r c_999">商户类型*：</p>
+                        <div class="f_l" style="width: 50%;">
+                            <div class="overfl">
+                                <p class="f_l lh40 text_r c_999 mr10">进口</p>
+                                <select class="w150 form-control" ng-model="vm.importId"
+                                        ng-options="o.id as o.name for o in vm.companyTypeList"
+                                        ng-change="vm.pushId(0,vm.importId)" style="display: inline-block">
+                                    <option value="">请选择</option>
+                                </select>
+                            </div>
+                            <div class="overfl">
+                                <dl class="dlIco">
+                                    <dt ng-repeat="o in vm.importList">
+                                        <em ng-bind="o.name"></em>
+                                        <i class="deleteCom" ng-click="vm.deleteCompany(0,$index)">&times;</i>
+                                    </dt>
+                                </dl>
+                            </div>
+                            <div class="overfl mt10">
+                                <p class="f_l lh40 text_r c_999 mr10">出口</p>
+                                <select class="w150 form-control" ng-model="vm.exportId"
+                                        ng-options="o.id as o.name for o in vm.companyTypeList"
+                                        ng-change="vm.pushId(1,vm.exportId)" style="display: inline-block">
+                                    <option value="">请选择</option>
+                                </select>
+                            </div>
+                            <div class="overfl">
+                                <dl class="dlIco">
+                                    <dt ng-repeat="o in vm.exportList"><em ng-bind="o.name"></em><i class="deleteCom"
+                                                                                                    ng-click="vm.deleteCompany(1,$index)">&times;</i>
+                                    </dt>
+                                </dl>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="overfl mb15">
+                        <p class="f_l lh40 w200 text_r c_999">商户来源*：</p>
+                        <select class="w200 form-control form-control02" ng-model="vm.completeCompany.company.hearDsb"
+                                ng-options="o.id as o.name for o in vm.hearDsbList">
+                        </select>
+                    </div>
+                    <div class="overfl mb15" ng-if="vm.completeCompany.company.hearDsb !=0">
+                        <p class="f_l lh40 w200 text_r c_999" ng-if="vm.completeCompany.company.hearDsb == 1">
+                            豆沙包商务对接人*：</p>
+                        <p class="f_l lh40 w200 text_r c_999" ng-if="vm.completeCompany.company.hearDsb == 2">
+                            第三方推荐*：</p>
+                        <input type="text" class="form-control f_l w200"
+                               ng-model="vm.completeCompany.company.businessRefer" id="businessRefer">
+                    </div>
+
+                    <div class="overfl">
+                        <p class="f_l lh40 w200 text_r c_999">绑定豆沙包商务*：</p>
+                        <select class="w200 form-control form-control02"
+                                ng-model="vm.completeCompany.company.businessName"
+                                ng-options="o.id as o.name for o in vm.roleList" id="businessName">
+                            <option value="">请选择</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="inlay">
+                    <div class="eChainDiv">
+                        <h2><a href="http://echain.one/" target="_blank" class="c_fff">eChain</a></h2>
+                        <div class="overfl mb15">
+                            <p class="f_l lh40 text_r c_fff w100">钱包地址：</p>
+                            <input type="text" class="form-control f_l w200"
+                                   ng-model="vm.completeCompany.company.eChain">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center" class="mt20">
+                <input ng-click="vm.submit()" type="button" class="btn btn-warning w200" value="提交"/>
+            </div>
+            <div class="rightLay overfl" ng-show="vm.list.length > 0">
+                <h4 class="titleNav f_l">合作产品信息</h4>
+                <input type="button" class="btn btn-info f_r mt20" value="新增产品" ng-click="vm.addIdPop = true">
+                <input type="button" class="btn btn-warning f_r mt20 mr15" value="Excel投保模板上传">
+            </div>
+            <div class="tableList" ng-show="vm.list.length > 0">
+                <table class="table tableInfo">
+                    <tr>
+                        <th>序号</th>
+                        <th>产品id</th>
+                        <th>父产品id</th>
+                        <th>产品名称</th>
+                        <th>产品类型</th>
+                        <th>产品价格（元）</th>
+                        <th>最高补贴限额（元）</th>
+                        <th>添加时间</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr ng-repeat="o in vm.list">
+                        <td ng-bind="$index + 1"></td>
+                        <td ng-bind="o.id"></td>
+                        <td ng-bind="o.parentId"></td>
+                        <td ng-bind="o.productName"></td>
+                        <td ng-bind="o.productTypeText"></td>
+                        <td ng-bind="o.productPrice"></td>
+                        <td ng-bind="o.productCompensationAmount"></td>
+                        <td ng-bind="o.createTime | date : 'yyyy-MM-dd'"></td>
+                        <td>
+                            <a href="javascript:;" ui-sref="productManageEdit({id:o.id})">编辑</a>
+                            <em class="c_999">|</em>
+                            <a href="javascript:void(0)" ng-click="vm.deleteProduct(o.id,$index)">删除</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>

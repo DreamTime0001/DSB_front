@@ -1,0 +1,603 @@
+<div ng-controller="productPackageManageEditController as vm" class="innerTop">
+  <ol class="breadcrumb"></ol>
+  <div class="pLR40">
+    <div class="rightDiv">
+      <div class="rightContTitle">
+        <h2>修改产品包</h2>
+        <i class="closeIco" ui-sref="productPackageManage"></i>
+      </div>
+      <div class="detailDiv">
+        <h2>产品包信息</h2>
+        <div style="padding:20px;">
+          <div class="mb20 overfl">
+            <div class="f_l mr30">
+              <p class="f_l lh40 c_999">产品包名称：</p>
+              <input
+                type="text"
+                class="form-control f_l w150"
+                ng-model="vm.productData.productName"
+                id="productName"
+              />
+            </div>
+            <div class="f_l mr30 lh40">
+              <p class="f_l lh40 c_999">产品包费率：</p>
+              <input
+                type="text"
+                class="form-control f_l w150 mr10"
+                ng-model="vm.productData.rate"
+              />
+            </div>
+            <div class="f_l mb20 mr30">
+              <p class="f_l lh40 c_999">锚点系数：</p>
+              <input
+                type="text"
+                class="form-control f_l w150"
+                ng-model="vm.productData.anchorRatio"
+              />
+            </div>
+            <div class="f_l mr30">
+              <p class="f_l lh40 c_999">使用时间限制*：</p>
+              <div class="overfl f_l">
+                <div class="overfl">
+                  <p class="f_l c_999 lh40 mr10">T-</p>
+                  <input
+                    type="text"
+                    class="form-control f_l w100"
+                    ng-model="vm.productData.limitTimeReduce "
+                  />
+                  <p class="f_l c_999 lh40 mr10" style="margin-left: 10px">~</p>
+                  <p class="f_l c_999 lh40 mr10">T+</p>
+                  <input
+                    type="text"
+                    class="form-control f_l w100"
+                    ng-model="vm.productData.limitTimePlus"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mb20 overfl">
+            <div class="f_l mr30 overfl">
+              <p class="f_l lh40 c_999">产品官网图片上传：</p>
+              <a
+                class="f_l lh40 mr20"
+                ng-href="{{vm.productData.officialPicUrl}}"
+                target="_blank"
+                ng-show="vm.productData.officialPicUrl"
+              >
+                <img
+                  ng-src="{{vm.productData.officialPicUrl}}"
+                  width="222"
+                  height="194"
+                />
+              </a>
+              <span class="f_l btn btn-info fileinput-button">
+                <span>上传</span>
+                <input
+                  type="file"
+                  ng-file-select="vm.readExcel($files,'dowsure')"
+                  class="f_l w100 btn btn-info"
+                  value="上传"
+                />
+              </span>
+            </div>
+            <div class="f_l mr30">
+              <p class="f_l lh40 c_999">产品官网图片描述：</p>
+              <input
+                type="text"
+                class="form-control f_l w100"
+                ng-model="vm.productData.officialPicDesc"
+              />
+            </div>
+            <div class="f_l mr30 overfl">
+              <p class="f_l lh40 c_999">产品SaaS图片上传：</p>
+              <a
+                class="f_l lh40 mr20"
+                ng-href="{{vm.productData.saasPicUrl}}"
+                target="_blank"
+                ng-show="vm.productData.saasPicUrl"
+              >
+                <img
+                  ng-src="{{vm.productData.saasPicUrl}}"
+                  width="160"
+                  height="104"
+                />
+              </a>
+              <span class="f_l btn btn-info fileinput-button">
+                <span>上传</span>
+                <input
+                  type="file"
+                  ng-file-select="vm.readExcel($files,'saas')"
+                  class="f_l w100 btn btn-info"
+                  value="上传"
+                />
+              </span>
+            </div>
+            <div class="f_l mr30">
+              <p class="f_l lh40 c_999">产品SaaS图片描述：</p>
+              <input
+                type="text"
+                class="form-control f_l w100"
+                ng-model="vm.productData.saasPicDesc"
+              />
+            </div>
+          </div>
+          <div class="mb20 overfl">
+            <div class="f_l mr20">
+              <p class="f_l lh40 c_999">产品包有效期：</p>
+              <input
+                type="text"
+                class="form-control f_l w100"
+                ng-model="vm.productData.productPeriod"
+              />
+            </div>
+            <div class="f_l mr20">
+              <p class="f_l lh40 c_999">月累计补贴限额：</p>
+              <input
+                type="text"
+                class="form-control f_l w100"
+                ng-model="vm.productData.monthCompensationAmount"
+              />
+            </div>
+            <div class="f_l mr20">
+              <p class="f_l lh40 c_999">年累计补贴限额：</p>
+              <input
+                type="text"
+                class="form-control f_l w100"
+                ng-model="vm.productData.yearCompensationAmount"
+              />
+            </div>
+            <div class="f_l">
+              <p class="f_l lh40 c_999">申诉时效：</p>
+              <input
+                type="text"
+                class="form-control f_l w100"
+                ng-model="vm.productData.prescription"
+              />
+            </div>
+          </div>
+          <div class="mb20 overfl">
+            <div class="f_l mr30">
+              <p class="f_l lh40 c_999">月剩余补贴限额：</p>
+              <input
+                type="text"
+                class="form-control f_l w100"
+                ng-model="vm.productData.monthCompensationAmountRest"
+              />
+            </div>
+            <div class="f_l mr30">
+              <p class="f_l lh40 c_999">年剩余补贴限额：</p>
+              <input
+                type="text"
+                class="form-control f_l w100"
+                ng-model="vm.productData.yearCompensationAmountRest"
+              />
+            </div>
+            <!-- <div class="f_l mr30"> -->
+            <!-- <p class="f_l lh40 c_999">险种理赔互斥：</p> -->
+            <!--
+              <select class="form-control w150 f_l" ng-model="vm.productData.mutex"
+            -->
+            <!-- ng-options="o.id as o.showName for o in vm.mutexList"> -->
+            <!-- <option value="">请选择</option> -->
+            <!-- </select> -->
+            <!-- <dl class="dlIco f_l"> -->
+            <!--
+              <dt ng-repeat="(key,value) in vm.productData.mutexedList" style="margin-top:0">
+            -->
+            <!-- <em ng-bind="value"></em> -->
+            <!--
+              <i class="deleteCom" ng-click="vm.deleteMutexed(vm.productData.mutexedList,$index)">×</i>
+            -->
+            <!-- </dt> -->
+            <!-- </dl> -->
+            <!-- </div> -->
+            <div class="f_l mr30">
+              <p class="f_l lh40 c_999">投保上链：</p>
+              <label class="f_l mr10 lh40">
+                <span
+                  class="pay_list_c1 mt10"
+                  ng-class="{'on':vm.productData.isCochain == 1}"
+                >
+                  <input
+                    type="radio"
+                    class="radioclass"
+                    ng-model="vm.productData.isCochain"
+                    name="isCochain"
+                    ng-value="1"
+                  />
+                </span>
+                <span>是</span>
+              </label>
+              <label class="f_l mr10 lh40">
+                <span
+                  class="pay_list_c1 mt10"
+                  ng-class="{'on':vm.productData.isCochain == 0}"
+                >
+                  <input
+                    type="radio"
+                    class="radioclass"
+                    ng-model="vm.productData.isCochain"
+                    name="isCochain"
+                    ng-value="0"
+                  />
+                </span>
+                <span>否</span>
+              </label>
+            </div>
+          </div>
+          <div class="mb20 overfl">
+            <div class="f_l mr30">
+              <p class="f_l lh40 c_999">产品线：</p>
+              <select
+                class="form-control w150 f_l"
+                ng-model="vm.productData.salerLine"
+                ng-options="o.id as o.name for o in vm.productLineList"
+              >
+                <option value="">请选择产品线</option>
+              </select>
+            </div>
+            <div class="f_l mr30">
+              <p class="f_l lh40 c_999">售价系数：</p>
+              <input
+                type="text"
+                class="form-control f_l w100"
+                ng-model="vm.productData.saleRatio"
+              />
+            </div>
+            <div class="f_l mr30">
+              <p class="f_l lh40 c_999">商品类别：</p>
+              <div class="f_l">
+                <span
+                  class="lh40 f_l mr15"
+                  ng-repeat="(key,value) in vm.tempGoodKind"
+                  >{{ value }}</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="overfl" ng-repeat="o in vm.productData.products">
+            <div class="f_l mr30 mb20">
+              <p class="f_l lh40 c_999">原子产品id：</p>
+              <p class="f_l lh40" ng-bind="o.showName"></p>
+              <!--
+                <select class="form-control w130 f_l" ng-model="o.productTemplateId" ng-options="atomic.id as atomic.showName for atomic in vm.productTemplateIdList"
+
+                    ng-change="vm.getInfo(o)">
+
+
+                    <option value="">请选择原子产品</option>
+
+
+                </select>
+              -->
+            </div>
+            <div class="f_l mr30">
+              <p class="f_l lh40 c_999">险种理赔互斥：</p>
+              <!--
+                <input type="text" class="form-control f_l w100" ng-model="vm.productData.mutex">
+              -->
+              <select
+                class="form-control w150 f_l"
+                ng-model="o.mutexed"
+                ng-options="o.id as o.showName for o in vm.mutexList"
+                ng-change="vm.addMutexedList(o)"
+              >
+                <option value="">请选择原子产品</option>
+              </select>
+              <dl class="dlIco f_l">
+                <dt
+                  ng-repeat="(key,value) in o.mutexedList"
+                  style="margin-top:0"
+                >
+                  <em ng-bind="value"></em>
+                  <i
+                    class="deleteCom"
+                    ng-click="vm.deleteMutexed(o.mutexedList,$index)"
+                    >×</i
+                  >
+                </dt>
+              </dl>
+            </div>
+            <div class="f_l mr30">
+              <p class="f_l lh40 c_999">最高补贴限额：</p>
+              <input
+                type="text"
+                class="form-control f_l w100"
+                ng-model="o.productCompensationAmount"
+              />
+            </div>
+            <div class="f_l mr30">
+              <p class="f_l lh40 c_999">产品有效期：</p>
+              <input
+                type="text"
+                class="form-control f_l w100"
+                ng-model="o.productPeriod"
+              />
+            </div>
+            <div class="f_l lh40">
+              <a
+                href="javascript:;"
+                ng-click="vm.deleteProduct($index,o.productTemplateId)"
+                ng-if="vm.productData.products.length >1"
+                >删除</a
+              >
+            </div>
+          </div>
+          <!--
+            <div class="overfl">
+
+                <input type="button" class="f_l w150 btn btn-info" ng-click="vm.addProduct()" value="添加原子产品">
+
+
+            </div>
+          -->
+        </div>
+      </div>
+      <div class="product-div mt20">
+        <h2 class="title">产品详情</h2>
+        <div class="mt20 overfl" style="padding-left:20px">
+          <p class="f_l lh40 c_999">产品所需图片：</p>
+          <ul class="productImgList" ng-if="vm.productImgList.length > 0">
+            <li>预览：</li>
+            <li ng-repeat="o in vm.productImgList">
+              <p>
+                <a href="{{o.url}}" target="_blank"
+                  ><img ng-src="{{o.url}}" width="150" height="100"
+                /></a>
+              </p>
+            </li>
+          </ul>
+          <span class="f_l btn btn-info fileinput-button">
+            <span>上传</span>
+            <input
+              type="file"
+              ng-file-select="vm.readExcel($files,'product')"
+              class="f_l w100 btn btn-info"
+              value="上传"
+            />
+          </span>
+        </div>
+        <div id="editor" class="mt20"></div>
+        <div ng-bind="vm.productData.description" ng-show="false"></div>
+      </div>
+      <div>
+        <div class="overfl">
+          <div class="detailDiv mt20 f_l" style="width:49%;margin-right: 1%;">
+            <h2>投保信息</h2>
+            <div class="detailIn">
+              <div class="overfl">
+                <p class="f_l lh40 c_999">投保方式：</p>
+                <label
+                  class="f_l mr20 lh40"
+                  ng-repeat="o in vm.insuranceInformation"
+                >
+                  <span
+                    class="piaochecked mt10"
+                    ng-class="{'on_check':o.checked}"
+                  >
+                    <input
+                      type="checkbox"
+                      class="radioclass"
+                      ng-model="o.checked"
+                    />
+                  </span>
+                  <span ng-bind="o.name"></span>
+                </label>
+              </div>
+              <div class="overfl">
+                <p class="f_l lh40 c_999">投保必填项：</p>
+                <div class="f_l overfl">
+                  <label class="f_l mr20 lh40" ng-repeat="o in vm.insureItems">
+                    <span
+                      class="piaochecked mt10"
+                      ng-class="{'on_check':o.checked}"
+                    >
+                      <input
+                        type="checkbox"
+                        class="radioclass"
+                        ng-model="o.checked"
+                      />
+                    </span>
+                    <span ng-bind="o.type"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="detailDiv mt20 f_l" style="width:49%;margin-left: 1%;">
+            <h2>理赔信息</h2>
+            <div class="detailIn overfl">
+              <div class="overfl f_l mr20 mb15">
+                <p class="f_l lh40 c_999">客户保单生效日期：</p>
+                <select
+                  class="form-control f_l w120"
+                  ng-options="o.id as o.name for o in vm.claimInforList"
+                  ng-model="vm.productData.tbProductWrapExtend.customerOrderDate"
+                >
+                  <option value="">请选择</option>
+                </select>
+              </div>
+              <div class="overfl f_l mb15">
+                <p class="f_l lh40 c_999">客户理赔生效日期：</p>
+                <select
+                  class="form-control f_l w120"
+                  ng-options="o.id as o.name for o in vm.claimInforList"
+                  ng-model="vm.productData.tbProductWrapExtend.customerApplyDate"
+                >
+                  <option value="">请选择</option>
+                </select>
+              </div>
+              <div class="overfl f_l mr20 mb15">
+                <p class="f_l lh40 c_999">系统保单生效日期：</p>
+                <select
+                  class="form-control f_l w120"
+                  ng-options="o.id as o.name for o in vm.claimInforList"
+                  ng-model="vm.productData.tbProductWrapExtend.systemOrderDate"
+                >
+                  <option value="">请选择</option>
+                </select>
+              </div>
+              <div class="overfl f_l mb15">
+                <p class="f_l lh40 c_999">系统理赔生效日期：</p>
+                <select
+                  class="form-control f_l w120"
+                  ng-options="o.id as o.name for o in vm.claimInforList"
+                  ng-model="vm.productData.tbProductWrapExtend.systemApplyDate"
+                >
+                  <option value="">请选择</option>
+                </select>
+              </div>
+            </div>
+            <h2>小额快审</h2>
+            <div class="detailIn">
+              <div class="overfl mb20">
+                <p class="f_l lh40 c_999">支持小额快审：</p>
+                <label class="f_l mr10 lh40">
+                  <span
+                    class="pay_list_c1 mt10"
+                    ng-class="{'on':vm.productData.isAudit == 1}"
+                  >
+                    <input
+                      type="radio"
+                      class="radioclass"
+                      ng-model="vm.productData.isAudit"
+                      name="isAudit"
+                      ng-value="1"
+                    />
+                  </span>
+                  <span>是</span>
+                </label>
+                <label class="f_l mr10 lh40">
+                  <span
+                    class="pay_list_c1 mt10"
+                    ng-class="{'on':vm.productData.isAudit == 0}"
+                  >
+                    <input
+                      type="radio"
+                      class="radioclass"
+                      ng-model="vm.productData.isAudit"
+                      name="isAudit"
+                      ng-value="0"
+                    />
+                  </span>
+                  <span>否</span>
+                </label>
+              </div>
+              <div class="overfl" ng-if="vm.productData.isAudit == 1">
+                <div class="overfl mb15">
+                  <p class="f_l lh40 c_999">小额快审单笔上限：</p>
+                  <input
+                    type="text"
+                    class="form-control f_l w200"
+                    ng-model="vm.productData.audit.limitMoney"
+                  />
+                </div>
+                <div class="overfl mb15">
+                  <p class="f_l lh40 c_999">小额快审月限额 ：</p>
+                  <input
+                    type="text"
+                    class="form-control f_l w200"
+                    ng-model="vm.productData.audit.limitMoneyMonth"
+                  />
+                </div>
+                <div class="overfl">
+                  <p class="f_l lh40 c_999">小额快审月剩余额度：</p>
+                  <input
+                    type="text"
+                    class="form-control f_l w200"
+                    ng-model="vm.productData.audit.limitMoneyMonthRest"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="overfl">
+          <div class="detailDiv mt20 f_l" style="width:49%;margin-right: 1%;">
+            <h2>理赔方式</h2>
+            <div class="detailIn">
+              <div class="overfl">
+                <p class="f_l lh40 c_999">理赔方式：</p>
+                <label class="f_l mr20 lh40 " ng-repeat="o in vm.claimList">
+                  <span
+                    class="piaochecked mt10"
+                    ng-class="{'on_check':o.checked}"
+                  >
+                    <input
+                      type="checkbox"
+                      class="radioclass"
+                      ng-model="o.checked"
+                    />
+                  </span>
+                  <span ng-bind="o.name"></span>
+                </label>
+              </div>
+            </div>
+            <h2>理赔上传项</h2>
+            <div class="detailIn">
+              <div class="overfl mb20">
+                <p class="f_l lh40 c_999">图片+视频：</p>
+                <label class="f_l mr20 lh40 " ng-repeat="o in vm.videoImgList">
+                  <span
+                    class="piaochecked mt10"
+                    ng-class="{'on_check':o.checked}"
+                  >
+                    <input
+                      type="checkbox"
+                      class="radioclass"
+                      ng-model="o.checked"
+                    />
+                  </span>
+                  <span ng-bind="o.docName"></span>
+                </label>
+              </div>
+              <!-- <div class="overfl mb20"> -->
+              <!--
+                <a href="javascript:;" class="textIco" ng-click="vm.addClaim(1)">新增理赔图片+视频上传项</a>
+              -->
+              <!-- </div> -->
+              <div class="overfl mb20">
+                <p class="f_l lh40 c_999">文字介绍：</p>
+                <label class="f_l mr20 lh40 " ng-repeat="o in vm.fontList">
+                  <span
+                    class="piaochecked mt10"
+                    ng-class="{'on_check':o.checked}"
+                  >
+                    <input
+                      type="checkbox"
+                      class="radioclass"
+                      ng-model="o.checked"
+                    />
+                  </span>
+                  <span ng-bind="o.docName"></span>
+                </label>
+              </div>
+              <!-- <div class="overfl mb20"> -->
+              <!--
+                <a href="javascript:;" class="textIco" ng-click="vm.addClaim(2)">新增理赔文字介绍上传项</a>
+              -->
+              <!-- </div> -->
+            </div>
+          </div>
+        </div>
+        <div style="clear: both"></div>
+      </div>
+      <div class="mt20 text_c">
+        <input
+          type="button"
+          class="btn btn-info w200 mr80"
+          style="height: 40px;"
+          value="返回"
+          ng-click="vm.back()"
+        />
+        <input
+          type="button"
+          class="btn btn-warning w200"
+          value="提交"
+          ng-click="vm.submit()"
+        />
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,70 @@
+<div ng-controller="personalCenterController as vm" class="innerTop">
+    <ol class="breadcrumb"></ol>
+    <div class="pLR40">
+        <div class="rightDiv">
+            <div class="rightContTitle">
+                <h2>个人中心</h2>
+            </div>
+            <div class="detailDiv">
+                <h2>基本信息</h2>
+                <div class="detailIn">
+                   <ul>
+                       <li>
+                            <span class="f_l c_999">账号：</span>
+                            <span class="f_l" ng-bind="vm.selfInfo.username"></span>
+                       </li>
+                       <li>
+                           <span class="f_l c_999">姓名：</span>
+                           <span class="f_l" ng-bind="vm.selfInfo.username"></span>
+                       </li>
+                       <li>
+                           <span class="f_l c_999">联系电话：</span>
+                           <span class="f_l" ng-bind="vm.selfInfo.telephone"></span>
+                       </li>
+                       <li>
+                           <span class="f_l c_999">联系邮箱：</span>
+                           <span class="f_l" ng-bind="vm.selfInfo.email"></span>
+                       </li>
+                   </ul>
+                </div>
+                <h2>密码管理</h2>
+                <div class="detailIn overfl">
+                    <p class="f_l mr20"><input type="button" class="btn btn-info" value="修改密码" ng-click="vm.popShow = true"/></p>
+                    <p class="f_l"><input type="button" class="btn btn-warning" value="退出登录" ng-click="vm.logout()"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--弹出层-->
+    <div class="popMask" ng-if="vm.popShow" ng-click="vm.popShow = false"></div>
+
+    <!--End 弹出层-->
+    <!--修改密码-->
+    <div class="addInsurancePop changePswBox" ng-if="vm.popShow">
+        <h3>修改密码</h3>
+        <img src="static/images/pop-close.png" alt="" ng-click="vm.popShow = false">
+        <ul>
+            <li>
+                <label>原密码<i>*</i>：</label>
+                <input class="timeInp" type="password" ng-model="vm.userInfo.oldPassword">
+            </li>
+            <li>
+                <label>新密码<i>*</i>：</label>
+                <input class="timeInp" type="password" ng-model="vm.userInfo.password">
+            </li>
+            <li>
+                <label>确认密码<i>*</i>：</label>
+                <input class="timeInp" type="password" ng-model="vm.userInfo.passwordAgain">
+            </li>
+        </ul>
+        <p class="changPsw">
+            <i>*</i>
+            <span>密码不能少于8位或多于20位！</span>
+        </p>
+        <p>
+            <input class="popSub" type="button" value="提交" ng-click="vm.changePassword()">
+        </p>
+    </div>
+
+    <!--End  修改密码-->
+</div>

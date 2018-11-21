@@ -1,0 +1,143 @@
+<div ng-controller="personalClaimController as vm" class="innerTop" ng-init="vm.getPagedDataAsync()">
+    <div class="popMask" ng-if="vm.popShow">
+        <div class="popDiv">
+            <h3 class="mb15">调价系数明细</h3>
+            <img src="static/images/closeIco.png" ng-click="vm.popShow = false"/>
+            <div class="overfl" style="width:600px">
+                <p class="f_l mt10"><span class="c_fe5757">货损包</span>调价系数：</p>
+                <div class="f_r">
+                    <input type="button" class="btn-warning btn mr10" value="计算"/>
+                    <input type="button" class="btn-info btn" value="一键调价"/>
+                </div>
+            </div>
+            <div class="overfl mt10" style="border-bottom:1px solid #ddd;padding-bottom:15px">
+                <p class="f_l lh40"><span class="c_fe5757">F1：</span></p>
+                <input type="text" class="f_l w90 form-control mr5"/>
+                <p class="f_l lh40">*<span class="c_fe5757">F2：</span></p>
+                <input type="text" class="f_l w90 form-control mr5"/>
+                <p class="f_l lh40">*<span class="c_fe5757">F3：</span>1.03 * <span class="c_fe5757">F4：</span>1</p>
+                <p class="f_r lh40">=0.9785</p>
+            </div>
+            <div class="overfl mt10" style="width:600px">
+                <p class="f_l mt10"><span class="c_fe5757">延时包</span>调价系数：</p>
+                <div class="f_r">
+                    <input type="button" class="btn-warning btn mr10" value="计算"/>
+                    <input type="button" class="btn-info btn" value="一键调价"/>
+                </div>
+            </div>
+            <div class="overfl mt10" style="border-bottom:1px solid #ddd;padding-bottom:15px">
+                <p class="f_l lh40"><span class="c_fe5757">F1：</span></p>
+                <input type="text" class="f_l w90 form-control mr5"/>
+                <p class="f_l lh40">*<span class="c_fe5757">F2：</span></p>
+                <input type="text" class="f_l w90 form-control mr5"/>
+                <p class="f_l lh40">*<span class="c_fe5757">F3：</span>1.03 * <span class="c_fe5757">F4：</span>1</p>
+                <p class="f_r lh40">=0.9785</p>
+            </div>
+            <div class="overfl mt10" style="width:600px">
+                <p class="f_l mt10"><span class="c_fe5757">通关宝</span>调价系数：</p>
+                <div class="f_r">
+                    <input type="button" class="btn-warning btn mr10" value="计算"/>
+                    <input type="button" class="btn-info btn" value="一键调价"/>
+                </div>
+            </div>
+            <div class="overfl mt10" style="border-bottom:1px solid #ddd;padding-bottom:15px">
+                <p class="f_l lh40"><span class="c_fe5757">F1：</span></p>
+                <input type="text" class="f_l w90 form-control mr5"/>
+                <p class="f_l lh40">*<span class="c_fe5757">F2：</span></p>
+                <input type="text" class="f_l w90 form-control mr5"/>
+                <p class="f_l lh40">*<span class="c_fe5757">F3：</span>1.03 * <span class="c_fe5757">F4：</span>1</p>
+                <p class="f_r lh40">=0.9785</p>
+            </div>
+            <div class="overfl mt20 f_l" style="width:200px">
+                <input type="button" class="btn-info btn mr10" value="全部调价" ng-click="vm.popShow = false"/>
+                <input type="button" class="btn-warning btn " value="取消" ng-click="vm.popShow = false"/>
+            </div>
+            <!--<div class="overfl c_999 lh40 f_l mt20">-->
+            <!--<p>注： F1-商户理赔率</p>-->
+            <!--<p style="padding-left:36px">F2-单量等级</p>-->
+            <!--<p style="padding-left:36px">F3-商户类型</p>-->
+            <!--<p style="padding-left:36px">F4-上一次调价系数</p>-->
+            <!--</div>-->
+        </div>
+    </div>
+    <ol class="breadcrumb"></ol>
+    <div class="pLR40">
+        <div class="rightDiv">
+            <div class="rightContTitle">
+                <h2>个人理赔</h2>
+            </div>
+            <div class="queryDiv">
+                <div class="queryDivIn">
+                    <form class="form-horizontal">
+                        <div>
+                            <div class="f_l mr15 mb15">
+                                <p class="f_l lh40">订单号：</p>
+                                <input type="text" class="form-control f_l w150" placeholder="请输入订单号">
+                            </div>
+                            <div class="f_l mr15 mb15">
+                                <p class="f_l lh40">包主姓名：</p>
+                                <input type="text" class="form-control f_l w150" placeholder="请输入包主姓名">
+                            </div>
+                            <div class="f_l mr15 mb15">
+                                <p class="f_l lh40">包主手机号：</p>
+                                <input type="text" class="form-control f_l w150" placeholder="请输入包主手机号">
+                            </div>
+                            <div class="f_l mr15 mb15">
+                                <p class="f_l lh40">申请时间：</p>
+                                <input type="text" class="form-control w160 mr5 f_l" placeholder="请输入开始时间"
+                                       ng-model="vm.query.startDate" readonly id="startDate">
+                                <p class="f_l mr5 lh40">-</p>
+                                <input type="text" class="form-control w160 f_l" placeholder="请输入结束时间"
+                                       ng-model="vm.query.endDate" readonly id="endDate">
+                            </div>
+                            <div class="f_l mr15 mb15">
+                                <p class="f_l lh40">审核状态：</p>
+                                <select class="form-control w80">
+                                    <option value="">全部</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                </select>
+                            </div>
+                            <div class="f_l mb15">
+                                <input class="btn btn-warning mr10" type="submit" value="搜索" ng-click="vm.search()">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="noDataDiv" ng-if="!vm.list.length">
+                <div class="noData">
+                    <div class="noDataBg"></div>
+                    <p>暂时没有数据～</p>
+                </div>
+            </div>
+            <div class="tableList">
+                <table class="table tableInfo" ng-if="vm.list.length > 0">
+                    <tr>
+                        <th>序号</th>
+                        <th>订单号</th>
+                        <th>产品名称</th>
+                        <th>包主姓名</th>
+                        <th>包主手机号</th>
+                        <th>申请时间</th>
+                        <th>处理时间</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr ng-repeat="customer in vm.list">
+                        <td ng-bind="$index + 1"></td>
+                        <td ng-bind="customer.orderNum"></td>
+                        <td ng-bind="customer.productName"></td>
+                        <td ng-bind="customer.userName"></td>
+                        <td ng-bind="customer.phone"></td>
+                        <td ng-bind="customer.appDate"></td>
+                        <td ng-bind="customer.proDate"></td>
+                        <td ng-bind="customer.status"></td>
+                        <td><a href="javascript:;" ui-sref="personalClaimDetails">详情</a></td>
+                    </tr>
+                </table>
+                <div class="page" paging page-object="vm.query" click-function="vm.getPagedDataAsync"></div>
+            </div>
+        </div>
+    </div>
+</div>

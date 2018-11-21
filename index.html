@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>豆沙包保险SaaS服务平台</title>
+    <link rel="stylesheet" href="static/css/bootstrap.min_v3.3.4.css">
+    <link rel="stylesheet" href="static/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="static/css/style.css?v3">
+    <link rel="stylesheet" href="static/css/pop.css?v3">
+</head>
+
+<body ng-app="app">
+<div class="mask_transparent" id="initLoading"></div>
+<div class="toast toast_loading toast_visible" id="loadPop">
+    <i class="icon_toast"></i><p class="toast_content">请稍后...</p>
+</div>
+<div ng-controller="indexController as vm" ng-init="vm.init()">
+    <div id="top" class="clearfix">
+        <div class="applogo" ng-class="{'newTestBg':vm.user.isFront == 0,'red':vm.user.isFront != 0}"><img src="static/images/logo.png"/></div>
+        <ul class="userLeft">
+            <li ng-if="vm.user.isPandect">
+                <a href="javascript:;" class="c_000" ng-click="vm.toDashborad()">
+                    <i class="f_l"><img src="static/images/overview.png"/> </i>
+                    <p class="f_l ml5">总览</p>
+                </a>
+            </li>
+            <li ng-if="vm.user.isCenter">
+                <a href="javascript:;" class="c_000" ng-click="vm.toSelf()">
+                    <i class="f_l"><img src="static/images/backstage.png"/> </i>
+                    <p class="f_l ml5">后台管理中心</p>
+                </a>
+            </li>
+        </ul>
+        <div class="topRight">
+            <ul class="userAddInfo">
+                <li>
+                    <a class="BusinessManagement" href="javascript:;"  ng-click='vm.goBusinessManage()' ng-if="vm.user.isMerchantManagement">商户管理</a>
+                    <!--<a href="javascript:;" ui-sref="userManage" ng-if="vm.user.isUserManagement == true">用户管理</a>-->
+                </li>
+                <li  style="background:none;border:1px solid #ddd;border-radius:30px;color:#ddd;text-align: center;width:auto;padding:0 20px"
+                    ng-if="vm.user.isFront == 0">
+                    <em class="c_000" style="line-height: 43px;" ng-bind="'账户余额：'+ vm.subAccountBalance + '元'"></em>
+                    <em class="c_358ce4" ui-sref="recharge">充值</em>
+                </li>
+                <li class="ePointBg" onclick="window.open('http://echain.one/')"
+                    ng-if="vm.user.isFront == 0">
+                    <span class="c_fff" ng-bind="'ePoints：'+ vm.user.epoints"></span>
+                </li>
+                <li style="margin:0">
+                    <!--<i class="userHead f_l"><img src="static/images/user.jpg"/> </i>-->
+                    <div class="dropdown f_l ml5">
+                        <p ng-bind="vm.user.user" class="f_l mr5" id="dropdownMenu1" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="true"></p>
+                        <span class="caret mt0"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li style="float: none;margin:0" ng-if="vm.user.isFront == 1 && vm.user.isAdmin == false"
+                                ui-sref="personalCenter">个人中心
+                            </li>
+                            <li ng-click="vm.logout()" style="float: none;margin:0">安全退出</li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="navBarIconLi">
+                    <div class="navBarIcon" ng-click="vm.hideSliderBar()"><img src="static/images/navBarIcon.png"/></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <aside class="aside" ng-class="{'blue':vm.user.isFront == 0,'red':vm.user.isFront != 0}">
+        <div id="sider">
+            <div class="subMenu" ng-repeat="nav in vm.menuList">
+                <div class="navTitle">
+                    <div class="textRight">
+                        <i ng-class="nav.class"></i>
+                        <h3 ng-bind="nav.title"></h3>
+                    </div>
+                    <i class="arrow"></i>
+                </div>
+                <ul>
+                    <!--<li ui-sref="{{listObj.url}}" ng-repeat="listObj in nav.list"-->
+                    <li ng-click="vm.goUrl(listObj.url)" ng-repeat="listObj in nav.list"
+                        ng-class="{'hover':vm.state.current.name.indexOf(listObj.url) != -1}">
+                        <div class="textRight">
+                            <a ng-bind="listObj.name"></a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </aside>
+</div>
+<div class="wrap">
+    <div ui-view></div>
+</div>
+
+<script src="static/js/jquery/jquery-1.10.2.min.js"></script>
+<script>
+    $(function () {
+        $('#initLoading,#loadPop').hide();
+    });
+</script>
+<script src="static/js/qrcode.min.js"></script>
+<script src="static/js/bootstrap.min.js"></script>
+<script src="static/js/bootstrap-datetimepicker.min.js"></script>
+<!--<script src="static/js/bootstrap-datetimepicker.zh-CN.js"></script>-->
+<script src="static/js/jquery/jquery.slimscroll.min.js"></script>
+<script src="static/js/menu.js"></script>
+<script src="static/js/echarts/echarts.min.js"></script>
+<script src="static/js/angular/angular.min.js"></script>
+<script src="static/js/wangEditor.min.js"></script>
+<script src="static/js/angular/angular-file-upload.min.js"></script>
+<script src="static/js/angular/angular-ui-router.js"></script>
+<script src="static/js/angular/angular-cookies.min.js"></script>
+<script src="static/js/angular/ocLazyLoad.min.js"></script>
+<script type="text/javascript" src="static/js/common.js?v2"></script>
+<script src="core/configs/config.js"></script>
+<!-- <script src="core/configs/testConfig.js"></script> -->
+<!-- <script src="core/configs/developConfig.js"></script> -->
+ <!-- <script src="core/configs/localConfig.js"></script> -->
+<script src="core/services/service.js?v2"></script>
+<script src="core/services/util.js"></script>
+<script src="core/services/layer/layer.js"></script>
+<script src="core/services/layer.js"></script>
+<script src="core/directives/directive.js"></script>
+<script src="static/js/FileSaver.js"></script>
+<script src="static/js/ag-ui-bs/ui-bootstrap-tpls.js"></script>
+<script src="static/js/initDate.js"></script>
+<script src="static/js/xlsx.core.min.js"></script>
+<script src="static/js/jquery.table2excel.js"></script>
+<script src="static/js/auto.js"></script>
+<script src="app.js"></script>
+<script src="core/routes/router.js?v5"></script><!--总路由-->
+<script src="modules/index/controller/indexController.js?v1"></script><!--首页-->
+<script type="text/javascript" src="static/js/externalcall.js"></script>
+</body>
+</html>

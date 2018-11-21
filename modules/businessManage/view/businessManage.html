@@ -1,0 +1,111 @@
+<div ng-controller="businessManageController as vm" class="innerTop" ng-init="vm.getPagedDataAsync()">
+    <!--弹出层-->
+    <div class="popMask" ng-if="vm.popShow">
+        <div class="addInsurancePop changePswBox">
+            <h3>重置密码</h3>
+            <img src="static/images/pop-close.png" alt="" ng-click="vm.clearUserInfo()">
+            <ul>
+                <li>
+                    <label>用户名：</label>
+                    <span class="timeInp" ng-bind="vm.userInfo.username"></span>
+                </li>
+                <li>
+                    <label>密码<i>*</i>：</label>
+                    <input class="timeInp" type="password" ng-model="vm.userInfo.password">
+                </li>
+            </ul>
+            <p class="changPsw">
+                <i>*</i>
+                <span>密码不能少于8位或多于20位！</span>
+            </p>
+            <p>
+                <input class="popSub" type="button" value="提交" ng-click="vm.resetPassword()">
+            </p>
+        </div>
+    </div>
+    <ol class="breadcrumb"></ol>
+    <div class="pLR40">
+        <div class="rightDiv">
+            <div class="rightContTitle">
+                <h2>商户管理</h2>
+            </div>
+            <div class="queryDiv">
+                <div class="queryDivIn">
+                    <form class="form-horizontal">
+                        <div>
+                            <div class="f_l mr15 mb15">
+                                <p class="f_l lh40">商户名称：</p>
+                                <input type="text" id="input" class="form-control w150" autocomplete="off" placeholder="请输入商户名称" ng-model="vm.query.companyName">
+                                <div class="auto hidden" id="auto"></div>
+                            </div>
+                            <div class="f_l mr15 mb15">
+                                <p class="f_l lh40">联系人：</p>
+                                <input type="text" class="form-control f_l w150" placeholder="请输入联系人"
+                                       ng-model="vm.query.contactName">
+                            </div>
+                            <div class="f_l mr15 mb15">
+                                <p class="f_l lh40">联系电话：</p>
+                                <input type="text" class="form-control f_l w150" placeholder="请输入联系电话"
+                                       ng-model="vm.query.contactPhone">
+                            </div>
+                            <div class="f_l mr15 mb15">
+                                <p class="f_l lh40">商户类型：</p>
+                                <select class="form-control w80 f_l mr10" ng-model="vm.query.tradeType">
+                                    <option value="">全部</option>
+                                    <option value="0">进口</option>
+                                    <option value="1">出口</option>
+                                </select>
+                                <select class="form-control w150 f_l " ng-model="vm.query.companyType"
+                                        ng-options="o.id as o.name for o in vm.companyTypeList">
+                                    <option value="">全部</option>
+
+                                </select>
+                            </div>
+                            <div class="f_l mb15">
+                                <input class="btn btn-warning mr10 f_l" type="submit" value="搜索" ng-click="vm.search()">
+                                <input class="btn btn-info f_l mr10" type="submit" value="新增商户" ng-click="vm.toAdd()">
+                                <input class="btn btn-info f_l mr10" type="submit" value="未完善信息商户" ui-sref="imperfectInfo">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="noDataDiv" ng-if="!vm.list.length">
+                <div class="noData">
+                    <div class="noDataBg"></div>
+                    <p>暂时没有数据～</p>
+                </div>
+            </div>
+            <div class="tableList" ng-show="vm.list.length > 0">
+                <table class="table tableInfo">
+                    <tr>
+                        <th>序号</th>
+                        <th>商户名称</th>
+                        <th>商户识别码</th>
+                        <th>ePoints</th>
+                        <th>联系人</th>
+                        <th>联系电话</th>
+                        <th>合作开始时间</th>
+                        <th>智能调价预警</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr ng-repeat="o in vm.list">
+                        <td ng-bind="$index + 1"></td>
+                        <td ng-bind="o.companyName"></td>
+                        <td ng-bind="o.source"></td>
+                        <td ng-bind="o.ePoints"></td>
+                        <td ng-bind="o.contactName"></td>
+                        <td ng-bind="o.contactPhone"></td>
+                        <td ng-bind="o.addTime | date : 'yyyy-MM-dd'"></td>
+                        <td ng-bind="o.factorFlagText"></td>
+                        <td>
+                            <a href="javascript:;" ui-sref="businessEdit({id:o.id})">修改</a>
+                            <a href="javascript:;" ng-click="vm.resetPasswordPop(o)">重置密码</a>
+                        </td>
+                    </tr>
+                </table>
+                <div class="page" paging page-object="vm.query" click-function="vm.getPagedDataAsync"></div>
+            </div>
+        </div>
+    </div>
+</div>

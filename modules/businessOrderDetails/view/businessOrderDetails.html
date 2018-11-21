@@ -1,0 +1,294 @@
+<div ng-controller="businessOrderDetailsController as vm" class="innerTop" ng-init="vm.getPagedDataAsync()">
+    <ol class="breadcrumb"></ol>
+    <div class="pLR40">
+        <div class="rightDiv">
+            <div class="rightContTitle">
+                <h2>订单详情</h2>
+                <i class="closeIco" ui-sref="businessOrder"></i>
+            </div>
+            <div class="rightLay overfl">
+                <h4 class="titleNav">基本信息</h4>
+                <div class="f_l">
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">订单号：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.ticketNo"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">包主姓名：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.name"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">产品名称：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.productName"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">定价系数：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.adjustPrice"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">包主手机号：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.phoneNo"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">产品id：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.productId"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">订单时间：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.orderTime | date : 'yyyy-MM-dd HH:mm:ss'"></p>
+                    </div>
+                    <div class="overfl">
+                        <p class="f_l lh40 w200 c_999 text_r">支付金额：</p>
+                        <p class="f_l lh40">
+                            <span ng-bind="vm.list.productAmount + '元'" ng-if="vm.list.backup2 == null"></span>
+                            <span ng-if="vm.list.backup2">见产品包</span>
+
+                        </p>
+                    </div>
+                    <!--<div class="overfl">-->
+                        <!--<p class="f_l lh40 w200 c_999 text_r">结算金额：</p>-->
+                        <!--<p class="f_l lh40">-->
+                            <!--<span  ng-bind="vm.list.discountAmount"></span>-->
+                            <!--<span>元</span>-->
+                        <!--</p>-->
+                    <!--</div>-->
+                </div>
+                <div class="f_l">
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">产品购买份数：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.productNum"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">物流单号 ：</p>
+                        <p class="f_l lh40"><a href="javascript:;" ng-bind="vm.list.expressNo" id="expressNo"></a></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">物流发货日期 ：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.expressTime | date : 'yyyy-MM-dd HH:mm:ss'"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">购物网站订单号 ：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.purchasOrderNo"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">购买日期 ：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.shoppingTime | date : 'yyyy-MM-dd HH:mm:ss'"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">起运地 ：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.loadingPort"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">目的口岸 ：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.destinationPort"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">运输方式 ：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.expressChannel"></p>
+                    </div>
+                </div>
+                <div class="f_l">
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">商品价值明细：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.goodsValueDetail"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">商品价值 ：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.goodsValue"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">商品种类 ：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.goodsKind"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">商品列表 ：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.goodsCategory"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">生效日期 ：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.effectiveDate | date : 'yyyy-MM-dd HH:mm:ss'"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">截止日期 ：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.endTime | date : 'yyyy-MM-dd HH:mm:ss'"></p>
+                    </div>
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r">上传日期 ：</p>
+                        <p class="f_l lh40" ng-bind="vm.list.orderTime | date : 'yyyy-MM-dd HH:mm:ss'"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="rightLay overfl">
+                <h4 class="titleNav">包裹保障责任</h4>
+                <div class="overfl" ng-if="vm.productType != 3">
+                    <div class="overfl ">
+                        <p class="f_l lh40 w200 c_999 text_r" ng-bind="vm.list.productName + '：'"></p>
+                        <p class="f_l lh40">剩余 <span ng-bind="vm.list.productPeriod + '天'"></span></p>
+                    </div>
+                </div>
+                <div class="overfl" ng-if="vm.productType == 3">
+                    <div class="overfl ">
+                        <div ng-repeat="obj in vm.periodList" class="overfl">
+                            <p class="f_l lh40 w200 c_999 text_r" ng-bind="obj.productName + '：'"></p>
+                            <p class="f_l lh40">剩余 <span ng-bind="obj.dashDay + '天'"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rightLay">
+                <h4 class="titleNav">订单画像 <a href="javascript:;" ng-bind="vm.isPortStatus" ng-click="vm.toggleShow()" style="font-size:14px"></a></h4>
+                <div ng-if="vm.isPort">
+                    <div class="box boxWh-6">
+                        <div class="chainDiv">
+                            <div class="removeDiv pos1" ng-mouseover="vm.pos1 = true" ng-mouseout="vm.pos1 = false"></div>
+                            <div class="popBlank topArrow pos1" ng-if="vm.pos1">
+                                <p>厂家：小林制药</p>
+                                <div class="overfl">
+                                    <p class="f_l mr10" style="width:40px">描述</p>
+                                    <p class="f_l mr10" style="width:40px">服务</p>
+                                    <p class="f_l mr10" style="width:40px">物流</p>
+                                </div>
+                                <div class="overfl">
+                                    <p class="f_l mr10" style="width:40px">4.8</p>
+                                    <p class="f_l mr10" style="width:40px">4.9</p>
+                                    <p class="f_l mr10" style="width:40px">4.8</p>
+                                </div>
+                            </div>
+                            <div class="removeDiv pos2" ng-mouseover="vm.pos2 = true" ng-mouseout="vm.pos2 = false"></div>
+                            <div class="popBlank topArrow pos2" ng-if="vm.pos2">
+                                <p>卖家/平台：亚马逊</p>
+                                <p>平台综合评分：85分</p>
+                                <p>平台风险分析：</p>
+                                <p>货损率--0.03%</p>
+                                <p>丢件率--0.01%</p>
+                                <p>延时率--1%</p>
+                                <p>通关率--8%</p>
+                                <p>退运率--5%</p>
+                            </div>
+                            <div class="removeDiv pos3" ng-mouseover="vm.pos3 = true" ng-mouseout="vm.pos3 = false"></div>
+                            <div class="popBlank topArrow pos3" ng-if="vm.pos3">
+                                <p>转运：转运四方</p>
+                                <p>平台综合评分：85分</p>
+                                <p>平台风险分析：</p>
+                                <p>货损率--0.03%</p>
+                                <p>丢件率--0.01%</p>
+                                <p>延时率--1%</p>
+                                <p>通关率--8%</p>
+                                <p>退运率--5%</p>
+                            </div>
+                            <div class="removeDiv pos4" ng-mouseover="vm.pos4 = true" ng-mouseout="vm.pos4 = false"></div>
+                            <div class="popBlank topArrow pos4" ng-if="vm.pos4">
+                                <p>海关：上海海关</p>
+                                <p>平台综合评分：85分</p>
+                                <p>总通关率--95%</p>
+                                <p>最近一周通关率--98%</p>
+                            </div>
+                            <div class="removeDiv pos5" ng-mouseover="vm.pos5 = true" ng-mouseout="vm.pos5 = false"></div>
+                            <div class="popBlank bottomArrow pos5" ng-if="vm.pos5">
+                                <p>刘先生</p>
+                                <p>性别：男-98%   女-2%</p>
+                                <p>语言分布：简体中文-97%   繁体中文-2%  英文-1%</p>
+                                <p>地区：上海-98% 昆山-1.7%  太仓-0.3%</p>
+                                <p>终端：iPhone-95% Android-5%</p>
+                                <p>年龄：26~30-95%  30~35 4% 20~25-1%</p>
+                                <p>学历：本科-96% 专科-3% 硕士-1%</p>
+                            </div>
+                            <div class="removeDiv pos6" ng-mouseover="vm.pos6 = true" ng-mouseout="vm.pos6 = false"></div>
+                            <div class="popBlank bottomArrow pos6" ng-if="vm.pos6">
+                                <p>卖家/平台：亚马逊</p>
+                                <p>平台综合评分：85分</p>
+                                <p>平台风险分析：</p>
+                                <p>货损率--0.03%</p>
+                                <p>丢件率--0.01%</p>
+                                <p>延时率--1%</p>
+                                <p>通关率--8%</p>
+                                <p>退运率--5%通关率--8%</p>
+                                <p>退运率--5%</p>
+                            </div>
+                            <div class="removeDiv pos7" ng-mouseover="vm.pos7 = true" ng-mouseout="vm.pos7 = false"></div>
+                            <div class="popBlank bottomArrow pos7" ng-if="vm.pos7">
+                                <p>保税仓：上海外高桥保税仓</p>
+                                <p>平台综合评分：85分</p>
+                                <p>总通关率--95%</p>
+                                <p>最近一周通关率--98%</p>
+                            </div>
+                            <div class="removeDiv wl1" ng-mouseover="vm.wl1 = true" ng-mouseout="vm.wl1 = false"></div>
+                            <div class="popBlank topArrow wl1" ng-if="vm.wl1">
+                                <p>2018-04-24 23:00:00</p>
+                                <p>已递送,Tamaqua, US</p>
+                                <p>2018-04-24 17:18:00</p>
+                                <p>抵达扫描,Tamaqua, PA, United States</p>
+                                <p>2018-04-2404:42:00</p>
+                                <p>启程扫描,Louisville, KY, United States</p>
+                            </div>
+                            <div class="removeDiv wl2" ng-mouseover="vm.wl2 = true" ng-mouseout="vm.wl2 = false"></div>
+                            <div class="popBlank topArrow wl2" ng-if="vm.wl2">
+                                <p>2018-04-24 23:00:00</p>
+                                <p>已递送,Tamaqua, US</p>
+                                <p>2018-04-24 17:18:00</p>
+                                <p>抵达扫描,Tamaqua, PA, United States</p>
+                                <p>2018-04-2404:42:00</p>
+                                <p>启程扫描,Louisville, KY, United States</p>
+                            </div>
+                            <div class="removeDiv wl3" ng-mouseover="vm.wl3 = true" ng-mouseout="vm.wl3 = false"></div>
+                            <div class="popBlank topArrow wl3" ng-if="vm.wl3">
+                                <p>2018-04-24 02:54:00 进口扫描,</p>
+                                <p>2018-04-24 01:33:00 抵达扫描,</p>
+                                <p>2018-04-24 01:33:00 抵达扫描,</p>
+                                <p>2018-04-23 19:31:00 启程扫描,Shenzhen, China</p>
+                                <p>2018-04-23 15:56:00 启程扫描,Anchorage, AK,</p>
+                                <p>United States</p>
+                            </div>
+                            <div class="removeDiv wl4" ng-mouseover="vm.wl4 = true" ng-mouseout="vm.wl4 = false"></div>
+                            <div class="popBlank topArrow wl4" ng-if="vm.wl4">
+                                <p>2018-04-24 02:54:00 进口扫描,</p>
+                                <p>2018-04-24 01:33:00 抵达扫描,</p>
+                                <p>2018-04-23 19:31:00 启程扫描,Shenzhen, China</p>
+                                <p>2018-04-23 15:56:00 启程扫描,Anchorage, AK, United</p>
+                                <p>States</p>
+                            </div>
+                            <div class="removeDiv wl5" ng-mouseover="vm.wl5 = true" ng-mouseout="vm.wl5 = false"></div>
+                            <div class="popBlank bottomArrow wl5" ng-if="vm.wl5">
+                                <p>2018-05-17 08:36:04您的包裹已出库</p>
+                                <p>2018-05-17 17:51:13【郑州市】圆通速递 河南省郑州市新密市收件员 已揽件</p>
+                                <p>2018-05-18 21:38:15【上海市】快件已从上海转运中心发出，准备发往 上海市杨浦区复旦</p>
+                                <p>2018-05-19 07:50:52【上海市】上海市杨浦区复旦派件员：苏小平 13585571918正在为您派件</p>
+                                <p>2018-05-19 14:20:09已签收</p>
+                            </div>
+                            <div class="removeDiv wl6" ng-mouseover="vm.wl6 = true" ng-mouseout="vm.wl6 = false"></div>
+                            <div class="popBlank bottomArrow wl6" ng-if="vm.wl6">
+                                <p>2018-05-17 08:36:04您的包裹已出库</p>
+                                <p>2018-05-17 17:51:13【郑州市】圆通速递 河南省郑州市新密市收件员 已揽件</p>
+                                <p>2018-05-18 21:38:15【上海市】快件已从上海转运中心发出，准备发往 上海市杨浦区复旦</p>
+                                <p>2018-05-19 07:50:52【上海市】上海市杨浦区复旦派件员：苏小平 13585571918正在为您派件</p>
+                                <p>2018-05-19 14:20:09已签收</p>
+                            </div>
+                            <div class="removeDiv ic1" ng-mouseover="vm.ic1 = true" ng-mouseout="vm.ic1 = false"></div>
+                            <div class="popBlank topArrow ic1" ng-if="vm.ic1">
+                                <p>信用保证险：保障贸易关系</p>
+                                <p>赊销 1500,000 人民币</p>
+                                <p>保险公司授信 1350,000</p>
+                                <p>保险公司赔付比例 80%</p>
+                            </div>
+                            <div class="removeDiv ic2" ng-mouseover="vm.ic2 = true" ng-mouseout="vm.ic2 = false"></div>
+                            <div class="popBlank topArrow ic2" ng-if="vm.ic2">
+                                <p>银关保：</p>
+                                <p>垫付保证金：20,0000元</p>
+                                <p>期限：60天</p>
+                            </div>
+                            <div class="removeDiv ic3" ng-mouseover="vm.ic3 = true" ng-mouseout="vm.ic3 = false"></div>
+                            <div class="popBlank topArrow ic3" ng-if="vm.ic3">
+                                <p>出口退税信用贷款：</p>
+                                <p>借款额：20,000元</p>
+                                <p>期限：60天</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center" class="mt20">
+                <input type="button" class="btn btn-warning w200" value="确认" ui-sref="businessOrder"/>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<div ng-controller="largeRechargeController as vm" class="innerTop">
+    <ol class="breadcrumb"></ol>
+    <div class="pLR40">
+        <div class="rightDiv">
+            <div class="rightContTitle">
+                <h2>大额充值</h2>
+            </div>
+            <div class="detailDiv">
+                <h2>账务余额</h2>
+                <div class="detailIn">
+                    <ul>
+                        <li>
+                            <span class="f_l">您的账户余额为：</span>
+                            <span class="f_l" ng-bind="vm.subAccountBalance + '元'"></span>
+                        </li>
+                    </ul>
+                </div>
+                <h2>支付方式</h2>
+                <div class="detailIn" >
+                    <ul>
+                        <li>
+                            <span class="f_l">支付方式：</span>
+                            <span class="f_l">
+                            <select type="text" class="form-control f_l w130">
+                                <option value="" >银行转账</option>
+                            </select>
+                        </span>
+                        </li>
+                    </ul>
+                </div>
+                <h2>充值</h2>
+                <div class="detailIn">
+                    <ul>
+                        <li>
+                            <span class="f_l">充值金额：</span>
+                            <span class="f_l"><input ng-init="vm.subAccountInfo.chargeAmount = 3000" ng-blur="vm.checkMoney()" ng-model="vm.subAccountInfo.chargeAmount" type="text" class="form-control f_l w130" placeholder="请输入充值金额"></span>
+                            <span class="f_l ml5">元</span>
+                        </li>
+                        <li class="moneyBox">
+                            <span  ng-repeat = "o in vm.chooseMoneyBox" ng-class="{'changeStyle':o.id == vm.chooseMoneyBox.id}"  ng-bind="o.amount" ng-click="vm.chooseMoney(o.id,o.amount)"></span>
+                        </li>
+                        <li>
+                            <input class="btn btn-warning mr10 f_l" type="submit" value="充值" ng-click="vm.recharge()">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

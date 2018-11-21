@@ -1,0 +1,174 @@
+<div ng-controller="productFactoryPackageController as vm" class="innerTop" ng-init="vm.getPagedDataAsync()">
+    <ol class="breadcrumb"></ol>
+    <!--附件上传-->
+    <div class="popMask" ng-show="vm.popAnnex">
+        <div class="annexSubPop">
+            <h3>附件提交</h3>
+            <img ng-click="vm.closePopAnnex()" src="static/images/pop-close.png" alt="">
+            <div class="popTxt">
+                <span>请根据提供模板填写后上传</span>
+                <a href="javascript:;" ng-click="vm.downloadExcelList()">（产品包投保信息模板下载）</a>
+            </div>
+            <ul class="clearfix">
+                <li class="lh40">附件：</li>
+                <li class="mr20"><input type="text" ng-model="vm.fileName"></li>
+                <li>
+                    <span>浏览</span>
+                    <input type="file" ng-file-select="vm.readExcel($files)">
+                </li>
+            </ul>
+            <p>仅接受Excel格式</p>
+            <div class="annexSubButton">
+                <input class="btn btn-warning" type="submit" value="附件上传" ng-if="vm.canUpload"
+                       ng-click="vm.uploadExcel()">
+                <input class="btn btn-warning" type="submit" value="附件上传" disabled ng-if="!vm.canUpload">
+            </div>
+        </div>
+    </div>
+    <!--支付方式 弹框-->
+    <div class="popMask" ng-if="vm.toPayPop">
+        <div class="addInsurancePop changePswBox" style="max-width:800px;padding:30px">
+            <img src="static/images/pop-close.png" alt="" ng-click="vm.toPayPop = false">
+            <h2 class="text_c mb15" style="font-size:20px">确认支付</h2>
+            <ul style="max-width: 800px;">
+                <li class="mb15 text_c overfl" ng-repeat="key in vm.productNameList">
+                    <div class="f_l mr15">
+                        <span class="timeInp" ng-bind="key"></span>
+                    </div>
+                </li>
+                <li class="mb15 text_c">
+                    <label>购买金额：</label>
+                    <span class="timeInp" ng-bind="vm.payInfo.orderAmount"></span>
+                </li>
+                <li class="text_c">
+                    <label>余额：</label>
+                    <span class="timeInp" ng-bind="vm.payInfo.balance"></span>
+                </li>
+            </ul>
+            <p>
+                <button class="btn btn-warning mr10" ng-click="vm.confirmToPay()">确认支付</button>
+                <button class="btn btn-info" ng-click="vm.cancelPay()">取消</button>
+            </p>
+        </div>
+    </div>
+    <div class="pLR40">
+        <div class="rightDiv overfl">
+            <div class="rightContTitle rightContTitle01 clearfix">
+                <h2 class="f_l mr20 lh40">我的产品包</h2>
+                <input class="btn btn-warning goSecurityMall" type="submit" value="前往保障商城" ng-click="vm.toProductFactory()">
+            </div>
+            <div class="orderStatus">
+                <ul class="overfl">
+                    <!--<li class="f_l" ng-class="{active:vm.query.isUse == null}" ng-click="vm.getList(null)">全部</li>-->
+                    <li class="f_l" ng-class="{active:vm.query.isUse == 2}" ng-click="vm.getList(2)">可使用</li>
+                    <li class="f_l" ng-class="{active:vm.query.isUse == 1}" ng-click="vm.getList(1)">已使用</li>
+                    <li class="f_l" ng-class="{active:vm.query.isUse == 3}" ng-click="vm.getList(3)">已过期</li>
+                    <!--<li class="f_l">-->
+                        <!--<input class="btn btn-info" type="submit" value="批量使用" ng-click="vm.popAnnex = true">-->
+                    <!--</li>-->
+                </ul>
+            </div>
+            <div>
+                <div class="noDataDiv" ng-if="!vm.list.length">
+                    <div class="noData">
+                        <div class="noDataBg"></div>
+                        <p>暂时没有数据～</p>
+                    </div>
+                </div>
+                <div ng-show="vm.list.length > 0">
+                    <div class="tableList order">
+                        <table class="table tableInfo noPadding" style="margin-bottom:0">
+                            <tr>
+                                <th width="40%" style="padding-left: 30px !important;text-align: left">产品包信息</th>
+                                <th width="30%" class="text_c">
+                                    <p ng-if="vm.query.isUse == 2">失效时间</p>
+                                    <p ng-if="vm.query.isUse == 1">投保订单号</p>
+                                    <p ng-if="vm.query.isUse == 3">产品包订单号</p>
+                                </th>
+                                <th width="10%" class="text_c">
+                                    <p ng-if="vm.query.isUse == 2">可使用数量</p>
+                                    <p ng-if="vm.query.isUse == 1">使用时间</p>
+                                    <p ng-if="vm.query.isUse == 3">过期时间</p>
+                                </th>
+                                <th width="20%" class="text_c">操作</th>
+                            </tr>
+                            <tr ng-repeat="o in vm.list">
+                                <!--产品包信息-->
+                                <td width="40%">
+                                    <ul class="tdChildBox overfl">
+                                        <li>
+                                            <div class="productCarTd order"
+                                                 style="height: 160px;padding: 0 0 0 30px">
+                                                <!--<img style="margin-top: 30px" ng-src="{{o.saasPicUrl}}"-->
+                                                     <!--ng-attr-title="{{o.saasPicDesc}}"/>-->
+                                                <div class="rightText" style="margin-top: 20px">
+                                                    <p style="line-height: 17px;">
+                                                        <em ng-bind="o.productName" style="font-weight: bold"></em>
+                                                        <!-- <em ng-bind="o.ticketNo" ng-if="o.ticketNo" style="padding-left:20px"></em> -->
+                                                    </p>
+                                                    <ul style="margin-top:15px">
+                                                        <li><em class="c_999">商品类别：</em>{{o.configV1Desc}}</li>
+                                                        <li><em class="c_999 mt5">起运地 ：</em>{{o.configV5Desc}}</li>
+                                                        <li><em class="c_999 mt5">保额：</em>{{o.configV2Desc}}</li>
+                                                    </ul>
+                                                    <ul style="margin-top:15px">
+                                                        <li><em class="c_999">运输方式：</em>{{o.configV3Desc}}</li>
+                                                        <li><em class="c_999 mt5">目的地：</em>{{o.configV6Desc}}</li>
+                                                        <!--<li><em class="c_999">失效日期：</em>{{o.expireTime |-->
+                                                            <!--date:'yyyy-MM-dd HH:mm:ss'}}-->
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </td>
+                                <!--状态-->
+                                <!--<td width="10%" style="vertical-align: middle;color:#292929;border-right:1px solid #ddd"-->
+                                <!--class="text_c">-->
+                                <!--<p ng-bind="o.isUseText"></p>-->
+                                <!--</td>-->
+                                <!--失效时间-->
+                                <td width="30%" style="vertical-align: middle;color:#292929;"
+                                    class="text_c">
+                                    <div ng-if="o.isUse == 2">
+                                        <p style="line-height:30px"><em class="c_999">最早：</em><span style="width: auto;" ng-bind="o.minExpireTime | date:'yyyy-MM-dd HH:mm:ss'"></span></p>
+                                        <p style="line-height:30px"><em class="c_999">最晚：</em><span style="width: auto;" ng-bind="o.maxExpireTime | date:'yyyy-MM-dd HH:mm:ss'"></span></p>
+                                    </div>
+                                    <p ng-if="o.isUse == 1" ng-bind="o.ticketNo">
+                                    <p ng-if="o.isUse == 3" ng-bind="o.orderNo"></p>
+                                </td>
+                                <!--可使用数量-->
+                                <td width="10%" style="vertical-align: middle;color:#292929;"
+                                    class="text_c">
+                                    <p ng-bind="o.count + '个'" ng-if="o.isUse == 2"></p>
+                                    <p ng-bind="o.useTime | date:'yyyy-MM-dd HH:mm:ss'" ng-if="o.isUse == 1">
+                                    </p>
+                                    <p ng-bind="o.expireTime | date:'yyyy-MM-dd HH:mm:ss'" ng-if="o.isUse == 3"></p>
+                                </td>
+                                <!--操作-->
+                                <td width="20%" style="vertical-align: middle;color:#292929;" class="text_c">
+                                    <a href="javascript:;" ng-if="o.isUse == 2" ng-click="vm.toUse(o)">立即使用</a>
+                                    <a href="javascript:;" class="batchUsess" ng-if="o.isUse == 2" ng-click="vm.popAnnexShow(o.productWrapId,o.ids,o.productName)">批量使用</a>
+                                    <a href="javascript:;" ng-if="o.isUse == 1 || o.isUse == 3"
+                                       ng-click="vm.payAgainOptimize(o)">再次购买</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="page" paging page-object="vm.query" click-function="vm.getPagedDataAsync"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tableList" ng-show="false">
+        <table class="tableInfo02">
+            <tr>
+                <th ng-repeat="value in vm.oneList">{{value}}</th>
+            </tr>
+            <tr>
+                <td ng-repeat="name in vm.twoList">{{name}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,106 @@
+<div ng-controller="productFactoryOrderController as vm" class="innerTop" ng-init="vm.getPagedDataAsync()">
+    <ol class="breadcrumb"></ol>
+    <!--支付方式 弹框-->
+    <div class="popMask" ng-if="vm.toPayPop">
+        <div class="addInsurancePop changePswBox" style="max-width:800px;padding:30px">
+            <img src="static/images/pop-close.png" alt="" ng-click="vm.toPayPop = false">
+            <h2 class="text_c mb15" style="font-size:20px">确认支付</h2>
+            <ul style="max-width: 800px;">
+                <li class="mb15 text_c overfl" ng-repeat="key in vm.productNameList">
+                    <div class="f_l mr15">
+                        <span class="timeInp" ng-bind="key"></span>
+                    </div>
+                </li>
+                <li class="mb15 text_c">
+                    <label>购买金额：</label>
+                    <span class="timeInp" ng-bind="vm.payInfo.orderAmount"></span>
+                </li>
+                <li class="text_c">
+                    <label>余额：</label>
+                    <span class="timeInp" ng-bind="vm.payInfo.balance"></span>
+                </li>
+            </ul>
+            <p>
+                <button class="btn btn-warning mr10" ng-click="vm.confirmToPay()">确认支付</button>
+                <button class="btn btn-info" ng-click="vm.toPayPop = false">取消</button>
+            </p>
+        </div>
+    </div>
+    <div class="pLR40">
+        <div class="rightDiv overfl">
+            <div class="rightContTitle rightContTitle01 clearfix">
+                <h2 class="f_l mr20 lh40">我的订单</h2>
+                <input class="btn btn-warning goSecurityMall" type="submit" value="前往保障商城" ng-click="vm.toProductFactory()">
+            </div>
+            <div class="orderStatus">
+                <ul class="overfl">
+                    <li class="f_l" ng-class="{active:vm.query.isPay == null}" ng-click="vm.changePay(null)">全部订单</li>
+                    <li class="f_l" ng-class="{active:vm.query.isPay == 1}" ng-click="vm.changePay(1)">已支付</li>
+                    <li class="f_l" ng-class="{active:vm.query.isPay == 3}" ng-click="vm.changePay(3)">未支付</li>
+                </ul>
+            </div>
+            <div class="noDataDiv" ng-if="!vm.list.length">
+                <div class="noData">
+                    <div class="noDataBg"></div>
+                    <p>暂时没有数据～</p>
+                </div>
+            </div>
+            <ul class="list-title" ng-if="vm.list.length > 0">
+                <li>订单编号</li>
+                <li>创建时间</li>
+                <li>订单状态</li>
+                <li>订单金额</li>
+                <li>操作</li>
+            </ul>
+            <div ng-show="vm.list.length > 0">
+                <ul class="list-product">
+                    <li ng-repeat="o in vm.list">
+                        <dl class="top-dl">
+                            <dt>
+                                <em ng-bind="o.orderNo"></em>
+                                <a href="javascript:;" style="padding-left:120px" ng-click="vm.getProductList(o)" ng-bind="o.moreText"></a>
+                            </dt>
+                            <dt>
+                                <em ng-bind="o.orderTime| date:'yyyy-MM-dd HH:mm:ss'"></em>
+                            </dt>
+                            <dt>
+                                <span ng-bind="o.isPayText"></span>
+                            </dt>
+                            <dt>
+                                <span ng-bind="'￥' + o.orderPrice"></span>
+                            </dt>
+                            <dt>
+                                <a href="javascript:;" ng-if="o.isPay == 3" ng-click="vm.toPayPopShow(o)">立即支付</a>
+                                <p class="c_999" ng-if="o.isPay == 1">已支付</p>
+                            </dt>
+                        </dl>
+                        <dl class="bottom-dl" ng-if="o.productList.length > 0" ng-repeat="obj in o.productList">
+                            <dt>
+                                <div class="productCarTd">
+                                    <img ng-src="{{obj.saasPicUrl}}" ng-attr-title="{{obj.saasPicDesc}}" src="http://test.api.dousha8ao.com/upload/20180928/timg_1538122646330.jpg" title="服装配饰，鞋子箱包类">
+                                    <div class="rightText">
+                                        <ul>
+                                            <li><em class="c_999">商品类别：</em><em ng-bind="obj.configV1Desc" class="ng-binding">服装配饰，鞋子箱包类</em></li>
+                                            <li><em class="c_999">起运地 ：</em><em ng-bind="obj.configV5Desc" class="ng-binding">亚洲</em></li>
+                                            <li><em class="c_999">保额：</em><em ng-bind="obj.configV2Desc" class="ng-binding">501-2000</em></li>
+                                        </ul>
+                                        <ul>
+                                            <li><em class="c_999">运输方式：</em><em ng-bind="obj.configV3Desc" class="ng-binding">空运</em></li>
+                                            <li><em class="c_999">目的地：</em><em ng-bind="obj.configV6Desc" class="ng-binding">非洲</em></li>
+                                            <li><em class="c_999">有效期：</em><em ng-bind="obj.productPeriod + '天'" class="ng-binding">10天</em>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </dt>
+                            <dt ng-bind="'单价:￥' + obj.price"></dt>
+                            <dt ng-bind="'数量：' + obj.num">2</dt>
+                            <dt ng-bind="'小计：￥' + obj.sum"></dt>
+                        </dl>
+                    </li>
+                </ul>
+                <div class="page" paging page-object="vm.query" click-function="vm.getPagedDataAsync"></div>
+            </div>
+        </div>
+    </div>
+</div>

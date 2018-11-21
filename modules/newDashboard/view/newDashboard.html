@@ -1,0 +1,71 @@
+<div ng-controller="newDashboardController as vm" class="innerTop" ng-init="vm.getPagedDataAsync()">
+    <div class="popMask" ng-if="vm.isNew == 1">
+        <div class="weclome-pop" >
+            <a href="javascript:;" class="weclome-close" ng-click="vm.closeIsNew()"></a>
+        </div>
+        <div class="weclome-phone">
+            <a href="javascript:;" class="weclome-close" ng-click="vm.closeIsNew()"></a>
+            <img src="static/images/weclome-phone-1.png"/>
+        </div>
+    </div>
+    <div class="pLR40">
+        <div class="newDashboardBox PCStyle">
+            <ul class="clearfix">
+                <li>
+                    <img src="static/images/newInsurance.png" alt="">
+                    <p>
+                        <a href="javascript:;" ui-sref="customerInsureAdd">新增投保</a>
+                    </p>
+                </li>
+                <li>
+                    <img src="static/images/queryOrder.png" alt="">
+                    <p>
+                        <a href="javascript:;" ui-sref="customerInsure">订单查询</a>
+                    </p>
+                </li>
+                <li>
+                    <img src="static/images/initiateClaim.png" alt="">
+                    <p>
+                        <a href="javascript:;" ui-sref="claimOrderAdd">发起理赔</a>
+                    </p>
+                </li>
+                <li>
+                    <img src="static/images/accountBalance.png" alt="">
+                    <p>
+                        <a href="javascript:;" ui-sref="recharge">账户余额</a>
+                    </p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="newDashboardBox phoneStyle">
+            <ul class="clearfix">
+                <li ui-sref="customerInsureAdd">
+                    <img src="static/images/newInsurance.png" alt="">
+                    <p>
+                        <span>新增投保</span>
+                    </p>
+                </li>
+                <li ui-sref="customerInsure">
+                    <img src="static/images/queryOrder.png" alt="">
+                    <p>
+                        <span>订单查询</span>
+                    </p>
+                </li>
+                <li ui-sref="claimOrderAdd">
+                    <img src="static/images/initiateClaim.png" alt="">
+                    <p>
+                        <span>发起理赔</span>
+                    </p>
+                </li>
+                <li ui-sref="recharge">
+                    <img src="static/images/accountBalance.png" alt="">
+                    <p>
+                        <span>账户余额</span>
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,43 @@
+<div ng-controller="merchantController as vm">
+    <section class="index-system">
+        <div class="inner-wrap clearfix">
+            <div class="content clearfix pc-merchant">
+                <div class="left">
+                    <img src="static/images/index_system_img.jpg">
+                </div>
+                <div class="system-select clearfix">
+                    <h2>请根据您的身份需求，进行勾选</h2>
+                    <ul class="clearfix">
+                        <li ng-repeat="o in vm.merchantList">
+                            <label>
+                                <span class="check-box" ng-class="{'checkedBox':o.checked}"><input type="checkbox" ng-model="o.checked"><i></i></span>
+                                <span ng-bind="o.name"></span>
+                            </label>
+                        </li>
+                    </ul>
+                    <div class="button">
+                        <a href="javascript:;" ng-click="vm.toList()">查看保障方案</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="clearfix mobile-merchant">
+                <img src="static/images/index_system_img.jpg">
+                <div class="identity clearfix">
+                    <h2>请根据您的身份需求，进行勾选</h2>
+                    <ul class="clearfix">
+                        <li class="f_l" ng-repeat="o in vm.merchantList">
+                            <label>
+                                <span class="check-box" ng-class="{'checkedBox':o.checked}"><input type="checkbox" ng-model="o.checked"><i></i></span>
+                                <span ng-bind="o.name"></span>
+                            </label>
+                        </li>
+                    </ul>
+                    <div class="button">
+                        <a href="javascript:;" ng-click="vm.toList()">查看保障方案</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

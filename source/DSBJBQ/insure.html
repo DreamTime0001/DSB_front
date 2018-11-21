@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html ng-app="insure" lang="en" ng-controller="insureController as vm">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, mafximum-scale=1, user-scalable=no">
+    <title>升学教育考试不过险</title>
+    <link rel="stylesheet" href="static/css/style.css?v2">
+</head>
+<body>
+<div class="insureContainer">
+    <!--头部-->
+    <div class="titleHead text_c" onclick="history.go(-1)">
+        <span>升学教育考试不过险</span>
+        <!--<img class="arrowL" src="static/images/arrow-left.png" alt="">-->
+    </div>
+    <div class="headBg">
+        <div class="insureHeader"></div>
+        <a href="policyQuery.html"> <span>保单查询</span>
+            <img class="arrowR" src="static/images/arrow-right.png" alt="">
+        </a>
+    </div>
+    <!--内容-->
+    <div class="insureSection">
+        <div class="insureTitle">
+            <p class="text_l">保单填写</p>
+        </div>
+        <ul class="insureUlBox">
+            <li class="displayBox">
+                <p class="boxFlex1">被保人姓名</p>
+                <div class="boxFlex3 text_r">
+                    <input ng-model="vm.promotion.name" type="text" placeholder="请输入被保人姓名">
+                </div>
+            </li>
+            <li class="displayBox">
+                <p class="boxFlex1">被保人身份证号</p>
+                <div class="boxFlex3 text_r">
+                    <input ng-model="vm.promotion.idCard" type="text" placeholder="请输入被保人身份证号">
+                </div>
+            </li>
+            <li class="displayBox">
+                <p class="boxFlex1">被保人手机号</p>
+                <div class="boxFlex3 text_r">
+                    <input ng-model="vm.promotion.phone" type="text" placeholder="请输入被保人手机号">
+                </div>
+            </li>
+            <li class="displayBox">
+                <p class="boxFlex1">项目名称</p>
+                <div class="boxFlex3 text_r">
+                    <select dir="rtl" ng-model="vm.promotion.examType"
+                            ng-options="o.name as o.name for o in vm.listArr">
+                        <option value="">请选择</option>
+                    </select>
+                    <img class="arrowD" src="static/images/arrow-down.png" alt="">
+                </div>
+            </li>
+            <li class="displayBox">
+                <p class="boxFlex1">承保方案</p>
+                <div class="boxFlex3 text_r">
+                    <select dir="rtl" ng-model="vm.promotion.insuranceExpense"
+                            ng-change="vm.getSum(vm.promotion.insuranceExpense)"
+                            ng-options="o.price as o.choice for o in vm.testArr">
+                        <option value="">请选择</option>
+                    </select>
+                    <img class="arrowD" src="static/images/arrow-down.png" alt="">
+                </div>
+            </li>
+            <li class="displayBox">
+                <p class="boxFlex1">培训费用</p>
+                <div class="boxFlex3 text_r">
+                    <input ng-model="vm.promotion.trainingCost" type="text" placeholder="请输入培训费用">
+                </div>
+            </li>
+            <li class="displayBox">
+                <p class="boxFlex1">订单编号</p>
+                <div class="boxFlex3 text_r">
+                    <input ng-model="vm.promotion.examNo" type="text" placeholder="请输入订单编号">
+                </div>
+            </li>
+            <li class="displayBox">
+                <p class="boxFlex1">电子邮箱</p>
+                <div class="boxFlex3 text_r">
+                    <input ng-model="vm.promotion.email" type="text" placeholder="请输入电子邮箱">
+                </div>
+            </li>
+            <li class="displayBox">
+                <p class="boxFlex1">保险起期</p>
+                <div style="line-height: .26rem; font-weight: 700;" class="boxFlex3 text_l">
+                    <span style="font-size: .28rem;" ng-bind="vm.promotion.insuranceData | date:'yyyy-MM-dd'"></span>
+                    <p style="margin-top: .24rem;">保险生效日为投保后10天</p>
+                </div>
+            </li>
+        </ul>
+        <div class="protocolBox" ng-click="vm.checkOff()">
+            <label>
+                <input type="checkbox" class="radioclass ng-valid ng-dirty ng-touched" ng-model="vm.promotion.checkBox">
+                <span>我已阅读并同意该产品的
+                    <a href="static/pdf/升学教育投保须知.pdf" target="_blank">《投保须知》</a>
+                    <a href="static/pdf/升学险保险条款.pdf" target="_blank">《保险条款》</a>
+                    <a href="static/pdf/豆沙包平台电子服务协议.pdf" target="_blank">《平台服务协议》</a>及相关协议。</span>
+            </label>
+        </div>
+        <div class="logo-div">
+            <div class="logo">
+                <img src="static/images/logo-1.png"/>
+                <p>承保支持</p>
+            </div>
+            <div class="logo">
+                <img src="static/images/logo-2.png"/>
+                <p>技术支持</p>
+            </div>
+        </div>
+    </div>
+    <!--底部-->
+    <div class="insureFooter">
+        <div class="displayBox">
+            <p class="boxFlex3 text_r">保险费用： <span ng-bind="'¥'+ vm.promotion.insuranceExpense"></span></p>
+            <div class="boxFlex1 text_r toPay">
+                <a href="javascript:;" ng-click="vm.makeSure()">确认支付</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="static/js/jquery/jquery-1.10.2.min.js"></script>
+<script src="static/js/rem.js"></script>
+<script src="static/js/common.js"></script>
+<script src="static/js/angular/angular.min.js"></script>
+<script src="static/js/angular/angular-cookies.min.js"></script>
+<script src="../../core/configs/config.js"></script>
+<!--<script src="../../core/configs/testConfig.js"></script>-->
+<!--<script src="../../core/configs/localConfig.js"></script>-->
+<script src="core/services/layer/layer.js"></script>
+
+<script src="modules/insure/controller/insure.js?v2.0"></script>
+
+</body>
+</html>

@@ -1,0 +1,208 @@
+<div ng-controller="productFactoryPackageUseController as vm" class="innerTop">
+    <div class="pLR40">
+        <div class="rightDiv">
+            <div class="rightContTitle rightContTitle02">
+                <h2>新增投保</h2>
+                <img src="static/images/pop-close.png" alt="" ui-sref="customerInsure">
+            </div>
+            <div class="detailDiv">
+                <h2>产品信息</h2>
+                <div class="addInsurance">
+                    <ul>
+                        <li class="clearfix">
+                            <div class="floatDiv">
+                                <label>商户标识：</label>
+                                <span ng-bind="vm.orderApi.source" class="c_999"></span>
+                            </div>
+                            <div class="floatDiv">
+                                <label>商户名称：</label>
+                                <span ng-bind="vm.orderApi.companyName"></span>
+                            </div>
+                        </li>
+                        <li class="clearfix" ng-repeat="current in vm.orderApi.packageProductList ">
+                            <div class="floatDiv">
+                                <label>投保产品：</label>
+                                <label ng-bind="current.showName"></label>
+                            </div>
+                            <div class="floatDiv">
+                                <label>产品有效期：</label>
+                                <label ng-bind="current.productPeriod + '天'"></label>
+                            </div>
+                        </li>
+                        <h4>用户信息：</h4>
+                        <li class="clearfix">
+                            <div class="floatDiv mb10" ng-show="vm.rules['姓名']">
+                                <label>姓名<i>*</i>：</label>
+                                <input type="text" class="form-control w150" ng-model="vm.orderApi.name"
+                                       placeholder="例：张三/XX公司">
+                            </div>
+                            <div class="floatDiv mb10" ng-show="vm.rules['手机号']">
+                                <label>手机号<i>*</i>：</label>
+                                <input class="form-control f_l w150" type="text" ng-model="vm.orderApi.phoneNo"
+                                       placeholder="例：13812345678">
+                            </div>
+                            <div class="floatDiv mb10" ng-show="vm.rules['身份证号码']">
+                                <label>身份证号码<i>*</i>：</label>
+                                <input class="form-control f_l w220" type="text" ng-model="vm.orderApi.idCard"
+                                       placeholder="例：98765919940922XXXX">
+                            </div>
+                            <div class="floatDiv mb10" ng-show="vm.rules['性别']">
+                                <label>性别<i>*</i>：</label>
+                                <label class="f_l mr10 lh40">
+                                    <span class="pay_list_c1 mt10" ng-class="{'on':vm.orderApi.sex == '男'}">
+                                    <input type="radio"
+                                           class="radioclass"
+                                           ng-model="vm.orderApi.sex"
+                                           name="sex"
+                                           ng-value="'男'"/>
+                                    </span>
+                                    <span>男</span>
+                                </label>
+                                <label class="f_l mr10 lh40">
+                                    <span class="pay_list_c1 mt10" ng-class="{'on':vm.orderApi.sex == '女'}">
+                                    <input type="radio"
+                                           class="radioclass"
+                                           ng-model="vm.orderApi.sex"
+                                           name="sex"
+                                           ng-value="'女'"/>
+                                    </span>
+                                    <span>女</span>
+                                </label>
+                            </div>
+                            <div class="floatDiv mb10" ng-show="vm.rules['收件人信息']">
+                                <label>收件人信息<i>*</i>：</label>
+                                <input class="form-control f_l w180" type="text" ng-model="vm.orderApi.receiverInfo"
+                                       placeholder="例：张三  13812345678">
+                            </div>
+                            <div class="floatDiv mb10" ng-show="vm.rules['寄件人信息']">
+                                <label>寄件人信息<i>*</i>：</label>
+                                <input class="form-control f_l w180" type="text" ng-model="vm.orderApi.sendInfo"
+                                       placeholder="例：张三  13812345678">
+                            </div>
+                            <div class="floatDiv mb10" ng-show="vm.rules['卖家账号或登录名']">
+                                <label>卖家账号或登录名<i>*</i>：</label>
+                                <input class="form-control f_l w150" type="text" ng-model="vm.orderApi.sellerAccount"
+                                       placeholder="例：zhangsan">
+                            </div>
+                            <div class="floatDiv mb10" ng-show="vm.rules['买家账号或登录名']">
+                                <label>买家账号或登录名<i>*</i>：</label>
+                                <input class="form-control f_l w150" type="text" ng-model="vm.orderApi.buyerAccount"
+                                       placeholder="例：zhangsan2017">
+                            </div>
+                        </li>
+                        <h4>物流信息：</h4>
+                        <li class="clearfix">
+                            <div class="floatDiv mb10" ng-show="vm.rules['起运地']">
+                                <label>起运地<i>*</i>：</label>
+                                <label ng-bind="vm.orderApi.loadingPort"></label>
+                                <!--<input class="form-control f_l w100" type="text" ng-model="vm.orderApi.loadingPort"-->
+                                       <!--placeholder="例：上海">-->
+                            </div>
+                            <div class="floatDiv mb10" ng-show="vm.rules['目的口岸']">
+                                <label>目的口岸<i>*</i>：</label>
+                                <label ng-bind="vm.orderApi.destinationPort"></label>
+                                <!--<input class="form-control f_l w130" type="text" ng-model="vm.orderApi.destinationPort"-->
+                                <!--placeholder="例：LAX,USA">-->
+                            </div>
+                            <div class="floatDiv mb10" ng-show="vm.rules['物流单号']">
+                                <label>物流单号<i>*</i>：</label>
+                                <input class="form-control f_l w180" type="text" ng-model="vm.orderApi.expressNo"
+                                       placeholder="例：216901577730" ng-blur="vm.expressIsRepeat()">
+                            </div>
+                            <div class="floatDiv mb10" ng-show="vm.rules['物流发货日期']">
+                                <label>物流发货日期<i>*</i>：</label>
+                                <input type="text" class="form-control w160 mr5 f_l" ng-model="vm.orderApi.expressTime"
+                                       readonly id="expressTime" placeholder="例：2018-07-25">
+                            </div>
+                            <div class="floatDiv mb10" ng-show="vm.rules['收货地址']">
+                                <label>收货地址<i>*</i>：</label>
+                                <input class="form-control f_l w240" type="text" ng-model="vm.orderApi.receiverAddress"
+                                       placeholder="例：上海市浦东新区龙阳路XXX号">
+                            </div>
+                            <div class="floatDiv mb10" ng-show="vm.rules['运输方式']">
+                                <label>运输方式<i>*</i>：</label>
+                                <label ng-bind="vm.orderApi.expressChannel"></label>
+                                <!--<input class="form-control f_l w100" type="text" ng-model="vm.orderApi.expressChannel"-->
+                                       <!--placeholder="例：空运">-->
+                            </div>
+                            <div class="floatDiv mb10" ng-show="vm.rules['物流公司名称']">
+                                <label>物流公司名称<i>*</i>：</label>
+                                <input class="form-control f_l w150" type="text"
+                                       ng-model="vm.orderApi.expressCompanyName" placeholder="例：EMS">
+                            </div>
+                            <div class="floatDiv mb10" ng-show="vm.rules['收件人地址']">
+                                <label>收件人地址<i>*</i>：</label>
+                                <input class="form-control f_l w240" type="text" ng-model="vm.orderApi.receiverAddr"
+                                       placeholder="例：上海市浦东新区龙阳路XXX号">
+                            </div>
+                            <div class="floatDiv mb10" ng-show="vm.rules['寄件人地址']">
+                                <label>寄件人地址<i>*</i>：</label>
+                                <input class="form-control f_l w240" type="text" ng-model="vm.orderApi.senderAddress"
+                                       placeholder="例：成都市锦江区都市小区XX号楼802">
+                            </div>
+                        </li>
+                        <h4>商品信息：</h4>
+                        <li class="clearfix">
+                            <div class="floatDiv mb10" ng-show="vm.rules['购物网站']">
+                                <label>购物网站<i>*</i>：</label>
+                                <input class="form-control f_l w180" type="text" ng-model="vm.orderApi.shoppingSite"
+                                       placeholder="例：淘宝">
+                            </div>
+                            <div class="floatDiv mb10" ng-show="vm.rules['购买日期']">
+                                <label>购买日期<i>*</i>：</label>
+                                <input class="form-control f_l w150" type="text" ng-model="vm.orderApi.shoppingTime"
+                                       readonly id="shoppingTime" placeholder="例：2018-07-25">
+                            </div>
+                            <div class="floatDiv mb10" ng-show="vm.rules['商品价值']">
+                                <label>商品价值<i>*</i>：</label>
+                                <label ng-bind="vm.orderApi.goodsValue"></label>
+                                <!--<input class="form-control f_l w100" type="text" ng-model="vm.orderApi.goodsValue"-->
+                                       <!--placeholder="例：288">-->
+                            </div>
+                            <div class="floatDiv mb10" ng-show="vm.rules['商品列表']">
+                                <label>商品列表<i>*</i>：</label>
+                                <input class="form-control f_l w180" type="text" ng-model="vm.orderApi.goodsCategory"
+                                       placeholder="例：衣服2件；裤子1件">
+                            </div>
+                            <div class="floatDiv mb10" ng-show="vm.rules['商品价值明细']">
+                                <label>商品价值明细<i>*</i>：</label>
+                                <input class="form-control f_l w200" type="text" ng-model="vm.orderApi.goodsValueDetail"
+                                       placeholder="例：衣服2件200元；裤子1件89元">
+                            </div>
+                            <div class="floatDiv mb10" ng-show="vm.rules['商品种类']">
+                                <label>商品种类<i>*</i>：</label>
+                                <label ng-bind="vm.orderApi.goodsKind"></label>
+                                <!--<input class="form-control f_l w130" type="text" ng-model="vm.orderApi.goodsKind"-->
+                                       <!--placeholder="例：一类产品">-->
+                            </div>
+                            <div class="floatDiv mb10" ng-show="vm.rules['保费']">
+                                <label>保费<i>*</i>：</label>
+                                <input class="form-control f_l w100" type="text" ng-model="vm.orderApi.premium"
+                                       placeholder="例：288">
+                            </div>
+                            <div class="floatDiv mb10" ng-show="vm.rules['购物网站订单号/海淘商品订单号']">
+                                <label>购物网站订单号<i>*</i>：</label>
+                                <input class="form-control f_l w220" type="text" ng-model="vm.orderApi.purchasOrderNo"
+                                       placeholder="例：191421745254952600">
+                            </div>
+                            <div class="floatDiv mb10" ng-show="vm.rules['货物数量']">
+                                <label>货物数量<i>*</i>：</label>
+                                <input class="form-control f_l w100" type="text" ng-model="vm.orderApi.goodsAmount"
+                                       placeholder="例：3">
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- <div>
+                        <h4>您也可以到豆沙包小程序进行投保：</h4>
+                        <div class="qrCodeBox">
+                            <img class="qrCode" src="static/images/qrCode.png" alt="">
+                        </div>
+                    </div> -->
+                    <div class="clearfix text_c">
+                        <input class="btn btn-warning mt20 mb20 w200" type="button" value="提交" ng-click="vm.submit()">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

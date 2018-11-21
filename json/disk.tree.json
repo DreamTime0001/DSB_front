@@ -1,0 +1,147 @@
+[
+  {
+    "itemStyle": {
+      "color": [
+        "#fe6c59"
+      ]
+    },
+    "value": 5,
+    "name": "海淘无忧组合包",
+    "path": "海淘无忧组合包",
+    "children": [
+      {
+        "value": 3,
+        "name": "海淘无忧组合包",
+        "path": "海淘无忧组合包"
+      },
+      {
+        "value": 2,
+        "name": "海淘通关宝",
+        "path": "海淘通关宝"
+      },
+      {
+        "value": 1,
+        "name": "海淘退运包",
+        "path": "海淘退运包"
+      },
+      {
+        "value": 1,
+        "name": "海淘货损包",
+        "path": "海淘货损包"
+      },
+      {
+        "value": 1,
+        "name": "海淘延时包",
+        "path": "海淘延时包"
+      },
+      {
+        "value": 1,
+        "name": "海淘退货包",
+        "path": "海淘退货包"
+      },
+      {
+        "value": 1,
+        "name": "海淘丢件包",
+        "path": "海淘丢件包"
+      }
+    ]
+  },
+  {
+    "itemStyle": {
+      "color": [
+        "#3b74c7"
+      ]
+    },
+    "value": 2,
+    "name": "正品保障险",
+    "path": "正品保障险",
+    "children": [
+      {
+        "value": 4,
+        "name": "正品保障险",
+        "path": "正品保障险"
+      },
+      {
+        "value": 4,
+        "name": "本地版本险",
+        "path": "本地版本险"
+      },
+      {
+        "value": 2,
+        "name": "产地溯源保证险",
+        "path": "产地溯源保证险"
+      }
+    ]
+  },
+  {
+    "itemStyle": {
+      "color": [
+        "#f49f42"
+      ]
+    },
+    "value": 1,
+    "name": "产品质量保证险",
+    "path": "产品质量保证险",
+    "children": [
+      {
+        "value": 4,
+        "name": "产品质量保证险",
+        "path": "产品质量保证险"
+      },
+      {
+        "value": 4,
+        "name": "有效期保证险",
+        "path": "有效期保证险"
+      },
+      {
+        "value": 2,
+        "name": "食品安全责",
+        "path": "食品安全责"
+      }
+    ]
+  },
+  {
+    "itemStyle": {
+      "color": [
+        "#dd6b66"
+      ]
+    },
+    "value": 1,
+    "name": "产品延保保险",
+    "path": "产品延保保险",
+    "children": [
+      {
+        "value": 5,
+        "name": "产品延保保险",
+        "path": "产品延保保险"
+      },
+      {
+        "value": 5,
+        "name": "商家订单险",
+        "path": "商家订单险"
+      }
+    ]
+  },
+  {
+    "itemStyle": {
+      "color": [
+        "#66b9bd"
+      ]
+    },
+    "value": 1,
+    "name": "降价险",
+    "path": "降价险",
+    "children": [
+      {
+        "value": 5,
+        "name": "降价险",
+        "path": "降价险"
+      },
+      {
+        "value": 5,
+        "name": "砍价险",
+        "path": "砍价险"
+      }
+    ]
+  }
+]

@@ -1,0 +1,269 @@
+<div ng-controller="productFactoryListController as vm" ng-init="vm.getPagedDataAsync()">
+    <div class="pop-mask" ng-if="vm.productPop">
+        <div class="product-pop">
+            <div class="close">
+                <a href="javascript:;" class="ico" ng-click="vm.closeProductPop()"></a>
+            </div>
+            <div class="product-detail">
+                <div class="left-img">
+                    <img ng-src="{{vm.popProductData.officialPicUrl}}"/>
+                </div>
+                <div class="right-text">
+                    <ul>
+                        <li>
+                            <span>商品类别：</span>
+                            <span class="con" ng-bind="vm.popProductData.configV1Desc"></span>
+                        </li>
+                        <li>
+                            <span>运输方式：</span>
+                            <span class="con" ng-bind="vm.popProductData.configV3Desc"></span>
+                        </li>
+                        <li>
+                            <span>保障额度：</span>
+                            <span class="con" ng-bind="vm.popProductData.configV2Desc"></span>
+                        </li>
+                        <li style="margin-bottom:10px">
+                            <span style="line-height: 30px">起运地：</span>
+                            <select ng-model="vm.popProductData.configV5Id"
+                                    ng-options="key as value for (key, value) in vm.v5List" style="height: 30px;"
+                                    ng-change="vm.getPrice()">
+                                <option value="">请选择起运地</option>
+                            </select>
+                        </li>
+                        <li>
+                            <span>目的地：</span>
+                            <span style="line-height: 30px">
+                            <select ng-model="vm.popProductData.configV6Id"
+                                    ng-options="key as value for (key, value) in vm.v6List" style="height: 30px"
+                                    ng-change="vm.getPrice()">
+                            <option value="">请选择目的地</option>
+                            </select>
+                        </span>
+                        </li>
+                    </ul>
+                    <div class="price" ng-if="vm.popProductData.price">
+                        <p><em ng-bind="'单买价格￥' + vm.popProductData.singlePrice" class="ng-binding"></em></p>
+                        <p><strong ng-bind="'￥' + vm.popProductData.price" class="ng-binding"></strong></p>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-ico">
+                <a href="javascript:;" class="nomal" ng-click="vm.addShop()">加入购物车</a>
+                <a href="javascript:;" class="buy" ng-click="vm.toBuy()">立即购买</a>
+            </div>
+        </div>
+    </div>
+    <section class="factory-list">
+        <ul class="companyUl">
+            <li ng-repeat="o in vm.intelligent" ng-bind="o.name" ng-click="vm.getId(o.id)"
+                ng-class="{'hover':o.id == vm.currentId}"></li>
+        </ul>
+        <div class="inner-wrap clearfix">
+            <div class="query-div">
+                <div class="line-div line-div02 clearfix">
+                    <div class="left">全部产品：</div>
+                    <ul class="right top-query">
+                        <li ng-bind="o.name" ng-repeat="o in vm.queryList" ng-click="vm.delete($index,o.type)"></li>
+                    </ul>
+                </div>
+                <div class="line-div line-div02 clearfix">
+                    <div class="left">商品类别：</div>
+                    <ul class="right">
+                        <li ng-mouseenter = "vm.suspend($event,key)" ng-mouseleave="vm.suspendHide($event)" class="suspendBox" ng-repeat="(key,value) in vm.v1List" ng-click="vm.checkQuery(key,value,'v1')" ng-class="{'checked':vm.v1CurrentKey == key}">
+                            <span ng-bind="value"></span>
+                            <em ng-bind="vm.value"></em>
+                        </li>
+                    </ul>
+                </div>
+                <div class="line-div line-div02 clearfix">
+                    <div class="left">运输方式：</div>
+                    <ul class="right">
+                        <li ng-repeat="(key,value) in vm.v3List" ng-bind="value"
+                            ng-class="{'checked':vm.v3CurrentKey == key}" ng-click="vm.checkQuery(key,value,'v3')"></li>
+                    </ul>
+                </div>
+                <div class="line-div line-div02 clearfix">
+                    <div class="left">保障额度：</div>
+                    <ul class="right">
+                        <li ng-repeat="(key,value) in vm.v2List" ng-bind="value"
+                            ng-class="{'checked':vm.v2CurrentKey == key}" ng-click="vm.checkQuery(key,value,'v2')"></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="noDataDiv" ng-if="!vm.list.length">
+                <div class="noData">
+                    <div class="noDataBg"></div>
+                    <p>暂时没有数据～</p>
+                </div>
+                <!-- <a href="javascript:;" class="icon-style" ng-click="vm.toMerchant()">重新选择身份</a> -->
+            </div>
+            <div class="product-list" ng-show="vm.list.length > 0">
+                <div class="product-package" ng-repeat="o in vm.list" ng-class="{'last':o.last}"
+                ng-click="vm.toDetails(o.id,o.productWrapId)">
+                     <!-- ng-click="vm.showProductPop(o)" -->
+                    <p class="tip" ng-bind="o.productPeriod + '天'"></p>
+                    <img ng-src="{{o.officialPicUrl}}" ng-attr-title="{{o.officialPicDesc}}"/>
+                    <div class="text-content">
+                        <p>
+                            <span ng-bind="o.configV1Desc" ng-attr-title="{{o.configV1Desc}}" class="con"></span>
+                            <span ng-bind="'/'+o.configV3Desc"></span><span ng-bind="'/'+o.configV2Desc"></span>
+                        </p>
+                        <p><strong ng-bind="'￥' + o.originalPrice"></strong><span class="begin">起</span><em ng-bind="'单买价格￥' + o.singlePrice"></em>
+                        </p>
+                    </div>
+                </a>
+            </div>
+            <div class="page" paging page-object="vm.query" click-function="vm.getPagedDataAsync"
+                 ng-show="vm.list.length > 0"></div>
+        </div>
+    </section>
+    <!-- <div class="popM" ng-if="vm.productPop">-->
+        <!--<div class="product-pops">-->
+            <!--<div class="close">-->
+                <!--<a href="javascript:;" class="ico" ng-click="vm.closeProductPop()"></a>-->
+            <!--</div>-->
+            <!--<div class="product-detail">-->
+                <!--<div class="left-img borderBottom">-->
+                    <!--<img ng-src="{{vm.popProductData.officialPicUrl}}"/>-->
+                    <!--&lt;!&ndash;<div class="price">&ndash;&gt;-->
+                    <!--<div class="price" ng-if="vm.popProductData.price">-->
+                        <!--<p><strong ng-bind="'￥' + vm.popProductData.price" class="ng-binding"></strong></p>-->
+                        <!--<p><em ng-bind="'单买价格￥' + vm.popProductData.singlePrice" class="ng-binding"></em></p>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="right-text">-->
+                    <!--<ul>-->
+                        <!--<li>-->
+                            <!--<span>商品类别：</span>-->
+                            <!--<span class="con" ng-bind="vm.popProductData.configV1Desc"></span>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<span>运输方式：</span>-->
+                            <!--<span class="con" ng-bind="vm.popProductData.configV3Desc"></span>-->
+                        <!--</li>-->
+                        <!--<li class="borderBottom">-->
+                            <!--<span>保障额度：</span>-->
+                            <!--<span class="con" ng-bind="vm.popProductData.configV2Desc"></span>-->
+                        <!--</li>-->
+                        <!--<li class="borderBottom">-->
+                            <!--<span style="line-height: 30px">起运地：</span>-->
+                            <!--<select ng-model="vm.popProductData.configV5Id"-->
+                                    <!--ng-options="key as value for (key, value) in vm.v5List" style="height: 30px;"-->
+                                    <!--ng-change="vm.getPrice()">-->
+                                <!--<option value="">请选择起运地</option>-->
+                            <!--</select>-->
+                        <!--</li>-->
+                        <!--<li class="borderBottom">-->
+                            <!--<span>目的地：</span>-->
+                            <!--<span style="line-height: 30px">-->
+                            <!--<select ng-model="vm.popProductData.configV6Id"-->
+                                    <!--ng-options="key as value for (key, value) in vm.v6List" style="height: 30px"-->
+                                    <!--ng-change="vm.getPrice()">-->
+                            <!--<option value="">请选择目的地</option>-->
+                            <!--</select>-->
+                        <!--</span>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="bottom-ico">-->
+                <!--<a href="javascript:;" class="nomal" ng-click="vm.addShop()">加入购物车</a>-->
+                <!--<a href="javascript:;" class="buy" ng-click="vm.toBuy()">立即购买</a>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <section class="mbfl">
+        <div class="inner-wrap">
+            <div class="query-div">
+                <div class="line-div line-div02 clearfix">
+                    <div class="left">全部产品：</div>
+                    <ul class="right top-query">
+                        <li ng-bind="o.name" ng-repeat="o in vm.queryList" ng-click="vm.delete($index,o.type)"></li>
+                    </ul>
+                </div>
+                <div class="line-div line-div02 clearfix">
+                    <div class="left">商品类别：</div>
+                    <ul class="right">
+                        <li ng-mouseenter = "vm.suspend($event,key)" ng-mouseleave="vm.suspendHide($event)" class="suspendBox" ng-repeat="(key,value) in vm.v1List" ng-click="vm.checkQuery(key,value,'v1')" ng-class="{'checked':vm.v1CurrentKey == key}">
+                            <span ng-bind="value"></span>
+                            <em ng-bind="vm.value"></em>
+                        </li>
+                    </ul>
+                </div>
+                <div class="line-div line-div02 clearfix">
+                    <div class="left">运输方式：</div>
+                    <ul class="right">
+                        <li ng-repeat="(key,value) in vm.v3List" ng-bind="value"
+                            ng-class="{'checked':vm.v3CurrentKey == key}" ng-click="vm.checkQuery(key,value,'v3')"></li>
+                    </ul>
+                </div>
+                <div class="line-div line-div02 clearfix">
+                    <div class="left">保障额度：</div>
+                    <ul class="right">
+                        <li ng-repeat="(key,value) in vm.v2List" ng-bind="value"
+                            ng-class="{'checked':vm.v2CurrentKey == key}" ng-click="vm.checkQuery(key,value,'v2')"></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="noDataDiv" ng-if="!vm.list.length">
+                <div class="noData">
+                    <!-- <div class="noDataBg"></div> -->
+                    <p>暂时没有数据～</p>
+                </div>
+                <a href="javascript:;" class="icon-style" ng-click="vm.toMerchant()">重新选择身份</a>
+            </div>
+            <div class="paymoney">
+                <p ng-if="shop.shopList.length == 0 && vm.list.length != 0">购物车中还没有商品，赶紧选购吧</p>
+                <p ng-if="shop.shopList.length != 0 && vm.list.length != 0" ng-click="vm.shopListS()">支付金额：<strong ng-bind="'¥' + sumPrice"></strong></p>
+            </div>
+            <div class="product-list" ng-show="vm.list.length > 0">
+                <div class="product-package" ng-repeat="o in vm.list" ng-class="{'last':o.last}">
+                    <!-- &lt;!&ndash;<p class="tip" ng-bind="o.productPeriod + '天'"></p>&ndash;&gt; -->
+                    <img ng-src="{{o.officialPicUrl}}" ng-attr-title="{{o.officialPicDesc}}"/>
+                    <div class="text-content">
+                        <p>
+                            <span ng-bind="o.configV1Desc" ng-attr-title="{{o.configV1Desc}}" class="con"></span>
+                            <span ng-bind="'/'+o.configV3Desc"></span><span ng-bind="'/'+o.configV2Desc"></span>
+                        </p>
+                        <p><em ng-bind="'单买价格￥' + o.singlePrice"></em><strong ng-bind="'￥' + o.originalPrice"></strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- 购物车 -->
+            <div class="carCon" ng-if="shopListShow">
+                <div class="close" ng-click='vm.shopListH()'>X</div>
+                <ul class="shopCarList">
+                    <li ng-repeat="o in shop.shopList">
+                        <!-- <img ng-src="{{o.officialPicUrl}}" alt=""> -->
+                        <div class="leftData">
+                            <h2 ng-bind="o.productName" ng-bind="o.productName"></h2>
+                            <p ng-bind="o.configV3Desc"></p>
+                            <p ng-bind="o.configV5Desc + '-' + o.configV6Desc"></p>
+                            <p ng-bind="o.configV2Desc"></p>
+                            <div class="rightData">
+                                <h2 ng-bind="'￥' + o.priceSum"></h2>
+                                <p class="delete"><a href="javascript:;" ng-click="toDelete($index,o)">删除</a></p>
+                                <p class="payNum">
+                                    <!--<span>购买数量：</span>-->
+                                    <em class="minus" ng-click="toMinus(o)">-</em>
+                                    <i ng-bind="o.num"></i>
+                                    <em class="plus" ng-click="toPlus(o)">+</em>
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="bottom" ng-if="shop.shopList.length > 0">
+                    <p>共计：<strong ng-bind="'¥' + sumPrice"></strong></p>
+                    <a href="javascript:;" ng-click="toSettle()">去结算</a>
+                </div>
+            </div>
+            <div class="price" ng-if="vm.popProductData.price">
+
+            </div>
+            <div class="page" paging page-object="vm.query" click-function="vm.getPagedDataAsync"
+                 ng-show="vm.list.length > 0"></div>
+        </div>
+    </section>
+</div>

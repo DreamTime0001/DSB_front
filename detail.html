@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html ng-app="detail" lang="en" ng-controller="detailController as vm" ng-init="vm.init()">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>订单画像</title>
+    <link rel="stylesheet" href="static/css/bootstrap.min_v3.3.4.css">
+    <link rel="stylesheet" href="static/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="static/css/dashboard.css">
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+<div id="top" class="clearfix">
+    <div class="applogo"><img src="static/images/logo.png" style="margin:37px auto 0"/></div>
+    <ul class="userLeft">
+        <li>
+            <a href="javascript:;" style="color:#000" ng-click="vm.toDashborad()">
+                <i class="f_l"><img src="static/images/overview.png"/> </i>
+                <p class="f_l ml5">总览</p>
+            </a>
+        </li>
+        <li>
+            <a href="javascript:;"  style="color:#000" ng-click="vm.toSelf()">
+                <i class="f_l"><img src="static/images/backstage.png"/> </i>
+                <p class="f_l ml5">后台管理中心</p>
+            </a>
+        </li>
+    </ul>
+    <div class="topRight">
+        <ul class="userAddInfo">
+            <li>
+                <a href="javascript:;" ui-sref="businessManage">商户管理</a>
+                <a href="javascript:;" ui-sref="userManage">用户管理</a>
+            </li>
+            <li>
+                <i class="userHead f_l"><img src="static/images/user.jpg"/> </i>
+                <div class="dropdown f_l ml5">
+                    <p ng-bind="vm.usrInfor.usrName" class="f_l mr5" id="dropdownMenu1" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="true"></p>
+                    <span class="caret mt0"></span>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="javascript:;" ng-click="vm.logout()">安全退出</a></li>
+                    </ul>
+                </div>
+            </li>
+            <!--<li ng-bind="'您好: '+ vm.usrInfor.usrName" class="icon user"></li>-->
+            <!--<li ng-bind="'上次登陆时间：' + vm.usrInfor.lastLogin"></li>-->
+            <!--<li class="icon layout" ng-click="vm.logout()">退出</li>-->
+        </ul>
+    </div>
+</div>
+<div class="layOut">
+    <h2 class="dashTitle mt30">订单画像</h2>
+    <div class="box boxWh-6">
+        <div class="chainDiv">
+            <div class="removeDiv pos1" ng-mouseover="vm.pos1 = true" ng-mouseout="vm.pos1 = false"></div>
+            <div class="popBlank topArrow pos1" ng-if="vm.pos1">
+                <p>厂家：小林制药</p>
+                <div class="overfl">
+                    <p class="f_l mr10" style="width:40px">描述</p>
+                    <p class="f_l mr10" style="width:40px">服务</p>
+                    <p class="f_l mr10" style="width:40px">物流</p>
+                </div>
+                <div class="overfl">
+                    <p class="f_l mr10" style="width:40px">4.8</p>
+                    <p class="f_l mr10" style="width:40px">4.9</p>
+                    <p class="f_l mr10" style="width:40px">4.8</p>
+                </div>
+            </div>
+            <div class="removeDiv pos2" ng-mouseover="vm.pos2 = true" ng-mouseout="vm.pos2 = false"></div>
+            <div class="popBlank topArrow pos2" ng-if="vm.pos2">
+                <p>卖家/平台：亚马逊</p>
+                <p>平台综合评分：85分</p>
+                <p>平台风险分析：</p>
+                <p>货损率--0.03%</p>
+                <p>丢件率--0.01%</p>
+                <p>延时率--1%</p>
+                <p>通关率--8%</p>
+                <p>退运率--5%</p>
+            </div>
+            <div class="removeDiv pos3" ng-mouseover="vm.pos3 = true" ng-mouseout="vm.pos3 = false"></div>
+            <div class="popBlank topArrow pos3" ng-if="vm.pos3">
+                <p>转运：转运四方</p>
+                <p>平台综合评分：85分</p>
+                <p>平台风险分析：</p>
+                <p>货损率--0.03%</p>
+                <p>丢件率--0.01%</p>
+                <p>延时率--1%</p>
+                <p>通关率--8%</p>
+                <p>退运率--5%</p>
+            </div>
+            <div class="removeDiv pos4" ng-mouseover="vm.pos4 = true" ng-mouseout="vm.pos4 = false"></div>
+            <div class="popBlank topArrow pos4" ng-if="vm.pos4">
+                <p>海关：上海海关</p>
+                <p>平台综合评分：85分</p>
+                <p>总通关率--95%</p>
+                <p>最近一周通关率--98%</p>
+            </div>
+            <div class="removeDiv pos5" ng-mouseover="vm.pos5 = true" ng-mouseout="vm.pos5 = false"></div>
+            <div class="popBlank bottomArrow pos5" ng-if="vm.pos5">
+                <p>刘先生</p>
+                <p>性别：男-98%   女-2%</p>
+                <p>语言分布：简体中文-97%   繁体中文-2%  英文-1%</p>
+                <p>地区：上海-98% 昆山-1.7%  太仓-0.3%</p>
+                <p>终端：iPhone-95% Android-5%</p>
+                <p>年龄：26~30-95%  30~35 4% 20~25-1%</p>
+                <p>学历：本科-96% 专科-3% 硕士-1%</p>
+            </div>
+            <div class="removeDiv pos6" ng-mouseover="vm.pos6 = true" ng-mouseout="vm.pos6 = false"></div>
+            <div class="popBlank bottomArrow pos6" ng-if="vm.pos6">
+                <p>卖家/平台：亚马逊</p>
+                <p>平台综合评分：85分</p>
+                <p>平台风险分析：</p>
+                <p>货损率--0.03%</p>
+                <p>丢件率--0.01%</p>
+                <p>延时率--1%</p>
+                <p>通关率--8%</p>
+                <p>退运率--5%通关率--8%</p>
+                <p>退运率--5%</p>
+            </div>
+            <div class="removeDiv pos7" ng-mouseover="vm.pos7 = true" ng-mouseout="vm.pos7 = false"></div>
+            <div class="popBlank bottomArrow pos7" ng-if="vm.pos7">
+                <p>保税仓：上海外高桥保税仓</p>
+                <p>平台综合评分：85分</p>
+                <p>总通关率--95%</p>
+                <p>最近一周通关率--98%</p>
+            </div>
+            <div class="removeDiv wl1" ng-mouseover="vm.wl1 = true" ng-mouseout="vm.wl1 = false"></div>
+            <div class="popBlank topArrow wl1" ng-if="vm.wl1">
+                <p>总519,956条物流数据</p>
+            </div>
+            <div class="removeDiv wl2" ng-mouseover="vm.wl2 = true" ng-mouseout="vm.wl2 = false"></div>
+            <div class="popBlank topArrow wl2" ng-if="vm.wl2">
+                <p>总519,956条物流数据</p>
+            </div>
+            <div class="removeDiv wl3" ng-mouseover="vm.wl3 = true" ng-mouseout="vm.wl3 = false"></div>
+            <div class="popBlank topArrow wl3" ng-if="vm.wl3">
+                <p>共总42,459条入关数据</p>
+            </div>
+            <div class="removeDiv wl4" ng-mouseover="vm.wl4 = true" ng-mouseout="vm.wl4 = false"></div>
+            <div class="popBlank bottomArrow wl4" ng-if="vm.wl4">
+                <p>总42,459条通关数据</p>
+            </div>
+            <div class="removeDiv wl5" ng-mouseover="vm.wl5 = true" ng-mouseout="vm.wl5 = false"></div>
+            <div class="popBlank bottomArrow wl5" ng-if="vm.wl5">
+                <p>总519,956条物流数据</p>
+            </div>
+            <div class="removeDiv wl6" ng-mouseover="vm.wl6 = true" ng-mouseout="vm.wl6 = false"></div>
+            <div class="popBlank bottomArrow wl6" ng-if="vm.wl6">
+                <p>总519,956条物流数据</p>
+            </div>
+            <div class="removeDiv ic1" ng-mouseover="vm.ic1 = true" ng-mouseout="vm.ic1 = false"></div>
+            <div class="popBlank topArrow ic1" ng-if="vm.ic1">
+                <p>信用保证险：</p>
+                <p>总赊销金额 15,894,139 元</p>
+                <p>保险公司总授信 12,715,311 元</p>
+            </div>
+            <div class="removeDiv ic2" ng-mouseover="vm.ic2 = true" ng-mouseout="vm.ic2 = false"></div>
+            <div class="popBlank topArrow ic2" ng-if="vm.ic2">
+                <p>银关保：</p>
+                <p>总垫付保证金：3,450,000元</p>
+            </div>
+            <div class="removeDiv ic3" ng-mouseover="vm.ic3 = true" ng-mouseout="vm.ic3 = false"></div>
+            <div class="popBlank topArrow ic3" ng-if="vm.ic3">
+                <p>出口退税信用贷款：</p>
+                <p>总借款额：23,450,000元</p>
+                <p>期限：60天</p>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="static/js/jquery/jquery-1.10.2.min.js"></script>
+<script src="static/js/angular/angular.min.js"></script>
+<script src="static/js/angular/angular-cookies.min.js"></script>
+
+<script src="core/configs/testConfig.js"></script>
+<script src="core/services/service.js"></script>
+<script src="core/services/layer.js"></script>
+<script src="core/services/util.js"></script>
+
+<script src="modules/detail/controller/detailController.js"></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html ng-app="index" lang="en" ng-controller="indexController as vm">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>豆沙包关税宝在线试算器</title>
+    <link rel="stylesheet" href="static/css/bootstrap.css"/>
+    <link rel="stylesheet" href="static/css/style.css"/>
+    <script type="text/javascript">
+        document.addEventListener('plusready', function () {
+            //console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。"
+        });
+    </script>
+</head>
+<body>
+<div class="container">
+    <fom action="" role="form">
+        <p style="margin-top: 30px;" class="mes-title">企业信息</p>
+        <div class="form-group">
+            <label>企业名称：</label>
+            <input ng-model="vm.submitCon.businessName" type="text" class="form-control bgcolor" id="companyname"
+                   placeholder="请输入您的企业名称">
+        </div>
+        <div class="form-group">
+            <label>联系人：</label>
+            <input ng-model="vm.submitCon.businessContact" type="text" class="form-control bgcolor" id="name"
+                   placeholder="请填写企业联系人">
+        </div>
+        <div class="form-group">
+            <label>联系手机：</label>
+            <input ng-model="vm.submitCon.businessPhone" type="text" class="form-control bgcolor" id="phone"
+                   placeholder="请填写联系人手机">
+        </div>
+        <div class="form-group">
+            <label>联系邮箱：</label>
+            <input ng-model="vm.submitCon.businessEmail" type="text" class="form-control bgcolor" id="email"
+                   placeholder="请填写联系邮箱">
+        </div>
+        <div class="form-group">
+            <label>首选关区：</label>
+            <input ng-model="vm.submitCon.firstArea" type="text" class="form-control bgcolor" id="guanqu"
+                   placeholder="请填写企业首选关区">
+        </div>
+        <div class="form-group">
+            <label style="display: block;">营业执照复印件（选填）：</label>
+            <span class="weizhi">
+					<span class="gaibian"><i></i><em style="position: relative;left: 75px;">点击上传图片</em></span>
+					<span style="width: 150px;height: 100px;position: absolute;left: 0;
+top: 0;">
+						<img style="width: 100%;height: 100%;" ng-src="{{vm.submitCon.licenceUrl}}" alt="">
+					</span>
+					<input type="file" class="form-control file-input" ng-file-select="vm.uploadImg($files,0)"/>
+				</span>
+        </div>
+        <div class="form-group">
+            <label style="display: block;">法人身份证（选填）：</label>
+            <span class="weizhi">
+					<span class="gaibian"><i></i> <em style="position: relative;left: 75px;">点击上传图片</em></span>
+					<span style="width: 150px;height: 100px;position: absolute;left: 0;
+top: 0;">
+						<img style="width: 100%;height: 100%;" ng-src="{{vm.submitCon.idcardUrl}}" alt="">
+					</span>
+					<input type="file" class="form-control file-input" ng-file-select="vm.uploadImg($files,1)"/>
+
+				</span>
+        </div>
+        <p class="mes-title">保费试算</p>
+        <div class="form-group">
+            <label>需缴纳税金（元）：</label>
+            <input ng-model="vm.submitCon.taxAmount" type="text" class="form-control bgcolor" id="needmoney"
+                   placeholder="请输入未缴纳税金的大致金额">
+        </div>
+        <div class="form-group">
+            <label>拟申请保单期限（月）：</label>
+            <input ng-model="vm.submitCon.delayDay" type="text" class="form-control bgcolor" id="day"
+                   placeholder="请输入拟申请月数">
+        </div>
+        <!--<p class="text-center tips">提交申请后将会有工作人员与您联系进行后续投保流程</p>-->
+        <button style="margin-bottom: 20px;" ng-click="vm.submit()" type="button" class="sub">立即试算</button>
+    </fom>
+</div>
+
+<script src="static/js/jquery/jquery-1.10.2.min.js"></script>
+<script src="static/js/angular/angular.min.js"></script>
+<script src="static/js/angular/angular-cookies.min.js"></script>
+<script src="static/js/angular/angular-file-upload.min.js"></script>
+<script src="static/js/md5.js"></script>
+<script src="static/js/common.js"></script>
+<script src="../core/configs/config.js"></script>
+<!--<script src="../core/configs/testConfig.js"></script>-->
+<!--<script src="../core/configs/localConfig.js"></script>-->
+<script src="core/services/layer/layer.js"></script>
+<script src="core/services/layer.js"></script>
+<script src="core/services/util.js"></script>
+<script src="modules/index/controller/indexController.js"></script><!--总模板-->
+</body>
+</html>

@@ -1,0 +1,81 @@
+<div ng-controller="productManageDefaultController as vm" class="innerTop" ng-init="vm.getPagedDataAsync(0)">
+    <!--新增产品框-->
+    <div class="popMask" ng-if="vm.addIdPop">
+        <div class="addInsurancePop changePswBox">
+            <p class="text_c mb20 f_b">新增产品</p>
+            <img src="static/images/pop-close.png" alt="" ng-click="vm.addIdPop = false">
+            <ul>
+                <li>
+                    <label>产品id*：</label>
+                    <input class="timeInp" type="text"
+                           ng-model="vm.addProductObj.productId">
+                </li>
+            </ul>
+            <p>
+                <input class="popSub" type="button" value="提交" ng-click="vm.toAddProduct()">
+            </p>
+        </div>
+    </div>
+    <ol class="breadcrumb"></ol>
+    <div class="pLR40">
+        <div class="rightDiv">
+            <div class="rightContTitle">
+                <h2>默认产品管理</h2>
+                <i class="closeIco" ui-sref="productManage"></i>
+            </div>
+            <div class="overfl mb20">
+                    <ul class="topNavUl">
+                        <li ng-class="{active : vm.importExport == 0}" ng-click="vm.changeIE(0)">进口</li>
+                        <li ng-class="{active : vm.importExport == 1}" ng-click="vm.changeIE(1)">出口</li>
+                    </ul>
+            </div>
+            <div class="overfl">
+                <div class="f_l w90 f_b lh40">商户类型：</div>
+                <ul class="companyUl">
+                    <li ng-repeat="o in vm.companyTypeList" ng-bind="o.name" ng-click="vm.getId(o.id)"
+                        ng-class="{'hover':o.id == vm.currentId}"></li>
+                </ul>
+            </div>
+            <div class="overfl mb10" ng-if="vm.currentId != null">
+                <input type="button" class="btn btn-info f_r mt20" value="新增产品" ng-click="vm.addIdPop = true">
+                <!--<input type="button" class="btn btn-warning f_r mt20 mr15" value="Excel投保模板上传">-->
+                <!--<input type="file" class="btn btn-warning f_r mt20 mr15" value="Excel投保模板上传" ng-file-select="vm.readExcel($files)">-->
+                <!--<input type="button" class="btn btn-warning f_r mt20 mr15" value="Excel理赔模板上传">-->
+            </div>
+            <div class="noDataDiv" ng-if="!vm.list.length">
+                <div class="noData">
+                    <div class="noDataBg"></div>
+                    <p>暂时没有数据～</p>
+                </div>
+            </div>
+            <div class="tableList" ng-show="vm.list.length > 0">
+                <table class="table tableInfo">
+                    <tr>
+                        <th>产品id</th>
+                        <th>产品名称</th>
+                        <th>产品类型</th>
+                        <th>产品价格（元）</th>
+                        <th>最高补贴限额（元）</th>
+                        <th>添加时间</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr ng-repeat="o in vm.list">
+                        <td ng-bind="o.id"></td>
+                        <td ng-bind="o.productName"></td>
+                        <td ng-bind="o.productTypeText"></td>
+                        <td ng-bind="o.productPrice"></td>
+                        <td ng-bind="o.productCompensationAmount"></td>
+                        <td ng-bind="o.createTime | date : 'yyyy-MM-dd'"></td>
+                        <td>
+                            <!--<a href="javascript:;" ui-sref="productManageEdit({id:o.id})">编辑</a>-->
+                            <!--<em class="c_999">|</em>-->
+                            <!--<a href="javascript:void(0)" ng-click="vm.deleteProduct(o.id)">删除</a>-->
+                            <a href="javascript:;" ng-click="vm.remove(o.id)">移除</a>
+                        </td>
+                    </tr>
+                </table>
+                <div class="page" paging page-object="vm.query" click-function="vm.getPagedDataAsync"></div>
+            </div>
+        </div>
+    </div>
+</div>

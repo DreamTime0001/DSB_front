@@ -1,0 +1,250 @@
+<div
+  ng-controller="businessInformController as vm"
+  class="innerTop"
+  ng-init="vm.getPagedDataAsync()"
+>
+  <ol class="breadcrumb"></ol>
+  <div class="pLR40">
+    <div class="rightDiv">
+      <div class="rightContTitle"><h2>商户信息</h2></div>
+      <div class="detailDiv">
+        <h2>基本信息</h2>
+        <div class="detailIn">
+          <ul>
+            <li>
+              <span class="f_l c_999">商户名称：</span>
+              <span class="f_l" ng-bind="vm.businessInfo.companyName"></span>
+            </li>
+            <li>
+              <span class="f_l c_999">商户识别码：</span>
+              <span class="f_l" ng-bind="vm.businessInfo.source"></span>
+            </li>
+            <li>
+              <span class="f_l c_999">联系人：</span>
+              <span
+                class="f_l c_e61915"
+                ng-if="vm.businessInfo.contactName == null"
+                >待完善</span
+              >
+              <span
+                class="f_l"
+                ng-if="vm.businessInfo.contactName"
+                ng-bind="vm.businessInfo.contactName"
+              ></span>
+            </li>
+            <li>
+              <span class="f_l c_999">联系方式：</span>
+              <span
+                class="f_l c_e61915"
+                ng-if="vm.businessInfo.contactPhone == null"
+                >待完善</span
+              >
+              <span
+                class="f_l"
+                ng-if="vm.businessInfo.contactPhone"
+                ng-bind="vm.businessInfo.contactPhone"
+              ></span>
+            </li>
+            <li>
+              <span class="f_l c_999">联系邮箱：</span>
+              <span class="f_l c_e61915" ng-if="vm.businessInfo.email == null"
+                >待完善</span
+              >
+              <span
+                class="f_l"
+                ng-if="vm.businessInfo.email"
+                ng-bind="vm.businessInfo.email"
+              ></span>
+            </li>
+            <li>
+              <span class="f_l c_999">key：</span>
+              <span class="f_l" ng-bind="vm.businessInfo.companyKey"></span>
+            </li>
+            <li>
+              <input
+                type="button"
+                class="btn btn-info"
+                value="完善信息"
+                ng-if="vm.isComplete == 0"
+                ng-click="vm.completePopShow(0)"
+              />
+              <input
+                type="button"
+                class="btn btn-info"
+                value="修改信息"
+                ng-if="vm.isComplete == 1"
+                ng-click="vm.completePopShow(1)"
+              />
+            </li>
+          </ul>
+        </div>
+        <h2>EChain</h2>
+        <div class="detailIn">
+          <ul>
+            <li>
+              <span class="f_l c_999">ePoints：</span>
+              <span class="f_l" ng-bind="vm.businessInfo.ePoints"></span>
+            </li>
+          </ul>
+        </div>
+        <h2>合作产品信息</h2>
+        <div style="padding:20px">
+          <div class="noDataDiv" ng-if="!vm.list.length">
+            <div class="noData">
+              <div class="noDataBg"></div>
+              <p>暂时没有数据～</p>
+            </div>
+          </div>
+          <div class="tableList" ng-show="vm.list.length > 0">
+            <table class="table tableInfo">
+              <tr>
+                <th>产品id</th>
+                <th>产品名称</th>
+                <th>产品类型</th>
+                <th>产品价格（元）</th>
+                <th>最高购买份数</th>
+                <th>最高补贴限额（元）</th>
+                <th>合作时间</th>
+                <th>操作</th>
+              </tr>
+              <tr ng-repeat="o in vm.list">
+                <td ng-bind="o.productId"></td>
+                <td ng-bind="o.productName"></td>
+                <td ng-bind="o.productTypeText"></td>
+                <td ng-bind="o.productPrice"></td>
+                <td ng-bind="o.highestNum"></td>
+                <td ng-bind="o.productCompensationAmount"></td>
+                <td ng-bind="o.time | date : 'yyyy-MM-dd'"></td>
+                <td>
+                  <a href="javascript:;" ng-click="vm.editProduct(o)">详情</a>
+                </td>
+              </tr>
+            </table>
+
+            <div
+              class="page"
+              paging
+              page-object="vm.query"
+              click-function="vm.getPagedDataAsync"
+            ></div>
+          </div>
+        </div>
+        <h2>密码管理</h2>
+        <div class="detailIn overfl">
+          <p class="f_l mr20">
+            <input
+              type="button"
+              class="btn btn-info"
+              value="修改密码"
+              ng-click="vm.popShow = true"
+            />
+          </p>
+          <p class="f_l">
+            <input
+              type="button"
+              class="btn btn-warning"
+              value="退出登录"
+              ng-click="vm.logout()"
+            />
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 修改密码弹出层 -->
+  <div class="popMask" ng-if="vm.popShow">
+    <div class="addInsurancePop changePswBox">
+      <h3 style="font-size:18px">修改密码</h3>
+      <img
+        src="static/images/pop-close.png"
+        alt=""
+        ng-click="vm.popShow = false"
+      />
+      <ul>
+        <li>
+          <label>原密码<i>*</i>：</label>
+          <input
+            class="timeInp"
+            type="password"
+            ng-model="vm.userInfo.oldPassword"
+          />
+        </li>
+        <li>
+          <label>新密码<i>*</i>：</label>
+          <input
+            class="timeInp"
+            type="password"
+            ng-model="vm.userInfo.password"
+          />
+        </li>
+        <li>
+          <label>确认密码<i>*</i>：</label>
+          <input
+            class="timeInp"
+            type="password"
+            ng-model="vm.userInfo.passwordAgain"
+          />
+        </li>
+      </ul>
+      <p class="changPsw"><i>*</i> <span>密码不能少于8位或多于20位！</span></p>
+      <p>
+        <input
+          class="popSub"
+          type="button"
+          value="提交"
+          ng-click="vm.changePassword()"
+        />
+      </p>
+    </div>
+  </div>
+  <!-- 完善信息弹出层 -->
+  <div class="popMask" ng-if="vm.completePop">
+    <div class="addInsurancePop changePswBox">
+      <h3 ng-if="vm.isComplete == 0" style="font-size:18px">商户信息完善</h3>
+      <h3 ng-if="vm.isComplete == 1" style="font-size:18px">商户信息修改</h3>
+      <img
+        src="static/images/pop-close.png"
+        alt=""
+        ng-click="vm.completePop = false"
+      />
+      <ul>
+        <li>
+          <label>联系人*：</label>
+          <input
+            class="timeInp"
+            type="text"
+            ng-model="vm.complete.contactName"
+          />
+        </li>
+        <li>
+          <label>联系手机*：</label>
+          <input
+            class="timeInp"
+            type="text"
+            ng-model="vm.complete.contactPhone"
+          />
+        </li>
+        <li>
+          <label>联系邮箱*：</label>
+          <input class="timeInp" type="text" ng-model="vm.complete.email" />
+        </li>
+        <li ng-if="vm.isComplete == 0">
+          <label>豆沙包对接人*：</label>
+          <input
+            class="timeInp"
+            type="text"
+            ng-model="vm.complete.businessRefer"
+          />
+        </li>
+      </ul>
+      <p>
+        <input
+          class="popSub"
+          type="button"
+          value="提交"
+          ng-click="vm.perfectCompany()"
+        />
+      </p>
+    </div>
+  </div>
+</div>

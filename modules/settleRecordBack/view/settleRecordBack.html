@@ -1,0 +1,97 @@
+<div ng-controller="settleRecordBackController as vm" class="innerTop" ng-init="vm.getPagedDataAsync()">
+    <ol class="breadcrumb"></ol>
+    <div class="pLR40">
+        <div class="rightDiv">
+            <div class="rightContTitle">
+                <h2>结算记录</h2>
+            </div>
+            <div class="queryDiv">
+                <div class="queryDivIn">
+                    <form class="form-horizontal">
+                        <div>
+                            <div class="f_l mr15 mb15">
+                                <p class="f_l lh40">结算渠道：</p>
+                                <select class="form-control w100">
+                                    <option value="">全部</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </div>
+                            <div class="f_l mr15 mb15">
+                                <p class="f_l lh40">结算时间：</p>
+                                <select class="form-control w100 f_l">
+                                    <option value="">全部</option>
+                                    <option value="1">1999</option>
+                                    <option value="2">2000</option>
+                                    <option value="3">2011</option>
+                                </select>
+                                <p class="f_l lh40 ml5 mr15">年</p>
+                                <select class="form-control w80 f_l">
+                                    <option value="">全部</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                </select>
+                                <p class="f_l lh40 ml5">月</p>
+                            </div>
+                            <div class="f_l mr15 mb15">
+                                <p class="f_l lh40">结算状态：</p>
+                                <select class="form-control w100">
+                                    <option value="">全部</option>
+                                    <option value="1">结算中</option>
+                                    <option value="2">结算成功</option>
+                                </select>
+                            </div>
+                            <div class="f_l mb15">
+                                <input class="btn btn-warning mr10" type="submit" value="搜索" ng-click="vm.search()">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="noDataDiv" ng-if="!vm.list.length">
+                <div class="noData">
+                    <div class="noDataBg"></div>
+                    <p>暂时没有数据～</p>
+                </div>
+            </div>
+            <div class="tableList">
+                <table class="table tableInfo" ng-if="vm.list.length > 0">
+                    <tr>
+                        <th>序号</th>
+                        <th>商户名称</th>
+                        <th>商户类型</th>
+                        <th>结算周期</th>
+                        <th>结算类型</th>
+                        <th>实际金额（元）</th>
+                        <th>结算金额（元）</th>
+                        <th>结算状态</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr ng-repeat="customer in vm.list">
+                        <td ng-bind="$index + 1"></td>
+                        <td ng-bind="customer.businessName"></td>
+                        <td ng-bind="customer.businessType"></td>
+                        <td ng-bind="customer.addDate"></td>
+                        <td ng-bind="customer.seleteType"></td>
+                        <td ng-bind="customer.total"></td>
+                        <td ng-bind="customer.total"></td>
+                        <td ng-bind="customer.selteStatus"></td>
+                        <td><a href="javascript:;">编辑</a> <em class="c_999">|</em> <a href="javascript:;">明细</a></td>
+                    </tr>
+                </table>
+                <div class="page" paging page-object="vm.query" click-function="vm.getPagedDataAsync"></div>
+            </div>
+        </div>
+    </div>
+</div>

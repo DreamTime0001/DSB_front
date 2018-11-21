@@ -1,0 +1,87 @@
+<div ng-controller="withdrawRecordController as vm" class="innerTop" ng-init="vm.getPagedDataAsync()">
+    <ol class="breadcrumb"></ol>
+    <div class="pLR40">
+        <div class="rightDiv">
+            <div class="rightContTitle">
+                <h2 class="f_l">提现记录</h2>
+            </div>
+            <div class="queryDiv">
+                <div class="queryDivIn">
+                    <form class="form-horizontal">
+                        <div>
+                            <div class="f_l mr15 mb15">
+                                <p class="f_l lh40">商户名称：</p>
+                                <div class="f_l">
+                                    <input type="text" id="input" class="form-control w150" autocomplete="off"
+                                           placeholder="请输入商户名称" ng-model="vm.query.merchantName">
+                                    <div class="auto hidden" id="auto"></div>
+                                </div>
+                            </div>
+                            <div class="f_l mr15 mb15">
+                                <p class="f_l lh40">提现流水号：</p>
+                                <input type="text" class="form-control f_l w150" placeholder="请输入提现流水号"
+                                       ng-model="vm.query.billNo">
+                            </div>
+                            <div class="f_l mr15 mb15">
+                                <p class="f_l lh40">提现状态：</p>
+                                <select class="form-control w100" ng-options="o.id as o.name for o in vm.statusList"
+                                        ng-model="vm.query.billStatus">
+                                    <option value="">全部</option>
+                                </select>
+                            </div>
+                            <div class="f_l mr15 mb15">
+                                <p class="f_l lh40">提现时间：</p>
+                                <input type="text" class="form-control w160 mr5 f_l" placeholder="请输入创建开始日期"
+                                       ng-model="vm.query.createMinDate" readonly id="createMinDate">
+                                <p class="f_l mr5 lh40">-</p>
+                                <input type="text" class="form-control w160 f_l" placeholder="请输入创建结束日期"
+                                       ng-model="vm.query.createMaxDate" readonly id="createMaxDate">
+                            </div>
+                            <div class="f_l mb15">
+                                <input class="btn btn-warning mr10" type="submit" value="搜索" ng-click="vm.search()">
+                                <input class="btn btn-info mr10" type="submit" value="重置" ng-click="vm.clear()">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="noDataDiv" ng-if="!vm.list.length">
+                <div class="noData">
+                    <div class="noDataBg"></div>
+                    <p>暂时没有数据～</p>
+                </div>
+            </div>
+            <div class="tableList" ng-show="vm.list.length > 0">
+                <table class="table tableInfo" >
+                    <tr>
+                        <th>序号</th>
+                        <th>提现流水号</th>
+                        <th>商户名称</th>
+                        <th>提现金额</th>
+                        <th>提现时间</th>
+                        <th>付款时间</th>
+                        <th>是否重试</th>
+                        <th>账单状态变更原因</th>
+                        <th>明细</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr ng-repeat="o in vm.list">
+                        <td ng-bind="$index + 1"></td>
+                        <td><em ng-bind="o.billNo"></em><s class="doubtIcon"  ng-mouseover="vm.showSource(o.sourceBillNo,$event)" ng-mouseout="vm.tipClose()" ng-if="o.hasSource" id="source-{{$index}}"></s></td>
+                        <td ng-bind="o.merchantName"></td>
+                        <td ng-bind="o.billAmount1"></td>
+                        <td ng-bind="o.createDate"></td>
+                        <td ng-bind="o.updateDate"></td>
+                        <td ng-bind="o.isRetriedText"></td>
+                        <td ng-bind="o.billStatusChnageCause"></td>
+                        <td ng-bind="o.billTitle"></td>
+                        <td ng-bind="o.statusText"></td>
+                        <td><a href="javascript:;" ng-if="o.billStatus == 99 && o.isRetried == 0" ng-click="vm.againPay(o.billNo)">重新发起付款</a></td>
+                    </tr>
+                </table>
+                <div class="page" paging page-object="vm.query" click-function="vm.getPagedDataAsync"></div>
+            </div>
+        </div>
+    </div>
+</div>

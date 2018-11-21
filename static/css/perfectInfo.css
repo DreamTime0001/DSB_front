@@ -1,0 +1,144 @@
+/*完善信息*/
+.topRight h2{
+    color: #202123;
+    line-height: 115px;
+    font-size: 40px;
+    margin-left: 40px;
+}
+.pBox{
+    width: 1366px;
+    margin: 160px auto 60px;
+}
+.pInfoBox{
+    background: #fff;
+    margin: 0 auto;
+    width: 60%;
+    padding: 40px 0;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: 0px 10px 14px rgba(136, 136, 136, .2);
+}
+.pInfoBox p{
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+.pInfo li{
+    text-align: center;
+    margin: 20px 0;
+}
+.pInfoBox .form-control02{
+    display: inline-block;
+}
+.pInfo li i{
+    position: relative;
+    top: 3px;
+}
+.pInfo span{
+    display: inline-block;
+    width: 160px;
+    text-align: right;
+}
+.protocolBox{
+    text-align: center;
+}
+.protocolBox input[type=checkbox]{
+    position: relative;
+    top: 2px;
+}
+.protocolBox span{
+    margin-left: 5px;
+}
+.completeReg{
+    margin: 40px 0 20px;
+    text-align: center;
+}
+
+.dlIco dt{display: inline-block;margin:5px;padding:5px 10px;line-height: 26px;background:#f8734c;color:#fff;position:relative;border-radius: 3px}
+.dlIco dt .deleteCom{position:absolute;right:0px;top:-7px;cursor: pointer}
+
+
+/*协议弹窗*/
+.popLayout{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    background: #fff;
+    z-index: 9999;
+    padding: 20px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    width: 40%;
+    display: none;
+}
+.popLayout.show{display: block}
+.protocolPop{
+    height: 560px;
+    overflow-y: scroll;
+}
+.protocolPop h3{
+    text-align: center;
+}
+.protocolPop li {
+    font-size: 14px;
+    line-height: 30px;
+    text-indent: 32px;
+
+}
+.agreeBox{
+    position: fixed;
+    bottom: 60px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+/*响应移动端*/
+@media screen and (max-width: 414px) {
+    .pBox{
+        width: 94%;
+        margin: 90px auto 0px;
+    }
+    .pInfoBox {
+        width: 100%;
+        padding:20px 0 0;
+    }
+    .pInfoBox p{
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    .pInfo span {
+        width: 25%;
+    }
+    .w260{/*该样式只用在当前页面上*/
+        width: 60% !important;;
+    }
+    .w220{/*该样式只用在当前页面上*/
+        width: 50% !important;;
+    }
+    .completeReg{
+        margin: 20px 0 20px;
+    }
+    .popLayout {
+        padding: 20px;
+        width: 90%;
+        height: 80%;
+    }
+    .protocolPop{
+        height: 80%;
+    }
+    .protocolPop li{
+        font-size: 14px;
+    }
+}
+/*End 响应移动端*/

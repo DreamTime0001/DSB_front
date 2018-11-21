@@ -1,0 +1,169 @@
+{
+  "data": {
+    "usrName": "admin",
+    "lastLogin": "20180122103522",
+    "menuList": [
+      {
+        "title": "订单管理",
+        "class": "orderManage",
+        "list": [
+          {
+            "name": "客户投保",
+            "url": "customerInsure"
+          },
+          {
+            "name": "订单归档",
+            "url": "orderFiling"
+          }
+        ]
+      },
+      {
+        "title": "理赔管理",
+        "class": "claimManage",
+        "list": [
+          {
+            "name": "理赔订单",
+            "url": "claimOrder"
+          },
+          {
+            "name": "理赔账单",
+            "url": "claimBill"
+          }
+        ]
+      },
+      {
+        "title": "结算中心",
+        "class": "settleCenter",
+        "list": [
+          {
+            "name": "待审核账单",
+            "url": "auditedBillFront"
+          },
+          {
+            "name": "结算记录",
+            "url": "settleRecordFront"
+          }
+        ]
+      },
+      {
+        "title": "文档中心",
+        "class": "docCenter",
+        "list": [
+          {
+            "name": "文档中心",
+            "url": "subDocCenter"
+          }
+        ]
+      },
+      {
+        "title": "商户中心",
+        "class": "customerCenter",
+        "list": [
+          {
+            "name": "商户中心",
+            "url": "businessInform"
+          },
+          {
+            "name": "账户中心",
+            "url": "accountCenter"
+          }
+        ]
+      },
+      {
+        "title": "订单管理",
+        "class": "orderManage",
+        "list": [
+          {
+            "name": "个人订单",
+            "url": "personalOrder"
+          },
+          {
+            "name": "商户订单",
+            "url": "businessOrder"
+          }
+        ]
+      },
+      {
+        "title": "理赔管理",
+        "class": "claimManage",
+        "list": [
+          {
+            "name": "个人理赔",
+            "url": "personalClaim"
+          },
+          {
+            "name": "商户理赔",
+            "url": "businessClaim"
+          }
+        ]
+      },
+      {
+        "title": "结算中心",
+        "class": "settleCenter",
+        "list": [
+          {
+            "name": "待审核账单",
+            "url": "auditedBillBack"
+          },
+          {
+            "name": "结算记录",
+            "url": "settleRecordBack"
+          }
+        ]
+      },
+      {
+        "title": "信息维护",
+        "class": "informMaintain",
+        "list": [
+          {
+            "name": "产品管理",
+            "url": "productManage"
+          },
+          {
+            "name": "2C产品管理",
+            "url": "twoCProductManage"
+          },
+          {
+            "name": "保司接口管理",
+            "url": "interfaceManage"
+          }
+        ]
+      },
+      {
+        "title": "保单管理",
+        "class": "policyManage",
+        "list": [
+          {
+            "name": "所有保单",
+            "url": "allPolicies"
+          }
+        ]
+      },
+      {
+        "title": "动态引擎",
+        "class": "dynamicEngine",
+        "list": [
+          {
+            "name": "定价因子",
+            "url": "pricingFactor"
+          }
+        ]
+      },
+      {
+        "title": "返费管理",
+        "class": "returnManage",
+        "list": [
+          {
+            "name": "返费订单",
+            "url": "returnOrder"
+          },
+          {
+            "name": "返费账单",
+            "url": "returnBill"
+          }
+        ]
+      }
+    ]
+  },
+  "result": "success"
+}

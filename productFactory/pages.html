@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+    <title>豆沙包（Dowsure）官网丨跨境电商丨跨境卖家丨跨境物流丨跨境正品溯源丨海淘通关丨保险保障服务丨保险科技公司</title>
+    <meta name="keywords" content="豆沙包Dowsure,跨境电商保险保障,货损退货延时赔付,跨境正品溯源,海淘通关关税保证保险,海淘物流转运">
+    <meta name="description"
+          content="豆沙包（Dowsure），全球领先的跨境电商生态保险科技公司，提供跨境卖家保障、跨境物流保障、跨境正品保障、关税保证保险等全流程保障服务，客服热线：400-921-7485，合作企业包括：跨境电商、物流、卖家、海外仓、制造商、供货商等。">
+    <link rel="stylesheet" href="static/css/public.css">
+    <link rel="stylesheet" href="static/css/pages.css?v2">
+
+</head>
+
+<body ng-app="app">
+<div ng-controller="pagesController as vm">
+    <header class="pc-header pc-block clearfix">
+        <a href="/" class="logo"><img src="static/images/logo.png" alt="豆沙包"></a>
+        <div class="inner-wrap clearfix">
+            <div class="content clearfix">
+                <ul class="nav">
+                    <li><a href="http://www.dowsure.com/">首页</a></li>
+                    <!--<li>-->
+                    <!--<a href="javascript:void(0)" class="ico">产品及合作</a>-->
+                    <!--<div class="nav-div">-->
+                    <!--<div class="inner-wrap">-->
+                    <!--<div class="con">-->
+                    <!--<a href="sellerService.html">-->
+                    <!--<img src="static/images/nav_img_01.png" alt="跨境卖家保障服务">-->
+                    <!--<span>跨境卖家保障服务</span>-->
+                    <!--</a>-->
+                    <!--<a href="logisticsService.html">-->
+                    <!--<img src="static/images/nav_img_02.png" alt="跨境物流保障服务">-->
+                    <!--<span>跨境物流保障服务</span>-->
+                    <!--</a>-->
+                    <!--<a href="certifiedgoodsService.html">-->
+                    <!--<img src="static/images/nav_img_03.png" alt="跨境正品保障服务">-->
+                    <!--<span>跨境正品保障服务</span>-->
+                    <!--</a>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</li>-->
+                    <li class="current"><a href="#/productFactoryList.html">保障商城</a></li>
+                    <li><a href="http://www.dowsure.com/list-5-1.html" class="ico">区块链+</a></li>
+                    <li><a href="http://www.dowsure.com/list-6-1.html">商户故事</a></li>
+                    <li><a href="http://www.dowsure.com/list-7-1.html">常见问题</a></li>
+                    <li><a href="http://www.dowsure.com/list-8-1.html">关于我们</a></li>
+                    <li><a href="###">Global Chain</a></li>
+                </ul>
+                <a href="javascript:;" class="login-link" ng-click="showLoginPop()" ng-if="!vm.user.user">登录/注册</a>
+                <p ng-bind="vm.user.user" ng-if="vm.user.user" class="username"></p>
+                <a href="javascript:;" class="login-link" ng-if="vm.user.user" ng-click="toSaaS()">进入SaaS</a>
+
+            </div>
+            <!--<div class="language">-->
+            <!--<a href="/">中文</a>-->
+            <!--<span></span>-->
+            <!--<a href="###">EN</a>-->
+            <!--</div>-->
+        </div>
+        <div class="shop">
+            <i ng-if="shop.shopList.length > 0" ng-bind="shop.shopList.length" class="number"></i>
+            <a href="javascript:;" ng-click="vm.togglePop()" class="buy"
+               ng-class="{'hover':vm.isRouter == true}">我的购物车</a>
+            <div class="shopLayer" ng-if="vm.shopLayerPop">
+                <p ng-if="shop.shopList.length == 0" style="text-align: center;font-size:14px">购物车 中还没有商品，赶紧选购吧</p>
+                <ul>
+                    <li ng-repeat="o in shop.shopList">
+                        <div class="leftData">
+                            <h2 ng-bind="o.productName" ng-bind="o.productName"></h2>
+                            <p ng-bind="o.configV3Desc"></p>
+                            <p ng-bind="o.configV5Desc + '-' + o.configV6Desc"></p>
+                            <p ng-bind="o.configV2Desc"></p>
+                            <p>
+                                <span>购买数量：</span>
+                                <em class="minus" ng-click="toMinus(o)"></em>
+                                <i ng-bind="o.num"></i>
+                                <em class="plus" ng-click="toPlus(o)"></em>
+                            </p>
+                        </div>
+                        <div class="rightData">
+                            <h2 ng-bind="'￥' + o.priceSum"></h2>
+                            <p><a href="javascript:;" ng-click="toDelete($index,o)">删除</a></p>
+                        </div>
+                    </li>
+                </ul>
+                <div class="bottom" ng-if="shop.shopList.length > 0">
+                    <p><span ng-bind="shop.shopList.length"></span>件商品, 共计：<strong ng-bind="'¥' + sumPrice"></strong></p>
+                    <a href="javascript:;" ng-click="toSettle()">去结算</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="mb-header mb-block clearfix">
+        <a href="http://www.dowsure.com/" class="m-logo"><img
+                src="http://www.dowsure.com/res/lx/images/mb_logo.png"></a>
+        <a class="mb-nav-ico js-mb-nav">
+            <i>
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </i>
+        </a>
+    </div>
+    <div ui-view class="pc-high"></div>
+</div>
+<footer class="ny-footer">
+    <div class="inner-wrap clearfix">
+        <div class="left">
+            <div class="fnav pc-block">
+                <a href="sellerService.html">产品详情</a>
+                <a href="about.html">关于我们</a>
+                <a href="story.html">商户故事</a>
+                <a href="faq.html">常见问题</a>
+                <a href="news.html">新闻中心</a>
+            </div>
+            <div class="copyright">
+                <span>版权所有© &emsp;2018</span> 豆沙包科技（上海）有限公司&emsp;沪ICP备15015443号-1
+            </div>
+        </div>
+        <div class="link pc-block">
+            <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2962353314&amp;site=qq&amp;menu=yes" target="_blank"><img
+                    src="static/images/ico_qq.png"></a>
+            <a href="javascript:void(0)" class="weixin">
+                <img src="static/images/ico_wx.png">
+                <div>
+                    <img src="static/images/weixin.jpg">
+                </div>
+            </a>
+            <a href="https://weibo.com/u/5892923185?refer_flag=1001030108_" target="_blank"><img
+                    src="static/images/ico_wb.png"></a>
+        </div>
+    </div>
+</footer>
+<!--MOBILE MENU Begin-->
+<div class="shade"></div>
+<nav class="menu js-mb-menu">
+    <ul class="nav">
+        <li><span><a href="http://www.dowsure.com/">首页</a></span></li>
+        <li>
+            <span><a href="#/productFactoryList.html">保障商城</a></span>
+            <!--<div class="menu-slide">-->
+                <!--<a href="http://www.dowsure.com/list-2-1.html">跨境卖家保障服务</a>-->
+                <!--<a href="http://www.dowsure.com/list-3-1.html">跨境物流保障服务</a>-->
+                <!--<a href="http://www.dowsure.com/list-4-1.html">跨境正品保障服务</a>-->
+                <!--<a href="http://www.dowsure.com/list-59-1.html">关税保证保险服务</a>-->
+            <!--</div>-->
+        </li>
+        <li>
+            <span><a href="http://www.dowsure.com/list-5-1.html">区块链</a></span>
+        </li>
+        <li>
+            <span><a href="http://www.dowsure.com/list-6-1.html">商户故事</a></span>
+        </li>
+        <li>
+            <span><a href="http://www.dowsure.com/list-7-1.html">常见问题</a></span>
+        </li>
+        <li>
+            <span><a href="http://www.dowsure.com/list-8-1.html">关于我们</a></span>
+            <div class="menu-slide">
+                <a href="http://www.dowsure.com/list-12-1.html">发展历程</a>
+                <a href="http://www.dowsure.com/list-16-1.html">我们的团队</a>
+                <a href="http://www.dowsure.com/list-17-1.html">岗位招聘</a>
+            </div>
+        </li>
+        <li><span><a href="###">Global Chain</a></span></li>
+        <li class="language-m">
+            <span><a href="javascript:void(0)">Language</a></span>
+            <div class="menu-slide">
+                <a href="http://www.dowsure.com/"><img
+                        src="http://www.dowsure.com/uploadfile/2018/10/15/20181015110002J7Asju.png"/><span>CN</span></a>
+                <a href="http://www.dowsure.com/en/"><img
+                        src="http://www.dowsure.com/uploadfile/2018/10/15/20181015110029uUGEJ1.png"/><span>EN</span></a>
+            </div>
+        </li>
+        <li><span><a href="https://saas.dousha8ao.com/" target="_blank" class="login-link">登录/注册</a></span></li>
+        <!-- <li><span><a href="http://www.dowsure.com/">Chinese</a></span></li>
+        <li><span><a href="http://www.dowsure.com/en/">EN</a></span></li> -->
+    </ul>
+</nav>
+</div>
+<script src="static/js/jquery/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="static/js/flexible_css.debug.js"></script>
+<script type="text/javascript" src="static/js/flexible.debug.js"></script>
+<script type="text/javascript" src="static/js/slick.min.js"></script>
+<script type="text/javascript" src="static/js/public.js"></script>
+<script type="text/javascript" src="static/js/check.js"></script>
+<script src="static/js/bootstrap.min.js"></script>
+<script src="static/js/angular/angular.min.js"></script>
+<script src="static/js/angular/angular-file-upload.min.js"></script>
+<script src="static/js/angular/angular-ui-router.js"></script>
+<script src="static/js/angular/angular-cookies.min.js"></script>
+<script src="static/js/angular/ocLazyLoad.min.js"></script>
+<script src="static/js/common.js" type="text/javascript"></script>
+<script src="static/js/swiper.min.js" type="text/javascript"></script>
+<script src="../core/configs/config.js"></script>
+<!--<script src="core/configs/testConfig.js"></script>-->
+<!--<script src="core/configs/localConfig.js"></script>-->
+<script src="core/services/service.js?v1"></script>
+<script src="core/services/util.js"></script>
+<script src="core/services/layer/layer.js"></script>
+<script src="core/services/layer.js"></script>
+<script src="core/directives/directive.js"></script>
+<script src="static/js/ag-ui-bs/ui-bootstrap-tpls.js"></script>
+<script src="https://cdn.bootcss.com/angular-sanitize/1.2.27/angular-sanitize.min.js"></script>
+<script src="app.js"></script>
+<script src="core/routes/router.js"></script><!--总路由-->
+<script src="modules/pages/controller/pagesController.js"></script><!--总模板-->
+</body>
+</html>

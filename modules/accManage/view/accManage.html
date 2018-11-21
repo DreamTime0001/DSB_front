@@ -1,0 +1,143 @@
+<div ng-controller="accManageController as vm" class="innerTop" ng-init="vm.getPagedDataAsync()">
+    <div class="popMask" ng-if="vm.popShow">
+        <div class="popDiv">
+            <h3 class="mb15" ng-bind="vm.popRoleTitle"></h3>
+            <img src="static/images/closeIco.png" ng-click="vm.popShow = false"/>
+            <div class="overfl mb20">
+                <p class="f_l lh40 w100 text_r">账号*：</p>
+                <input type="text" class="f_l form-control w120 mr20" ng-model="vm.role.username" ng-if="vm.isAdd"/>
+                <p  class="f_l w120 mr20 lh40" ng-bind="vm.role.username" ng-if="!vm.isAdd"></p>
+                <p class="f_l lh40 w100 text_r">姓名*：</p>
+                <input type="text" class="f_l form-control w120" ng-model="vm.role.name"/>
+            </div>
+            <div class="overfl mb20">
+                <p class="f_l lh40  w100 text_r">邮箱*：</p>
+                <input type="text" class="f_l form-control w120 mr20" ng-model="vm.role.email"/>
+                <p class="f_l lh40 w100 text_r">联系方式*：</p>
+                <input type="text" class="f_l form-control w120" ng-model="vm.role.telephone"/>
+            </div>
+            <div class="overfl mb20" ng-if="vm.isAdd">
+                <p class="f_l lh40  w100 text_r">密码*：</p>
+                <input type="password" class="f_l form-control w120" ng-model="vm.role.password"/>
+            </div>
+            <div class="overfl mb20">
+                <p class="f_l lh40  w100 text_r">账号组*：</p>
+                <label class="f_l mr10 lh40 " ng-repeat="role in vm.roleListPop"><input type="checkbox" class="check-type-1" ng-model="role.checked"/> <span ng-bind="role.desc"></span></label>
+            </div>
+            <div class="text_c">
+                <input type="button" class="btn-warning btn mr10" value="提交" ng-click="vm.roleFun()">
+            </div>
+        </div>
+    </div>
+    <div class="popMask" ng-if="vm.popPasswordShow">
+        <div class="addInsurancePop changePswBox">
+            <h3>重置密码</h3>
+            <img src="static/images/pop-close.png" alt="" ng-click="vm.popPasswordShow = false">
+            <ul>
+                <li>
+                    <label>用户名：</label>
+                    <span class="timeInp" ng-bind="vm.userInfo.username"></span>
+                </li>
+                <li>
+                    <label>密码<i>*</i>：</label>
+                    <input class="timeInp" type="password" ng-model="vm.userInfo.password">
+                </li>
+            </ul>
+            <p class="changPsw">
+                <i>*</i>
+                <span>密码不能少于8位或多于20位！</span>
+            </p>
+            <p>
+                <input class="popSub" type="button" value="提交" ng-click="vm.resetPassword()">
+            </p>
+        </div>
+    </div>
+    <ol class="breadcrumb">
+    </ol>
+    <div class="pLR40">
+        <div class="rightDiv">
+            <div class="rightContTitle">
+                <h2>账户管理</h2>
+            </div>
+            <div class="queryDiv">
+                <div class="queryDivIn">
+                    <form class="form-horizontal">
+                        <div>
+                            <div class="f_l mr15 mb15">
+                                <p class="f_l lh40">账号：</p>
+                                <input type="text" class="form-control f_l w150" placeholder="请输入账号" ng-model="vm.query.username">
+                            </div>
+                            <div class="f_l mr15 mb15">
+                                <p class="f_l lh40">姓名：</p>
+                                <input type="text" class="form-control f_l w150" placeholder="请输入姓名" ng-model="vm.query.name">
+                            </div>
+                            <div class="f_l mr15 mb15">
+                                <p class="f_l lh40">联系电话：</p>
+                                <input type="text" class="form-control f_l w150" placeholder="请输入联系电话" ng-model="vm.query.telephone">
+                            </div>
+                            <div class="f_l mr15 mb15">
+                                <p class="f_l lh40">账号组：</p>
+                                <select class="w150 form-control" ng-model="vm.query.roleId"
+                                        ng-options="o.id as o.desc for o in vm.roleListPage">
+                                    <option value="">请选择</option>
+                                </select>
+                            </div>
+                            <div class="f_l mr15 mb15">
+                                <p class="f_l lh40">状态：</p>
+                                <select class="w100 form-control" ng-model="vm.query.status"
+                                        ng-options="o.status as o.name for o in vm.statusList">
+                                    <option value="">请选择</option>
+                                </select>
+                            </div>
+                            <div class="f_l mb15">
+                                <input class="btn btn-warning mr10" type="submit" value="搜索" ng-click="vm.search()">
+                                <input class="btn btn-info" type="submit" value="新增账户" ng-click="vm.popShowAddRole()">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="noDataDiv" ng-if="!vm.list.length">
+                <div class="noData">
+                    <div class="noDataBg"></div>
+                    <p>暂时没有数据～</p>
+                </div>
+            </div>
+            <div class="tableList" ng-show="vm.list.length > 0">
+                <table class="table tableInfo">
+                    <tr>
+                        <th>序号</th>
+                        <th>账号</th>
+                        <th>姓名</th>
+                        <th>邮箱</th>
+                        <th>权限组</th>
+                        <th>联系方式</th>
+                        <th>最后上线时间</th>
+                        <th>最后上线IP</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr ng-repeat="o in vm.list">
+                        <td ng-bind="$index + 1"></td>
+                        <td ng-bind="o.username"></td>
+                        <td ng-bind="o.name"></td>
+                        <td ng-bind="o.email"></td>
+                        <td>
+                            <em ng-repeat="role in o.roleList" ng-bind="role.desc" class="mr10"></em>
+                        </td>
+                        <td ng-bind="o.telephone"></td>
+                        <td ng-bind="o.lastLoginTime"></td>
+                        <td ng-bind="o.ip"></td>
+                        <td ng-bind="o.statusText"></td>
+                        <td>
+                            <a href="javascript:;" ng-if="o.status == 1" ng-click="vm.disableUser(o.id,o.username)">冻结</a>                            <a href="javascript:;" ng-if="o.status == 0" ng-click="vm.enableUser(o.id)">恢复</a>
+                            <a href="javascript:;" ng-click="vm.popShowEditRole(o)">修改</a>
+                            <a href="javascript:;" ng-click="vm.resetPasswordPop(o)">重置密码</a>
+                        </td>
+                    </tr>
+                </table>
+                <div class="page" paging page-object="vm.query" click-function="vm.getPagedDataAsync"></div>
+            </div>
+        </div>
+    </div>
+</div>

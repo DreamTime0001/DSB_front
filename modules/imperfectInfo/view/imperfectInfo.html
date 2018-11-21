@@ -1,0 +1,77 @@
+<div ng-controller="imperfectInfoController as vm" class="innerTop" ng-init="vm.getPagedDataAsync()">
+    <!--弹出层-->
+    <div class="popMask" ng-if="vm.popShow">
+        <div class="addInsurancePop changePswBox">
+            <h3>重置密码</h3>
+            <img src="static/images/pop-close.png" alt="" ng-click="vm.clearUserInfo()">
+            <ul>
+                <li>
+                    <label>用户名：</label>
+                    <span class="timeInp" ng-bind="vm.userInfo.username"></span>
+                </li>
+                <li>
+                    <label>密码<i>*</i>：</label>
+                    <input class="timeInp" type="password" ng-model="vm.userInfo.password">
+                </li>
+            </ul>
+            <p class="changPsw">
+                <i>*</i>
+                <span>密码不能少于8位或多于20位！</span>
+            </p>
+            <p>
+                <input class="popSub" type="button" value="提交" ng-click="vm.resetPassword()">
+            </p>
+        </div>
+    </div>
+    <ol class="breadcrumb"></ol>
+    <div class="pLR40">
+        <div class="rightDiv">
+            <div class="rightContTitle">
+                <h2>未完善信息商户</h2>
+                <i class="closeIco" ui-sref="businessManage"></i>
+            </div>
+            <div class="queryDiv">
+                <div class="queryDivIn">
+                    <form class="form-horizontal">
+                        <div>
+                            <div class="f_l mr15 mb15">
+                                <p class="f_l lh40">登录手机号：</p>
+                                <input type="text" class="form-control f_l w150" placeholder="请输入登录手机号"
+                                       ng-model="vm.query.username">
+                            </div>
+                            <div class="f_l mb15">
+                                <input class="btn btn-warning mr10 f_l" type="submit" value="搜索" ng-click="vm.search()">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="noDataDiv" ng-if="!vm.list.length">
+                <div class="noData">
+                    <div class="noDataBg"></div>
+                    <p>暂时没有数据～</p>
+                </div>
+            </div>
+            <div class="tableList" ng-show="vm.list.length > 0">
+                <table class="table tableInfo">
+                    <tr>
+                        <th>序号</th>
+                        <th>登录手机号</th>
+                        <th>合作开始时间</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr ng-repeat="o in vm.list">
+                        <td ng-bind="$index + 1"></td>
+                        <td ng-bind="o.username"></td>
+                        <td ng-bind="o.createTime | date : 'yyyy-MM-dd'"></td>
+                        <td>
+                            <a href="javascript:;" ng-click="vm.toPerfect(o.username,o.id)">修改</a>
+                            <a href="javascript:;" ng-click="vm.resetPasswordPop(o)">重置密码</a>
+                        </td>
+                    </tr>
+                </table>
+                <div class="page" paging page-object="vm.query" click-function="vm.getPagedDataAsync"></div>
+            </div>
+        </div>
+    </div>
+</div>

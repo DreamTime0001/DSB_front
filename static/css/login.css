@@ -1,0 +1,429 @@
+body {
+    font: normal 14px 'microsoft yahei', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #686868;
+    background: #f2f2f2;
+}
+
+body, div, ul, li, h1, h2, dl, dt, dd {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+label {
+    font-weight: normal;
+}
+
+li {
+    list-style: none
+}
+
+button, input {
+    font-family: inherit
+}
+
+.f_l {
+    float: left
+}
+
+.ml10 {
+    margin-left: 10px
+}
+
+.ml20 {
+    margin-left: 20px
+}
+
+.ml30 {
+    margin-left: 30px
+}
+
+.logo {
+    width: 210px;
+    height: 52px;
+    margin: 20px 30px 30px;
+}
+
+body, html {
+    height: 100%
+}
+
+.login_bg {
+    width: 100%;
+    height: 100%;
+}
+
+.login-top {
+    width: 100%;
+    height: 88px;
+    background: rgba(255, 255, 255, .2);
+    border-bottom: 1px solid #71a5de;
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: 1111111;
+}
+
+.login-top .logoDiv {
+    width: 165px;
+    height: 59px;
+    float: left;
+    margin: 15px 20px 0 30px;
+    background: url("../images/loginLogo.png") no-repeat;
+}
+
+.marquee {
+    width: 100%;
+    height: 36px;
+    background: url("../images/trumpet.png") rgba(0, 0, 0, .23) 37px center no-repeat;
+    position: absolute;
+    overflow: hidden;
+    padding-left: 95px;
+    z-index: 999999;
+    top:88px
+}
+
+.marquee div {
+    width: 100%;
+    height: 36px;
+    position: relative;
+    overflow: hidden;
+}
+
+.marquee p {
+    font-size: 16px;
+    line-height: 36px;
+    color: #ffffff;
+    position: absolute;
+    left: 200%;
+    -webkit-animation: horse 30s linear 0s infinite;
+    animation: horse 30s linear 0s infinite;
+}
+
+.marquee p.pause {
+    -webkit-animation-play-state: paused;
+    animation-play-state: paused;
+}
+@keyframes horse {
+    0% {
+        left: 110%;
+        top: 0;
+    }
+
+    100% {
+        left: -100%;
+        top: 0;
+    }
+}
+@-webkit-keyframes horse {
+    0% {
+        left: 110%;
+        top: 0;
+    }
+
+    100% {
+        left: -100%;
+        top: 0;
+    }
+}
+
+.login-bgpic {
+    width: 100%;
+    height: 900px;
+    position: relative;
+    background: url("../images/login-bg-2.jpg") no-repeat;
+    background-size: cover;
+}
+
+.login_div {
+    width: 1300px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.login {
+    background: #fff;
+    width: 432px;
+    height: 370px;
+    padding: 36px 27px 58px;
+    position: absolute;
+    right: 10px;
+    top: 244px;
+    border-radius: 5px;
+    box-shadow: 0px 10px 14px rgba(136, 136, 136, .2);
+}
+
+/*.qrCodeLogin{position: absolute;right: 0;top:0;width:60px;height: 58px;background:url('../img/qrCodeImg.png') no-repeat;transition:0.3s;}*/
+.login h2 {
+    color: #202123;
+    font: normal 36px 'microsoft yahei';
+    padding-bottom: 40px;
+    text-align: center;
+}
+
+.loginiup {
+    overflow: hidden
+}
+
+.login li {
+    position: relative;
+    margin-bottom: 25px;
+    list-style: none;
+}
+
+.icoUser, .icoPw, .icoYzm {
+    position: absolute;
+    left: 12px;
+    top: 10px;
+    width: 27px;
+    height: 30px;
+    background: url('../images/icon.png') no-repeat;
+    background-position: 0px -291px;
+}
+
+.icoPw {
+    background-position: -27px -291px;
+}
+
+.icoYzm {
+    background-position: -82px 0;
+    top: 10px;
+}
+
+.login li input {
+    background: #fff;
+    padding: 0px 0px 0px 50px;
+    height: 50px;
+    line-height: 50px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #e1e3e5;
+    outline: none;
+    border-radius: 5px;
+    color: #959595;
+    font-size: 17px;
+}
+
+.login li input.wd50 {
+    width: 50px;
+    padding-left: 5px;
+    padding-right: 10px
+}
+
+.remember {
+    position: relative;
+    height: 20px;
+    margin-top: 10px;
+    line-height: 20px
+}
+
+.remember p {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 0;
+    padding: 0
+}
+
+.remember p label {
+    display: inline-block;
+    color: #fff;
+    font: normal 13px 'microsoft yahei'
+}
+
+.remember p input {
+    margin: -1px 2px 0 0;
+    overflow: hidden;
+    vertical-align: middle
+}
+
+.remember span {
+    position: absolute;
+    right: 0
+}
+
+.loginBtn {
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 5px;
+    padding: 10px 0;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    display: block;
+    cursor: pointer;
+}
+
+.loginBtn.red {
+    background: -webkit-linear-gradient(0deg, #fe5757, #fd8f69);
+    background: linear-gradient(0deg, #fe5757, #fd8f69);
+    box-shadow: 2px 2px 14px rgba(254, 113, 91, .77);
+}
+
+.loginBtn.blue {
+    background: -webkit-linear-gradient(0deg, #548af8, #5cacfe);
+    background: linear-gradient(0deg, #548af8, #5cacfe);
+    box-shadow: 2px 2px 14px rgba(91, 169, 253, .77);
+}
+
+/*.login{height: 300px;width: 500px;margin:0 auto;border:1px solid #ddd;background: #fff;position: absolute;left: 50%;top:50%;margin:-150px 0 0 -250px;box-shadow: 2px 2px 2px rgba(0,0,0,0.05)}*/
+
+/*.login ul{padding:30px 70px}*/
+/*.login li{padding:10px 0 10px 70px;position: relative}*/
+/*.login li label{position: absolute;left: 0;top:20px}*/
+/*.login li input{padding:10px;border:1px solid #ddd;width: 100%;font-size: 15px}*/
+
+.loginBtnBox {
+    padding-left: 140px
+}
+
+.loginBtnBox button {
+    background: #399bff;
+    border: 0;
+    padding: 10px 60px;
+    color: #fff;
+    border-radius: 2px
+}
+
+.footer {
+    text-align: center;
+    line-height: 22px;
+    margin-top: 20px
+}
+
+.footer p {
+    margin-bottom: 20px
+}
+
+.footer p a {
+    padding: 0 10px;
+}
+
+.login-foot {
+    background: #0a0a0a;
+    width: 100%;
+    height: 58px;
+    line-height: 58px;
+    text-align: center;
+    color: rgba(255, 255, 255, .5);
+    font-size: 16px;
+}
+
+.login-foot span {
+    padding-left: 20px;
+}
+
+.login-cw {
+    width: 377px;
+    height: 27px;
+    line-height: 24px;
+    margin: 0 auto;
+    background: #feefeb;
+    border: 1px solid #f74821;
+    color: #f74821;
+    font-size: 14px;
+    position: absolute;
+    top: 90px;
+    left: 27px;
+    padding-left: 16px;
+    box-sizing: border-box;
+}
+
+.login-cw img {
+    padding-right: 12px;
+    vertical-align: top;
+    margin: 5px 0 0 0;
+}
+.topText{
+    line-height:95px;font-size:22px;font-weight: lighter
+}
+@media screen and (max-width: 1366px) {
+    .login-top .logoDiv{
+        width:135px;
+        height:49px;
+        background-size:100% 100%;
+        margin-top:9px
+    }
+    .topText{
+        line-height:70px;
+        font-size:20px
+    }
+    .login-top{
+        height:62px
+    }
+    .marquee{
+        top:62px
+    }
+}
+@media screen and (max-width: 414px) {
+
+    .toBottom{position: fixed;bottom:0}
+    .login-top{
+        background:rgba(0,0,0,.5);
+        border-bottom:0
+    }
+    .login-top .logoDiv{
+        width:110px;
+        background-size:100%;
+        margin-top:15px;
+        float: left;
+    }
+    .login-foot{
+       display: none;
+    }
+    .login-bgpic{
+        height:100%;
+        background:url("../images/login-phone-bg-2.jpg") no-repeat;
+        background-size:cover;
+    }
+
+
+    .marquee p {
+        font-size: 16px;
+        height:36px;
+        overflow: hidden;
+        line-height: 36px;
+        color: #ffffff;
+        position: absolute;
+        left: 200%;
+        -webkit-animation: horse 10s linear 0s infinite;
+        animation: horse 10s linear 0s infinite;
+    }
+
+    .login_div {
+        width: 100%
+    }
+
+    .login {
+        width: 90%;
+        right: 5%;
+        top: 120px
+    }
+
+    .loginBtn {
+        padding: 5px;
+        width: 100px !important;
+        float: none;
+        display: inline-block;
+    }
+
+    .loginBtn.blue {
+        margin: 0 10px 0 0;
+    }
+
+    .loginBtn.red {
+        margin-left: 10px;
+    }
+
+    .topText {
+        text-align: center;
+        float: left;
+        font-size:18px
+    }
+
+    .marquee {
+        position:fixed;
+        bottom:0 !important;
+        top:auto;
+    }
+}

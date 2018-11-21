@@ -1,0 +1,164 @@
+<div ng-controller="businessInformDetailsController as vm" class="innerTop" ng-init="vm.getPagedDataAsync()">
+    <ol class="breadcrumb"></ol>
+    <div class="pLR40">
+        <div class="rightDiv">
+            <div class="rightContTitle">
+                <h2>产品信息</h2>
+                <i class="closeIco" ui-sref="businessInform"></i>
+            </div>
+            <div class="claimTab">
+                <div class="rightLay overfl">
+                    <div>
+                        <div class="overfl">
+                            <div class="inlay">
+                                <h4 class="titleNav">基本信息</h4>
+                                <div class="f_l">
+                                    <div class="overfl ">
+                                        <p class="f_l lh40 w200 c_999 text_r">产品名称：</p>
+                                        <p class="f_l lh40" ng-bind="vm.product.productName"></p>
+                                    </div>
+                                    <div class="overfl ">
+                                        <p class="f_l lh40 w200 c_999 text_r">产品id：</p>
+                                        <p class="f_l lh40" ng-bind="vm.product.id"></p>
+                                    </div>
+                                    <div class="overfl ">
+                                        <p class="f_l lh40 w200 c_999 text_r">产品类型：</p>
+                                        <p class="f_l lh40" ng-bind="vm.product.productTypeText"></p>
+                                    </div>
+                                    <div class="overfl ">
+                                        <p class="f_l lh40 w200 c_999 text_r">产品价格：</p>
+                                        <p class="f_l lh40" ng-bind="vm.product.productPrice"></p>
+                                    </div>
+                                    <div class="overfl">
+                                        <p class="f_l lh40 w200 text_r c_999">申诉时效：</p>
+                                        <p class="f_l lh40" ng-bind="vm.product.prescription + '天'"></p>
+                                    </div>
+                                    <div class="overfl ">
+                                        <p class="f_l lh40 w200 c_999 text_r">月累计补贴限额：</p>
+                                        <p class="f_l lh40" ng-bind="vm.product.monthCompensationAmount"></p>
+                                    </div>
+                                    <div class="overfl ">
+                                        <p class="f_l lh40 w200 c_999 text_r">年累计补贴限额：</p>
+                                        <p class="f_l lh40" ng-bind="vm.product.yearCompensationAmount"></p>
+                                    </div>
+                                </div>
+                                <div class="f_l">
+                                    <div class="overfl ">
+                                        <p class="f_l lh40 w200 text_r c_999">产品责任：</p>
+                                        <p class="f_l lh40" ng-bind="vm.product.productDuty"></p>
+                                    </div>
+                                    <div class="overfl ">
+                                        <p class="f_l lh40 w200 c_999 text_r">产品有效期：</p>
+                                        <p class="f_l lh40" ng-bind="vm.product.productPeriod"></p>
+                                    </div>
+                                    <div class="overfl ">
+                                        <p class="f_l lh40 w200 text_r c_999">产品进出口类型：</p>
+                                        <p class="f_l lh40" ng-bind="vm.product.isExitText"></p>
+                                    </div>
+
+                                    <div class="overfl " ng-if="vm.product.limitMoney != null">
+                                        <p class="f_l lh40 w200 text_r c_999">小额快审单笔上限：</p>
+                                        <p class="f_l lh40" ng-bind="vm.product.limitMoney"></p>
+                                    </div>
+                                    <div class="overfl " ng-if="vm.product.auditMonthCompensationAmount != null">
+                                        <p class="f_l lh40 w200 text_r c_999">小额快审月限额：</p>
+                                        <p class="f_l lh40" ng-bind="vm.product.auditMonthCompensationAmount"></p>
+                                    </div>
+                                    <div class="overfl " ng-if="vm.product.auditMonthCompensationAmountRest != null">
+                                        <p class="f_l lh40 w200 text_r c_999">小额快审月剩余额度：</p>
+                                        <p class="f_l lh40" ng-bind="vm.product.auditMonthCompensationAmountRest"></p>
+                                    </div>
+                                    <!--<div class="overfl ">-->
+                                        <!--<p class="f_l lh40 w200 c_999 text_r">月累计补贴剩余额度：</p>-->
+                                        <!--<p class="f_l lh40" ng-bind="vm.product.monthCompensationAmountRest"></p>-->
+                                    <!--</div>-->
+                                    <!--<div class="overfl ">-->
+                                        <!--<p class="f_l lh40 w200 c_999 text_r">年累计补贴剩余额度：</p>-->
+                                        <!--<p class="f_l lh40" ng-bind="vm.product.yearCompensationAmountRest"></p>-->
+                                    <!--</div>-->
+                                </div>
+                            </div>
+                            <div class="inlay overfl" ng-if="vm.product.productType == 3 || vm.product.productType == 4">
+                                <h4 class="titleNav">包含产品</h4>
+                                <div class="f_l" style="margin-bottom: 15px;width: 50%;" ng-repeat="o in vm.list">
+                                    <div class="overfl ">
+                                        <p class="f_l lh40 w200 text_r c_999">产品名称：</p>
+                                        <p class="f_l lh40" ng-bind="o.productName"></p>
+                                    </div>
+                                    <div class="overfl ">
+                                        <p class="f_l lh40 w200 text_r c_999">组合版产品id：</p>
+                                        <p class="f_l lh40" ng-bind="o.id"></p>
+                                    </div>
+                                    <div class="overfl">
+                                        <p class="f_l lh40 w200 text_r c_999">最高补贴限额：</p>
+                                        <p class="f_l lh40"  ng-bind="o.productCompensationAmount"></p>
+                                    </div>
+                                    <div class="overfl ">
+                                        <p class="f_l lh40 w200 text_r c_999">产品有效期：</p>
+                                        <p class="f_l lh40" ng-bind="o.productPeriod + '天'"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="overfl mt30">
+                        <div class="inlay">
+                            <div>
+                                <div class="overfl">
+                                    <h4 class="titleNav">投保信息必填项模板</h4>
+                                    <div class="overfl">
+                                        <div class="overfl " ng-repeat="obj in vm.orderTemplate">
+                                            <p class="f_l lh40 w200 c_999 text_r" ng-bind="obj.name + '：'"></p>
+                                            <p class="f_l lh40"  ng-repeat="current in obj.values" ng-bind="current"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inlay">
+                            <div>
+                                <div class="overfl">
+                                    <h4 class="titleNav">理赔上传凭证模板</h4>
+                                    <div class="overfl">
+                                        <div class="overfl ml20"style="margin-bottom: 30px" ng-if="vm.img.length>0" ng-repeat="obj in vm.img">
+                                            <div  ng-if="obj.values.length>0">
+                                                <p style="font-size: 16px;" ng-bind="obj.name"></p >
+                                                <div style="margin:20px 0 0 30px;">
+                                                    <a ng-if="obj.isImg" ng-repeat="current in obj.values" ng-href="{{current}}" style="display: inline-block;margin:10px 0 0 52px;border: 1px solid #1dc0e6;"  target="_blank">
+                                                        <img style="margin-top: 20px;height: 150px;width: 200px;" ng-src="{{current}}" alt="">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="overfl ml20"style="margin-bottom: 30px" ng-if="vm.zip.length>0" ng-repeat="obj in vm.zip">
+                                            <div  ng-if="obj.values.length>0">
+                                                <p style="font-size: 16px;" ng-bind="obj.name"></p >
+                                                <div style="margin:20px 0 0 30px;">
+                                                        <a ng-repeat="current in obj.values" ng-href="current" style="display: inline-block;margin:10px 0 0 40px;"  target="_blank">点击下载</a >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="overfl ml20"style="margin-bottom: 30px" ng-if="vm.font.length>0" ng-repeat="obj in vm.font">
+                                            <div ng-if="obj.values.length>0">
+                                                <p style="font-size: 16px;" ng-bind="obj.name"></p >
+                                                <div style="margin:20px 0 0 30px;">
+                                                    <span  style="display: inline-block;margin:10px 0 0 40px;" ng-repeat="current in obj.values" ng-bind="current"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center" class="mt30">
+                        <input type="button" class="btn btn-warning w80 mr30" value="确认"
+                            ui-sref="businessInform"   />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

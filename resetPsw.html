@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html ng-app="resetPsw" lang="en" ng-controller="resetPswController as vm" ng-init="vm.init()">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>重置密码</title>
+    <link rel="stylesheet" href="static/css/bootstrap.min_v3.3.4.css">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/register.css">
+</head>
+<body>
+<div id="top" class="clearfix blueBg">
+    <div class="applogo newTestBg"><img src="static/images/logo.png"/></div>
+    <div class="userLeft">
+        <h2 class="c_000">豆沙包保险SaaS服务平台</h2>
+    </div>
+</div>
+<div class="regOut">
+    <div class="regDiv">
+        <h3 class="text_c mb20" style="width:600px;">重置密码</h3>
+        <div class="overfl mb20">
+            <div class="overfl">
+                <p class="left-p">手机号：</p>
+                <input type="text" class="right-text" ng-class="{'error':vm.errors.username}" placeholder="请输入手机号"
+                    ng-model="vm.reset.username" ng-blur="vm.isUsernameRegister()" ng-focus="vm.errors.username = false"
+                    id="username">
+            </div>
+        </div>
+        <div class="overfl mb20">
+            <div class="overfl">
+                <p class="left-p">新密码：</p>
+                <input type="password" class="right-text" ng-class="{'error':vm.errors.password}" placeholder="请输入新密码"
+                    ng-model="vm.reset.password" ng-blur="vm.isPassword()" ng-focus="vm.errors.password = false">
+            </div>
+        </div>
+        <div class="overfl mb20">
+            <div class="overfl">
+                <p class="left-p">确认密码：</p>
+                <input type="password" class="right-text" ng-class="{'error':vm.errors.confirmPassword}"
+                    placeholder="请输入确认密码" ng-model="vm.reset.confirmPassword" ng-blur="vm.isconfirmPassword()"
+                    ng-focus="vm.errors.confirmPassword = false" id="confirmPassword">
+            </div>
+        </div>
+        <div class="overfl mb20">
+                <div class="overfl">
+                    <p class="left-p" style="white-space:nowrap">图片验证码：</p>
+                    <input type="text" class="right-text small" ng-class="{'error':vm.errors.photoCode}" placeholder="请输入图片验证码"
+                        ng-model="vm.reset.photoCode" ng-focus="vm.errors.photoCode = false" ng-blur="vm.isPhotoCode()"
+                        id="photoCode">
+                    <img ng-src="{{vm.verifyCodeImg}}" />
+                    <span ng-click="vm.changVerifyCodeImg()" style="cursor: pointer" class="change-a">换一张</span>
+                </div>
+            </div>
+        <div class="overfl mb20">
+            <div class="overfl">
+                <p class="left-p">验证码：</p>
+                <input type="text" class="right-text small" ng-class="{'error':vm.errors.verifyCode}" placeholder="请输入验证码"
+                    ng-model="vm.reset.verifyCode" ng-focus="vm.errors.verifyCode = false" ng-blur="vm.isVerifyCode()"
+                    id="verifyCode">
+                <button class="get-code" ng-click="vm.getCode()" type="button" ng-disabled="vm.iconDis" ng-bind="vm.paracont"></button>
+            </div>
+        </div>
+        <!-- <div class="overfl c_999 text_c">
+            <p>客服邮箱：<a href="mailto:kefu@dousha8ao.com">kefu@dousha8ao.com</a></p>
+        </div> -->
+        <div class="protocolBox mt30">
+            <button class="get-code res" ng-click="vm.submit()">提交</button>
+        </div>
+    </div>
+</div>
+<script src="static/js/jquery/jquery-1.10.2.min.js"></script>
+<script src="static/js/angular/angular.min.js"></script>
+<script src="static/js/angular/angular-cookies.min.js"></script>
+<script src="core/configs/config.js"></script>
+<!-- <script src="core/configs/testConfig.js"></script> -->
+<!--<script src="core/configs/developConfig.js"></script>-->
+<!-- <script src="core/configs/localConfig.js"></script> -->
+<script src="core/services/service.js"></script>
+<script src="core/services/layer/layer.js"></script>
+<script src="core/services/layer.js"></script>
+<script src="core/services/util.js"></script>
+
+<script src="modules/resetPsw/controller/resetPsw.js"></script>
+</body>
+</html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html ng-app="dashboard" lang="en" ng-controller="dashboardController as vm" ng-init="vm.init()">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">-->
+    <title>dashboard</title>
+    <link rel="stylesheet" href="static/css/bootstrap.min_v3.3.4.css">
+    <link rel="stylesheet" href="static/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="static/css/dashboard.css">
+</head>
+<body>
+<div id="top" class="clearfix">
+    <div class="applogo"><img src="static/images/logo.png" style="margin:37px auto 0"/></div>
+    <ul class="userLeft">
+        <!--<li>-->
+            <!--<a href="javascript:;" style="color:#000000" ng-click="vm.toDashborad()">-->
+                <!--<i class="f_l"><img src="static/images/overview.png"/> </i>-->
+                <!--<p class="f_l ml5">总览</p>-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<a href="javascript:;" style="color:#000" ng-click="vm.toSelf()">-->
+                <!--<i class="f_l"><img src="static/images/backstage.png"/> </i>-->
+                <!--<p class="f_l ml5">后台管理中心</p>-->
+            <!--</a>-->
+        <!--</li>-->
+    </ul>
+    <div class="topRight">
+        <ul class="userAddInfo">
+            <li>
+                <!--<a class="BusinessManagement" href="javascript:;"  ng-click='vm.goBusinessManage()' ng-if="vm.isMerchantManagement == 'true'">商户管理</a>-->
+                <!--<a href="javascript:;" ui-sref="userManage" ng-if="vm.isUserManagement == 'true'">用户管理</a>-->
+            </li>
+            <li class="ePointBg" onclick="window.open('http://echain.one/')"
+                ng-if="vm.isFront == 0">
+                <span class="c_fff" ng-bind="'ePoints：'+ vm.ePoints"></span>
+            </li>
+            <li style="margin:0">
+                <!--<i class="userHead f_l"><img src="static/images/user.jpg"/> </i>-->
+                <div class="dropdown f_l ml5">
+                    <p ng-bind="vm.user.username" class="f_l mr5" id="dropdownMenu1" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="true"></p>
+                    <!--<span class="caret mt0"></span>-->
+                    <!--<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">-->
+                        <!--<li style="float: none;margin:0" ng-if="vm.isFront == 1 && vm.isAdmin == 'false'"-->
+                            <!--ui-sref="personalCenter">个人中心-->
+                        <!--</li>-->
+                        <!--<li ng-click="vm.logout()" style="float: none;margin:0">安全退出</li>-->
+                    <!--</ul>-->
+                </div>
+            </li>
+            <li class="navBarIconLi">
+                <div class="navBarIcon" ng-click="vm.hideSliderBar()"><img src="static/images/navBarIcon.png"/></div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="layOut">
+    <div class="w70 f_l">
+        <div class="overfl">
+            <h2 class="dashTitle">数据总览</h2>
+            <div class="boxWh-1  f_l">
+                <div class="box">
+                    <div class="boxIn">
+                        <img src="static/images/dashboard-1.jpg" class="mb10"/>
+                        <p class="mb10"><strong ng-bind="vm.totalData.insurance.toLocaleString()"></strong></p>
+                        <p class="c_999">总保额(元)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="boxWh-1 f_l" style="padding:0">
+                <div class="box">
+                    <div class="boxIn">
+                        <img src="static/images/dashboard-2.jpg" class="mb10"/>
+                        <p class="mb10"><strong ng-bind="vm.totalData.premium.toLocaleString()"></strong></p>
+                        <p class="c_999">总保费(元)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt20">
+            <div class="boxWh-2 f_l">
+                <div class="box">
+                    <div class="boxIn">
+                        <img src="static/images/dashboard-3.jpg" class="mb10"/>
+                        <p class="mb10"><strong ng-bind="vm.totalData.sumCompany"></strong></p>
+                        <p class="c_999">总商户数</p>
+                    </div>
+                </div>
+            </div>
+            <div class="boxWh-2 f_l">
+                <div class="box">
+                    <div class="boxIn">
+                        <img src="static/images/dashboard-4.jpg" class="mb10"/>
+                        <p class="mb10"><strong ng-bind="vm.totalData.userCount.toLocaleString()"></strong></p>
+                        <p class="c_999">总用户数</p>
+                    </div>
+                </div>
+            </div>
+            <div class="boxWh-2 f_l">
+                <div class="box">
+                    <div class="boxIn">
+                        <img src="static/images/dashboard-5.jpg" class="mb10"/>
+                        <p class="mb10"><strong ng-bind="vm.totalData.orderCount.toLocaleString()"></strong></p>
+                        <p class="c_999">总订单数</p>
+                    </div>
+                </div>
+            </div>
+            <div class="boxWh-2 f_l" style="padding:0">
+                <div class="box">
+                    <div class="boxIn">
+                        <img src="static/images/dashboard-6.jpg" class="mb10"/>
+                        <p class="mb10"><strong ng-bind="vm.totalData.rate + '%'"></strong></p>
+                        <p class="c_999">总赔付率</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="w30 f_l" style="position:relative">
+        <h2 class="dashTitle">数据总览</h2>
+        <div class="boxWh-3 box" id="cle_1" ng-show="vm.currentCle == 0"></div>
+        <ul class="boxUl">
+            <li ng-class="{'hover':vm.currentCle == 0}" ng-click="vm.currentCle = 0">总保费</li>
+        </ul>
+    </div>
+    <div style="clear:both;"></div>
+    <h2 class="dashTitle mt30">进出口链条</h2>
+    <div class="box boxWh-6">
+        <div class="chainDiv">
+            <div class="removeDiv pos1" ng-mouseover="vm.pos1 = true" ng-mouseout="vm.pos1 = false"></div>
+            <div class="popBlank topArrow pos1" ng-if="vm.pos1">
+                <p>合作生产商/供货商数：341</p>
+                <p>平台综合风险分析：</p>
+                <p>货损率--0.03%</p>
+                <p>丢件率--0.01%</p>
+                <p>延时率--1%</p>
+                <p>通关率--8%</p>
+                <p>退运率--5%</p>
+            </div>
+            <div class="removeDiv pos2" ng-mouseover="vm.pos2 = true" ng-mouseout="vm.pos2 = false"></div>
+            <div class="popBlank topArrow pos2" ng-if="vm.pos2">
+                <p>卖家/货代/平台/代购/境外电商合作数：341</p>
+                <p>平台综合风险分析：</p>
+                <p>货损率--0.03%</p>
+                <p>丢件率--0.01%</p>
+                <p>延时率--1%</p>
+                <p>通关率--8%</p>
+                <p>退运率--5%</p>
+            </div>
+            <div class="removeDiv pos3" ng-mouseover="vm.pos3 = true" ng-mouseout="vm.pos3 = false"></div>
+            <div class="popBlank topArrow pos3" ng-if="vm.pos3">
+                <p>转运/海外仓合作数：341</p>
+                <p>平台综合风险分析：</p>
+                <p>货损率--0.03%</p>
+                <p>丢件率--0.01%</p>
+                <p>延时率--1%</p>
+                <p>通关率--8%</p>
+                <p>退运率--5%</p>
+            </div>
+            <div class="removeDiv pos4" ng-mouseover="vm.pos4 = true" ng-mouseout="vm.pos4 = false"></div>
+            <div class="popBlank topArrow pos4" ng-if="vm.pos4">
+                <p>总海关数：39家</p>
+                <p>总通关率--98%</p>
+                <p>最近一周通关率--99%</p>
+            </div>
+            <div class="removeDiv pos5" ng-mouseover="vm.pos5 = true" ng-mouseout="vm.pos5 = false"></div>
+            <div class="popBlank bottomArrow pos5" ng-if="vm.pos5">
+                <p>用户画像：</p>
+                <p>性别：男-38% 女-62%</p>
+                <p>语言分布：简体中文-97% 繁体中文-2% 英文-1%</p>
+                <p>地区：上海-28% 江苏省-25% 浙江省-13% 广东省-12% 其他-22%</p>
+                <p>终端：iPhone-55% Android-40% Web-5%</p>
+                <p>年龄：26~30-62% 30~35 14% 20~25-8% 其他-16%</p>
+                <p>学历：本科-88% 专科-9% 硕士-1% 其他-2%</p>
+            </div>
+            <div class="removeDiv pos6" ng-mouseover="vm.pos6 = true" ng-mouseout="vm.pos6 = false"></div>
+            <div class="popBlank bottomArrow pos6" ng-if="vm.pos6">
+                <p>平台数：363家</p>
+                <p>综合赔付率：</p>
+                <p>货损率--0.03%</p>
+                <p>丢件率--0.01%</p>
+                <p>延时率--1%</p>
+                <p>通关率--8%</p>
+                <p>退运率--5%</p>
+            </div>
+            <div class="removeDiv pos7" ng-mouseover="vm.pos7 = true" ng-mouseout="vm.pos7 = false"></div>
+            <div class="popBlank bottomArrow pos7" ng-if="vm.pos7">
+                <p>合作保税仓数：61家</p>
+                <p>总通关率--98%</p>
+                <p>最近一周通关率--99%</p>
+            </div>
+            <div class="removeDiv wl1" ng-mouseover="vm.wl1 = true" ng-mouseout="vm.wl1 = false"></div>
+            <div class="popBlank topArrow wl1" ng-if="vm.wl1">
+                <p>总519,956条物流数据</p>
+            </div>
+            <div class="removeDiv wl2" ng-mouseover="vm.wl2 = true" ng-mouseout="vm.wl2 = false"></div>
+            <div class="popBlank topArrow wl2" ng-if="vm.wl2">
+                <p>总519,956条物流数据</p>
+            </div>
+            <div class="removeDiv wl3" ng-mouseover="vm.wl3 = true" ng-mouseout="vm.wl3 = false"></div>
+            <div class="popBlank topArrow wl3" ng-if="vm.wl3">
+                <p>共总42,459条入关数据</p>
+            </div>
+            <div class="removeDiv wl4" ng-mouseover="vm.wl4 = true" ng-mouseout="vm.wl4 = false"></div>
+            <div class="popBlank topArrow wl4" ng-if="vm.wl4">
+                <p>总42,459条通关数据</p>
+            </div>
+            <div class="removeDiv wl5" ng-mouseover="vm.wl5 = true" ng-mouseout="vm.wl5 = false"></div>
+            <div class="popBlank bottomArrow wl5" ng-if="vm.wl5">
+                <p>总519,956条物流数据</p>
+            </div>
+            <div class="removeDiv wl6" ng-mouseover="vm.wl6 = true" ng-mouseout="vm.wl6 = false"></div>
+            <div class="popBlank bottomArrow wl6" ng-if="vm.wl6">
+                <p>总519,956条物流数据</p>
+            </div>
+            <div class="removeDiv ic1" ng-mouseover="vm.ic1 = true" ng-mouseout="vm.ic1 = false"></div>
+            <div class="popBlank topArrow ic1" ng-if="vm.ic1">
+                <p>信用保证险：</p>
+                <p>总赊销金额 15,894,139 元</p>
+                <p>保险公司总授信 12,715,311 元</p>
+            </div>
+            <div class="removeDiv ic2" ng-mouseover="vm.ic2 = true" ng-mouseout="vm.ic2 = false"></div>
+            <div class="popBlank topArrow ic2" ng-if="vm.ic2">
+                <p>银关保：</p>
+                <p>总垫付保证金：3,450,000元</p>
+            </div>
+            <div class="removeDiv ic3" ng-mouseover="vm.ic3 = true" ng-mouseout="vm.ic3 = false"></div>
+            <div class="popBlank topArrow ic3" ng-if="vm.ic3">
+                <p>出口退税信用贷款：</p>
+                <p>总借款额：23,450,000元</p>
+                <p>期限：60天</p>
+            </div>
+        </div>
+    </div>
+    <h2 class="dashTitle mt30">险种分布图</h2>
+    <div class="box boxWh-4" id="block"></div>
+    <h2 class="dashTitle mt30">物流保障类业务数据</h2>
+    <div class="box boxWh-4" id="lineEchart"></div>
+    <div style="clear: both"></div>
+    <!--<h2 class="dashTitle mt30">豆沙包保障航路图</h2>-->
+    <!--<div class="box boxWh-6 mb20" id="flights"></div>-->
+    <h2 class="dashTitle mt30">豆沙包业务分部图</h2>
+    <div class="box mb20 boxWh-6">
+        <div class="mapDiv">
+            <div class="positionDiv toRightBox01">
+                <div class="size20" ng-mouseover="vm.map1 = true" ng-mouseout="vm.map1 = false"></div>
+                <p class="popBlank toRight" ng-if="vm.map1">加拿大</p>
+            </div>
+
+            <div class="positionDiv toRightBox02">
+                <div class="size20" ng-mouseover="vm.map2 = true" ng-mouseout="vm.map2 = false"></div>
+                <p class="popBlank toRight" ng-if="vm.map2">美国</p>
+            </div>
+
+            <div class="positionDiv toRightBox03">
+                <div class="size20" ng-mouseover="vm.map3 = true" ng-mouseout="vm.map3 = false"></div>
+                <p class="popBlank toRight" ng-if="vm.map3">巴西</p>
+            </div>
+
+            <div class="positionDiv toRightBox04">
+                <div class="size20" ng-mouseover="vm.map4 = true" ng-mouseout="vm.map4 = false"></div>
+                <p class="popBlank toRight" ng-if="vm.map4">西班牙</p>
+            </div>
+
+            <div class="positionDiv toRightBox05">
+                <div class="size09" ng-mouseover="vm.map5 = true" ng-mouseout="vm.map5 = false"></div>
+                <p class="popBlank toRight" ng-if="vm.map5">英国</p>
+            </div>
+
+            <div class="positionDiv toRightBox06">
+                <div class="size09" ng-mouseover="vm.map6 = true" ng-mouseout="vm.map6 = false"></div>
+                <p class="popBlank toRight" ng-if="vm.map6">法国</p>
+            </div>
+
+            <div class="positionDiv toRightBox07">
+                <div class="size20" ng-mouseover="vm.map7 = true" ng-mouseout="vm.map7 = false"></div>
+                <p class="popBlank toRight" ng-if="vm.map7">德国</p>
+            </div>
+
+            <div class="positionDiv toRightBox08">
+                <div class="size09" ng-mouseover="vm.map8 = true" ng-mouseout="vm.map8 = false"></div>
+                <p class="popBlank toRight" ng-if="vm.map8">丹麦</p>
+            </div>
+
+            <div class="positionDiv toRightBox09">
+                <div class="size09" ng-mouseover="vm.map9 = true" ng-mouseout="vm.map9 = false"></div>
+                <p class="popBlank toRight" ng-if="vm.map9">挪威</p>
+            </div>
+
+            <div class="positionDiv toRightBox10">
+                <div class="size20" ng-mouseover="vm.map10 = true" ng-mouseout="vm.map10 = false"></div>
+                <p class="popBlank toRight" ng-if="vm.map10">奥地利</p>
+            </div>
+
+            <div class="positionDiv toRightBox11">
+                <div class="size20" ng-mouseover="vm.map11 = true" ng-mouseout="vm.map11 = false"></div>
+                <p class="popBlank toRight" ng-if="vm.map11">罗马尼亚</p>
+            </div>
+
+            <div class="positionDiv toRightBox12">
+                <div class="size20" ng-mouseover="vm.map12 = true" ng-mouseout="vm.map12 = false"></div>
+                <p class="popBlank toRight" ng-if="vm.map12">波兰</p>
+            </div>
+
+            <div class="positionDiv toRightBox13">
+                <div class="size09" ng-mouseover="vm.map13 = true" ng-mouseout="vm.map13 = false"></div>
+                <p class="popBlank toRight" ng-if="vm.map13">立陶宛</p>
+            </div>
+
+            <div class="positionDiv toRightBox14">
+                <div class="size09" ng-mouseover="vm.map14 = true" ng-mouseout="vm.map14 = false"></div>
+                <p class="popBlank toRight" ng-if="vm.map14">克罗地亚</p>
+            </div>
+
+            <div class="positionDiv toRightBox15">
+                <div class="size20" ng-mouseover="vm.map15 = true" ng-mouseout="vm.map15 = false"></div>
+                <p class="popBlank toRight" ng-if="vm.map15">芬兰</p>
+            </div>
+
+            <div class="positionDiv toRightBox16">
+                <div class="size20" ng-mouseover="vm.map16 = true" ng-mouseout="vm.map16 = false"></div>
+                <p class="popBlank toRight" ng-if="vm.map16">土耳其</p>
+            </div>
+
+            <div class="positionDiv toRightBox17">
+                <div class="size20" ng-mouseover="vm.map17 = true" ng-mouseout="vm.map17 = false"></div>
+                <p class="popBlank toRight" ng-if="vm.map17">俄罗斯</p>
+            </div>
+
+            <div class="positionDiv toRightBox18">
+                <div class="size20" ng-mouseover="vm.map18 = true" ng-mouseout="vm.map18 = false"></div>
+                <p class="popBlank toRight" ng-if="vm.map18">中国</p>
+            </div>
+
+            <div class="positionDiv toRightBox19">
+                <div class="size20" ng-mouseover="vm.map19 = true" ng-mouseout="vm.map19 = false"></div>
+                <p class="popBlank toRight" ng-if="vm.map19">印度尼西亚</p>
+            </div>
+
+            <div class="positionDiv toRightBox20">
+                <div class="size20" ng-mouseover="vm.map20 = true" ng-mouseout="vm.map20 = false"></div>
+                <p class="popBlank toRight" ng-if="vm.map20">澳大利亚</p>
+            </div>
+
+            <div class="positionDiv toRightBox21">
+                <div class="size20" ng-mouseover="vm.map21 = true" ng-mouseout="vm.map21 = false"></div>
+                <p class="popBlank toRight" ng-if="vm.map21">新西兰</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="static/js/jquery/jquery-1.10.2.min.js"></script>
+<script src="static/js/angular/angular.min.js"></script>
+<script src="static/js/angular/angular-cookies.min.js"></script>
+<script type="text/javascript" src="static/js/echarts/echarts.js"></script>
+<script src="core/configs/config.js"></script>
+<!--<script src="core/configs/testConfig.js"></script>-->
+<!--<script src="core/configs/developConfig.js"></script>-->
+<script src="core/services/service.js"></script>
+<script src="core/services/layer.js"></script>
+<script src="core/services/util.js"></script>
+
+<script src="modules/dashboard/controller/dashboardController.js"></script>
+</body>
+</html>

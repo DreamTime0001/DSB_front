@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="PhTariffDetails" lang="en" ng-controller="PhTariffDetailsController as vm">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>豆沙包关税宝在线试算器</title>
+	<link rel="stylesheet" href="static/css/bootstrap.css" />
+	<link rel="stylesheet" href="static/css/style.css" />
+    <script type="text/javascript">
+   		document.addEventListener('plusready', function(){
+   			//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。"
+   		});
+    </script>
+</head>
+<body>
+	<h3 class="content-title">关税宝在线试算器</h3>
+	<div class="f2">	
+	<div class="content-all1">
+		<div class="money">
+			<div class="baofei"><em>预估保费：<strong ng-bind="vm.predictAmount"></strong> 元</em></div>
+			<div class="ckys">感谢您使用在线时算起，试算结果基于您的基础资料得出，仅供参考。</div>			
+		</div>
+		<div class="lc">产品投保流程</div>
+		<div class="container tips">产品的投保流程如下，请详读。豆沙包工作人员也将尽快与您取得联系，协助您进行后续的投保流程。</div>
+		<img src="static/images/pic_03.png" class="img-responsive" alt="Cinque Terre">
+	</div>
+	</div>
+
+	<script src="static/js/jquery/jquery-1.10.2.min.js"></script>
+	<script src="static/js/angular/angular.min.js"></script>
+	<script src="static/js/angular/angular-cookies.min.js"></script>
+	<script src="static/js/angular/angular-file-upload.min.js"></script>
+	<script src="static/js/md5.js"></script>
+	<script src="static/js/common.js"></script>
+	<script src="../core/configs/config.js"></script>
+	<!--<script src="../core/configs/testConfig.js"></script>-->
+	<!--<script src="../core/configs/localConfig.js"></script>-->
+	<script src="core/services/layer/layer.js"></script>
+	<script src="core/services/layer.js"></script>
+	<script src="core/services/util.js"></script>
+	<script src="modules/PhTariffDetails/controller/PhTariffDetailsController.js"></script><!--总模板-->
+</body>
+</html>

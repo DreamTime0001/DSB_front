@@ -1,0 +1,179 @@
+<div ng-controller="ProductPackageDetailsController as vm" ng-init="vm.getPagedDataAsync()">
+    <section class="factory-list">
+        <div class="inner-wrap clearfix">
+            <!-- <p style="font-size:14px;color: #000;">
+                <span>全部产品</span>
+                <em>&gt;</em>
+                <span ng-bind="vm.salerLine">卖家保障类</span>
+                <em>&gt;</em>
+                <span ng-bind="vm.conList.productName">卖家出口无忧-基础版</span>
+            </p> -->
+            <div class="query-div02 clearfix">
+                <!-- 左侧 -->
+                <div class="leftDiv">
+                    <div class="imgTxtBox clearfix">
+                        <div class="imgBox">
+                            <img ng-src="{{vm.conList.officialPicUrl}}" alt="">
+                        </div>
+                        <div class="txtBox">
+                            <h2 ng-bind="vm.conList.productName"></h2>
+                            <ul class="txtUl">
+                                <li>
+                                    <label>商品类别：</label>
+                                    <span ng-bind="vm.packagesList.configV1Desc"></span>
+                                </li>
+                                <li>
+                                    <label>运输方式：</label>
+                                    <span ng-bind="vm.packagesList.configV3Desc"></span>
+                                </li>
+                                <li>
+                                    <label>保障额度：</label>
+                                    <span ng-bind="vm.packagesList.configV2Desc"></span>
+                                </li>
+                                <li>
+                                    <span>
+                                        <label>起运地：</label>
+                                        <select class="form-control" ng-model="vm.popProductData.configV5Id" ng-options="key as value for (key, value) in vm.v5List"
+                                            ng-change="vm.getPrice()">
+                                            <option value="">请选择起运地</option>
+                                        </select>
+                                    </span>
+                                    <span style="display:inline-block;">
+                                        <label>目的地：</label>
+                                        <select class="form-control" ng-model="vm.popProductData.configV6Id" ng-options="key as value for (key, value) in vm.v6List"
+                                            ng-change="vm.getPrice()">
+                                            <option value="">请选择目的地</option>
+                                        </select>
+                                    </span>
+                                </li>
+                                <li>
+                                    <label class="fontThrough" ng-bind="'单买价格￥' + vm.packagesList.singlePrice">38</label>
+                                </li>
+                                <li>
+                                    <label>产品包价格：</label>
+                                    <span class="redColor" ng-bind="'￥' + vm.packagesList.originalPrice"></span>
+                                </li>
+                            </ul>
+                            <div class="numBox">
+                                <label>购买数量：</label>
+                                <span>
+                                    <a href="javascript:;" class="minusD" ng-click="vm.getNum(0)"></a>
+                                    <input ng-change="vm.getNum()" class="inpNum" type="text" ng-model="vm.popProductData.num">
+                                    <a href="javascript:;" class="plusD" ng-click="vm.getNum(1)"></a>
+                                </span>
+                            </div>
+                            <div class="bottom-ico02">
+                                <a href="javscript:;" class="buy" ng-click="vm.toBuy()">立即购买</a>
+                                <a href="javscript:;" class="nomal" ng-click="vm.addShop()">加入购物车</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="productTxt">
+                        <h2>产品包保障</h2>
+                        <p ng-bind="vm.conList.saasPicDesc"></p>
+                    </div>
+                </div>
+                <!-- 右侧 -->
+                <div class="rightDiv">
+                    <h3>相关推荐</h3>
+                    <div class="swiper-container" style="overflow: hidden;height: 520px;">
+                        <ul class="rightUl swiper-wrapper">
+                            <li class="swiper-slide" ng-repeat="o in vm.picList" ng-if="vm.picList.length>0">
+                                <div class="imgDiv">
+                                    <img style="cursor: pointer;" ui-sref ="productPackageDetails({id:o.id,productWrapId:o.productWrapId})" ng-src="{{o.officialPicUrl}}" alt="">
+                                </div>
+                                <div class="txtDiv clearfix">
+                                    <p ng-bind="o.productName"></p>
+                                    <span class="fontL" ng-bind="o.configV1Desc + '/' + o.configV3Desc"></span>
+                                    <span class="fontC" ng-bind="'￥' + o.originalPrice + '起'"></span>
+                                </div>
+                            </li>
+
+                            <!-- <li class="swiper-slide">
+                                <div class="imgDiv">
+                                    <img src="static/images/index_system_img.jpg" alt="">
+                                </div>
+                                <div class="txtDiv">
+                                    <p>卖家出口无忧-标准版</p>
+                                    <span class="fontL">宠物食品/空运……</span>
+                                    <span class="fontC">￥38起</span>
+                                </div>
+                            </li>
+                            <li class="swiper-slide">
+                                <div class="imgDiv">
+                                    <img src="static/images/index_system_img.jpg" alt="">
+                                </div>
+                                <div class="txtDiv">
+                                    <p>卖家出口无忧-标准版</p>
+                                    <span class="fontL">宠物食品/空运……</span>
+                                    <span class="fontC">￥38起</span>
+                                </div>
+                            </li>
+                            <li class="swiper-slide">
+                                <div class="imgDiv">
+                                    <img src="static/images/index_system_img.jpg" alt="">
+                                </div>
+                                <div class="txtDiv">
+                                    <p>卖家出口无忧-标准版</p>
+                                    <span class="fontL">宠物食品/空运……</span>
+                                    <span class="fontC">￥38起</span>
+                                </div>
+                            </li>
+                            <li class="swiper-slide">
+                                <div class="imgDiv">
+                                    <img src="static/images/index_system_img.jpg" alt="">
+                                </div>
+                                <div class="txtDiv">
+                                    <p>卖家出口无忧-标准版</p>
+                                    <span class="fontL">宠物食品/空运……</span>
+                                    <span class="fontC">￥38起</span>
+                                </div>
+                            </li>
+                            <li class="swiper-slide">
+                                <div class="imgDiv">
+                                    <img src="static/images/index_system_img.jpg" alt="">
+                                </div>
+                                <div class="txtDiv">
+                                    <p>卖家出口无忧-标准版</p>
+                                    <span class="fontL">宠物食品/空运……</span>
+                                    <span class="fontC">￥38起</span>
+                                </div>
+                            </li> -->
+                        </ul>
+
+                    </div>
+                    <div class="arrowBox">
+                        <a href="javascript:;" class="arrowP arrowP01 swiper-button-prev"></a>
+                        <a href="javascript:;" class="arrowP arrowP02 swiper-button-next"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="query-div03">
+                <!--导航-->
+                <div class="nav-position">
+                    <ul class="navUl clearfix">
+                        <!-- <li class="active">
+                            <a href="javascript:;">产品详情</a>
+                        </li> -->
+                        <li class="active">
+                            <a href="javascript:;">保障内容</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">购买须知</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">售后服务</a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">常见问题</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="conDiv" ng-bind-html="vm.conList.description">
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
